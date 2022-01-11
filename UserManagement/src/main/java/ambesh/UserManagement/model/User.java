@@ -1,5 +1,4 @@
 package ambesh.UserManagement.model;
-import lombok.*;
 
 import javax.persistence.*;
 
@@ -8,28 +7,99 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @NonNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long userId;
 
-    @Column(name = "userName")
+    @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "mobileNumber")
+    @Column(name = "mobile_number")
     private String mobileNumber;
 
-    @Column(name = "emailId")
-    private String emailId;
+    @Column(name = "email_id")
+    private String emailID;
 
-    @Column(name = "address1")
+    @Column(name = "address_1")
     private String address1;
 
-    @Column(name = "address2")
+    @Column(name = "address_2")
     private String address2;
+
+    public User() {
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String user_name) {
+        this.userName = user_name;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String first_name) {
+        this.firstName = first_name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + userId + ", userName=" + userName + ", firstName='" + firstName + '\'' + ", lastName='" + lastName
+                + '\'' + "mobileNumber =" + mobileNumber +"emailID =" + emailID +'\''+"address1 =" + address1 +"address2 =" +address2+'\''  +'}';
+    }
 }
