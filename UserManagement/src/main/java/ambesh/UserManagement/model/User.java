@@ -111,9 +111,9 @@ public class User {
               return "UserName";
           else if(firstName==null && lastName==null )
               return "first name & last name";
-          else if(mobileNumber==null)
+          else if(mobileNumber==null || mobileNumber.length()!=10)
               return "Mobile number";
-          else if(emailID==null)
+          else if(emailID==null || !emailID.contains("@"))
               return "email Id";
           else if(address1==null && address2==null)
                 return "Address";
