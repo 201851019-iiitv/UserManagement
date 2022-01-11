@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/user")
@@ -21,7 +22,18 @@ public class UserController {
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
+
+        if(user.validity().equals("completed")){
+            if(!doesExist(user))
+                return userRepository.save(user);
+            else
+                new ResourceNotFoundException("User already exist.");
+        }
+        else {
+            String s = user.validity() + " can't be null .";
+            new ResourceNotFoundException(s);
+        }
+        return user;
     }
 
 
@@ -64,6 +76,17 @@ public class UserController {
 
     }
 
+
+// check user mobile number,username,email exist or not .
+    public boolean doesExist(User user){
+        List<User> userlist= (List<User>)userRepository.findAll();
+        // check emailId have same ;
+        for(int i=0 ; i < userlist.size() ; i++) {
+            if((userlist.get(i).getUserName().equals(user.getUserName())) ||(userlist.get(i).getEmailID().equals(user.getEmailID()))||(userlist.get(i).getMobileNumber().equals(user.getMobileNumber())))
+             return true;
+        }
+    return false;
+    }
 
 
 }

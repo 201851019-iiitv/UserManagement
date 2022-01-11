@@ -1,21 +1,20 @@
 package ambesh.UserManagement.model;
 
+import ambesh.UserManagement.exception.ResourceNotFoundException;
 import lombok.*;
 import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 
 @Entity
-//@IdClass(CompositeKey.class)
 @Table(name = "User")
-//@Check(constraints = "(first_name IS NOT NULL or last_name IS NOT NULL) and (address1 IS NOT NULL or address2 IS NOT NULL)")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
 
-    //@Id
+
     @Column(name = "user_name")
     private String userName;
 
@@ -26,11 +25,11 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    //@Id
+
     @Column(name = "mobile_number")
     private String mobileNumber;
 
-    //@Id
+
     @Column(name = "email_id")
     private String emailID;
 
@@ -107,9 +106,19 @@ public class User {
         this.address2 = address2;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "id=" + user_id + ", userName=" + userName + ", firstName='" + firstName + '\'' + ", lastName='" + lastName
-                + '\'' + "mobileNumber =" + mobileNumber +"emailID =" + emailID +'\''+"address1 =" + address1 +"address2 =" +address2+'\''  +'}';
+    public String validity(){
+          if(userName==null )
+              return "UserName";
+          else if(firstName==null && lastName==null )
+              return "first name & last name";
+          else if(mobileNumber==null)
+              return "Mobile number";
+          else if(emailID==null)
+              return "email Id";
+          else if(address1==null && address2==null)
+                return "Address";
+          else
+              return "completed";
+
     }
 }
