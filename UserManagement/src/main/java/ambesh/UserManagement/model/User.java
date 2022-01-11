@@ -1,17 +1,24 @@
 package ambesh.UserManagement.model;
 
+import lombok.*;
+import org.hibernate.annotations.Check;
+
 import javax.persistence.*;
 
 @Entity
+//@IdClass(CompositeKey.class)
 @Table(name = "User")
+//@Check(constraints = "(first_name IS NOT NULL or last_name IS NOT NULL) and (address1 IS NOT NULL or address2 IS NOT NULL)")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private long user_id;
 
+    //@Id
     @Column(name = "user_name")
     private String userName;
+
 
     @Column(name = "first_name")
     private String firstName;
@@ -19,43 +26,46 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    //@Id
     @Column(name = "mobile_number")
     private String mobileNumber;
 
+    //@Id
     @Column(name = "email_id")
     private String emailID;
 
-    @Column(name = "address_1")
+
+    @Column(name = "address1")
     private String address1;
 
-    @Column(name = "address_2")
+    @Column(name = "address2")
     private String address2;
 
     public User() {
     }
 
     public Long getUserId() {
-        return userId;
+        return user_id;
     }
 
     public void setUserId(Long userId) {
-        this.userId = userId;
+        this.user_id = userId;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String user_name) {
-        this.userName = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String first_name) {
-        this.firstName = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -99,7 +109,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + userId + ", userName=" + userName + ", firstName='" + firstName + '\'' + ", lastName='" + lastName
+        return "User{" + "id=" + user_id + ", userName=" + userName + ", firstName='" + firstName + '\'' + ", lastName='" + lastName
                 + '\'' + "mobileNumber =" + mobileNumber +"emailID =" + emailID +'\''+"address1 =" + address1 +"address2 =" +address2+'\''  +'}';
     }
 }

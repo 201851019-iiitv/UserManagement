@@ -1,32 +1,46 @@
 package ambesh.UserManagement.controller;
 
+import ambesh.UserManagement.exception.ResourceNotFoundException;
 import ambesh.UserManagement.model.User;
-import ambesh.UserManagement.services.UserService;
+import ambesh.UserManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/user")
 public class UserController {
+
     @Autowired
-    UserService userService;
+    private UserRepository userRepository;
 
-
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public HttpStatus insertUser(@RequestBody User user) {
-        return userService.addUser(user) ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
+    // ToDo: handle validation(unique id,username,mobileno,email)
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        return (User) userRepository.save(user);
     }
 
-    @RequestMapping(value = "/user?userId=/{id}", method = RequestMethod.GET)
-    public @ResponseBody
-    User getAllUsers(@PathVariable Long id) {
-        return userService.getById(id);
+
+    @GetMapping("{userId}")
+    public  ResponseEntity<User> getUserById(@RequestParam long userId){
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:" + userId));
+        return ResponseEntity.ok(user);
     }
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public List<User> getAll() {
-        return userService.getAllUsers();
-    }
+
+//
+//    @GetMapping
+//    public List<User> getAllUser(){
+//        return userRepository.findAll();
+//    }
+
+
+
+
+
 
 
 }
