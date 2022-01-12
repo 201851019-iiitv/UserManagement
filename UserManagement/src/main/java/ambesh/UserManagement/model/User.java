@@ -7,7 +7,7 @@ import org.hibernate.annotations.Check;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table(name = "User")    // create user table
 public class User {
 
     @Id

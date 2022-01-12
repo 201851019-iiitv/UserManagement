@@ -57,19 +57,12 @@ public class validity {
     }
 
 
-    public String validation(User user){
-        if(user.getUserName()==null )
-            return "UserName";
-        else if(user.getFirstName()==null || user.getLastName()==null )
-            return "first name or last name";
-        else if(user.getMobileNumber()==null || user.getMobileNumber().length()!=10)
-            return "Mobile number";
-        else if(user.getEmailID()==null || !user.getEmailID().contains("@"))
-            return "email Id";
-        else if(user.getAddress1()==null && user.getAddress2()==null)
-            return "Address";
+    public boolean validation(User user){
+        if(user.getUserName()==null ||(user.getFirstName()==null || user.getLastName()==null) ||(user.getMobileNumber()==null || user.getMobileNumber().length()!=10)||(user.getEmailID()==null || !user.getEmailID().contains("@")||(user.getAddress1()==null && user.getAddress2()==null)))
+            return false;
+
         else
-            return "completed";
+            return true;
 
     }
 

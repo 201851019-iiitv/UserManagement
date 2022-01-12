@@ -24,7 +24,7 @@ public class UserController extends validity {
     @PostMapping
     public HttpStatus createUser(@RequestBody User user) {
 
-        if(validation(user).equals("completed")){
+        if(validation(user)){
             if(!doesExist(user)) {
                 userRepository.save(user);
                 return HttpStatus.CREATED;
