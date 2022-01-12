@@ -1,5 +1,6 @@
 package ambesh.UserManagement.controller;
 
+import ambesh.UserManagement.Validation.validity;
 import ambesh.UserManagement.exception.ResourceNotFoundException;
 import ambesh.UserManagement.model.User;
 import ambesh.UserManagement.repository.UserRepository;
@@ -14,7 +15,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends validity {
 
     @Autowired
     private UserRepository userRepository;
@@ -23,7 +24,7 @@ public class UserController {
     @PostMapping
     public HttpStatus createUser(@RequestBody User user) {
 
-        if(user.validity().equals("completed")){
+        if(validation(user).equals("completed")){
             if(!doesExist(user)) {
                 userRepository.save(user);
                 return HttpStatus.CREATED;
@@ -40,30 +41,60 @@ public class UserController {
 
 
     @GetMapping
-    public  ResponseEntity<User> getUserById(@RequestParam long userId){
-        System.out.println(userId);
+    public  String getUserById(@RequestParam long userId){
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not exist with id:" + userId));
-        return ResponseEntity.ok(user);
+        return user.getFirstName() +","+user.getLastName()+","+user.getMobileNumber()+","+user.getEmailID();
     }
 
  @PutMapping
- public ResponseEntity<User> updateUser(@RequestParam long userId,@RequestBody User userDetails) {
+ public HttpStatus updateUser(@RequestParam long userId,@RequestBody User userDetails) {
      User updateUser = userRepository.findById(userId)
              .orElseThrow(() -> new ResourceNotFoundException("User not exist with id: " + userId));
 
-     updateUser.setUserName(userDetails.getUserName());
-     updateUser.setFirstName(userDetails.getFirstName());
-     updateUser.setLastName(userDetails.getLastName());
-     updateUser.setMobileNumber(userDetails.getMobileNumber());
-     updateUser.setEmailID(userDetails.getEmailID());
-     updateUser.setAddress1(userDetails.getAddress1());
-     updateUser.setAddress2(userDetails.getAddress2());
+     boolean dataCorrect=true;
+     if(dataCorrect && userDetails.getUserName()!=null && doesUserExist(userDetails.getUserName()))
+         dataCorrect=false;
+
+     if(dataCorrect && userDetails.getEmailID()!=null && doesEmailIDExist(userDetails.getEmailID()))
+         dataCorrect=false;
+     if(dataCorrect && userDetails.getMobileNumber()!=null && doesMobileExist(userDetails.getMobileNumber()))
+         dataCorrect=false;
+
+     if(dataCorrect) {
+
+         if(userDetails.getUserName()!=null){
+             updateUser.setUserName(userDetails.getUserName());
+         }
+         if(userDetails.getFirstName()!=null){
+             updateUser.setFirstName(userDetails.getFirstName());
+         }
+         if(userDetails.getLastName()!=null){
+             updateUser.setLastName(userDetails.getLastName());
+         }
+         if(userDetails.getEmailID()!=null)
+             updateUser.setEmailID(userDetails.getEmailID());
+         if(userDetails.getMobileNumber()!=null)
+             updateUser.setMobileNumber(userDetails.getMobileNumber());
+         if(userDetails.getAddress1()!=null){
+             updateUser.setAddress1(userDetails.getAddress1());
+         }
+         if(userDetails.getAddress2()!=null){
+             updateUser.setAddress2(userDetails.getAddress2());
+         }
 
 
-     userRepository.save(updateUser);
+         updateUser.setMobileNumber(userDetails.getMobileNumber());
+         updateUser.setEmailID(userDetails.getEmailID());
+         userRepository.save(updateUser);
 
-     return ResponseEntity.ok(updateUser);
+         return HttpStatus.OK;
+
+     }
+
+
+     return HttpStatus.BAD_REQUEST;
+
  }
 
     @DeleteMapping
@@ -76,18 +107,6 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-    }
-
-
-// check user mobile number,username,email exist or not .
-    public boolean doesExist(User user){
-        List<User> userlist= (List<User>)userRepository.findAll();
-        // check emailId have same ;
-        for(int i=0 ; i < userlist.size() ; i++) {
-            if((userlist.get(i).getUserName().equals(user.getUserName())) ||(userlist.get(i).getEmailID().equals(user.getEmailID()))||(userlist.get(i).getMobileNumber().equals(user.getMobileNumber())))
-             return true;
-        }
-    return false;
     }
 
 
