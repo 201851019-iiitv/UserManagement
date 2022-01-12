@@ -21,19 +21,21 @@ public class UserController {
 
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public HttpStatus createUser(@RequestBody User user) {
 
         if(user.validity().equals("completed")){
-            if(!doesExist(user))
-                return userRepository.save(user);
+            if(!doesExist(user)) {
+                userRepository.save(user);
+                return HttpStatus.CREATED;
+
+            }
             else
-                new ResourceNotFoundException("User already exist.");
+            {
+                return HttpStatus.CONFLICT;
+            }
         }
-        else {
-            String s = user.validity() + " can't be null .";
-            new ResourceNotFoundException(s);
-        }
-        return user;
+
+        return HttpStatus.BAD_REQUEST;
     }
 
 
@@ -46,7 +48,7 @@ public class UserController {
     }
 
  @PutMapping
- public ResponseEntity<User> updateEmployee(@RequestParam long userId,@RequestBody User userDetails) {
+ public ResponseEntity<User> updateUser(@RequestParam long userId,@RequestBody User userDetails) {
      User updateUser = userRepository.findById(userId)
              .orElseThrow(() -> new ResourceNotFoundException("User not exist with id: " + userId));
 
@@ -65,10 +67,10 @@ public class UserController {
  }
 
     @DeleteMapping
-    public ResponseEntity<HttpStatus> deleteEmployee(@RequestParam long userId){
+    public ResponseEntity<HttpStatus> deleteUser(@RequestParam long userId){
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + userId));
+                .orElseThrow(() -> new ResourceNotFoundException("User not exist with id: " + userId));
 
         userRepository.delete(user);
 
