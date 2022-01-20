@@ -1,5 +1,7 @@
 package Milestone2.Wallet_Management_Project.controller;
 
+import Milestone2.Wallet_Management_Project.exception.BadRequestException;
+import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.Transaction;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.model.Wallet;
@@ -31,29 +33,36 @@ public class WalletController {
 
         // this will not while it is string class.
         //System.out.println(mobileNumber.getClass().getSimpleName());
-       User user=userService.findByMobileno(mobileNumber);
-        if(user!=null) {
+
+        try{
+            User user=userService.findByMobileno(mobileNumber);
             Wallet w=new Wallet();
             w.setWalletId(mobileNumber);
             w.setCurr_bal(0.0F);
             walletService.createWallet(w);
             user.setWallet(w);
             userService.updateUser(user);
-
-
-
+            return new ResponseEntity<>("Wallet created successfully !",HttpStatus.ACCEPTED);
+        }
+        catch (Exception e){
+            throw new ResourceNotFoundException("User does not exist with this mobile number ,Please check !");
         }
 
-        return new ResponseEntity<>("Wallet created successfully !",HttpStatus.ACCEPTED);
 
     }
 
 
     // Get all txns by wallet Id.
     @RequestMapping(path = "/wallet/{WalletId}/txns",method = RequestMethod.GET)
-    public List<Transaction> getAllTransactionByWalletId(@PathVariable String WalletId){
+    public ResponseEntity<List<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId){
+               try{
+                   List<Transaction> txns=transactionService.getAllTxnsByWalletId(WalletId);
 
-        return transactionService.getAllTxnsByWalletId(WalletId);
+                   return ResponseEntity.ok(txns);
+               }
+               catch (Exception e){
+                   throw  new ResourceNotFoundException("wallet Id does not exist !");
+               }
 
     }
 
@@ -61,31 +70,36 @@ public class WalletController {
     @RequestMapping(path = "/wallet/{WalletId}/{amount}" ,method = RequestMethod.POST)
     public ResponseEntity<?> AddMoney(@PathVariable String WalletId,@PathVariable  Float amount){
 
-        //Check User wallet exist ?
-        // if yes the add money otherwise can't be
+
         //check Enter amount is positive ?
 
         if(amount<=0)
             return new ResponseEntity<>("Amount is not valid !", HttpStatus.BAD_REQUEST);
 
-        // Todo:
-        Wallet wallet =walletService.getWalletById(WalletId).orElseThrow();
+        //Check User wallet exist ?
+        // if yes the add money otherwise can't be
+        // Done:
+        Wallet wallet =walletService.getWalletById(WalletId).orElseThrow(()-> new ResourceNotFoundException("wallet does not exist !"));
 
-        // set balance in wallet.
-        wallet.setCurr_bal(wallet.getCurr_bal()+amount);
-        walletService.updateWallet(wallet);
+        try {
+            // set balance in wallet.
+            wallet.setCurr_bal(wallet.getCurr_bal() + amount);
+            walletService.updateWallet(wallet);
 
-        // create new txn for same walletId;
-         Transaction txn=new Transaction();
-         txn.setAmount(amount);
-         txn.setTimestamp(new Timestamp(System.currentTimeMillis()));
-         txn.setStatus("Success");
-         txn.setPayeeWalletId("To Self   ");
-         txn.setPayerWalletId(wallet.getWalletId());
-         transactionService.createTxn(txn);
+            // create new txn for same walletId;
+            Transaction txn = new Transaction();
+            txn.setAmount(amount);
+            txn.setTimestamp(new Timestamp(System.currentTimeMillis()));
+            txn.setStatus("Success");
+            txn.setPayeeWalletId("To Self   ");
+            txn.setPayerWalletId(wallet.getWalletId());
+            transactionService.createTxn(txn);
 
-        return new ResponseEntity<>("Added money Successfully",HttpStatus.ACCEPTED);
-
+            return new ResponseEntity<>("Added money Successfully", HttpStatus.ACCEPTED);
+        }
+        catch (Exception e){
+            throw new BadRequestException("can't be added money !");
+        }
     }
 
 }

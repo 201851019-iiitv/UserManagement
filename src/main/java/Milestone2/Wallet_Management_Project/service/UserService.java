@@ -52,4 +52,9 @@ public class UserService {
     public User findByMobileno(String mobileNumber) {
         return userRepo.findByMobileno(mobileNumber);
     }
+
+    @Transactional
+    public User findByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
 }

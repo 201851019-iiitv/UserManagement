@@ -1,21 +1,18 @@
 package Milestone2.Wallet_Management_Project.controller;
-
-import Milestone2.Wallet_Management_Project.Validation.validity;
+import Milestone2.Wallet_Management_Project.exception.BadRequestException;
+import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends validity {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -23,12 +20,18 @@ public class UserController extends validity {
 
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
-            if(!doesExist(user)) {
-                user.setStatus("Active");
-                user.setCreateDate(new Date());
-                userService.createUser(user);
 
-                return new ResponseEntity<>("User created successfully !", HttpStatus.CREATED);
+            if(userService.findByMobileno(user.getMobileno())==null && userService.findByEmail(user.getEmail())==null ) {
+               try {
+                    user.setStatus("Active");
+                    user.setCreateDate(new Date());
+                    userService.createUser(user);
+
+                    return new ResponseEntity<>("User created successfully !", HttpStatus.CREATED);
+                }
+               catch (Exception e){
+                   throw  new BadRequestException("User can't be created !");
+               }
 
             }
 
@@ -39,20 +42,32 @@ public class UserController extends validity {
 
 
     @GetMapping
-    public  ResponseEntity<?> getUserById(@RequestParam long userId){
-        // Todo:
-        Optional<User> user =userService.getUserById(userId);
-        return new ResponseEntity<>(ResponseEntity.ok(user),HttpStatus.ACCEPTED);
+    public  ResponseEntity<User> getUserById(@RequestParam long userId){
+        // Done:
+        User user =userService.getUserById(userId).orElseThrow(()-> new ResourceNotFoundException("User does not exist with this Id !"));
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping
     public  void updateUser(User user){
-        userService.updateUser(user);
+        try {
+            userService.updateUser(user);
+        }
+        catch (Exception e){
+            throw new BadRequestException("User can't be Updated");
+        }
     }
 
     @DeleteMapping
     public void deleteUser(User user){
-        userService.deleteUser(user);
+        try {
+            userService.deleteUser(user);
+//            user.setStatus("Inactive");
+//            userService.updateUser(user);
+        }
+        catch (Exception e){
+            throw new BadRequestException("User can't be Deleted");
+        }
 
     }
 
