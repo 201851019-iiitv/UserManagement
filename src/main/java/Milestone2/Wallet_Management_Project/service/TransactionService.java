@@ -3,12 +3,12 @@ package Milestone2.Wallet_Management_Project.service;
 import Milestone2.Wallet_Management_Project.model.Transaction;
 import Milestone2.Wallet_Management_Project.repository.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Transactional
@@ -25,20 +25,18 @@ public class TransactionService {
 
 
     // This Function Returns All Transaction made by a user either it's as Payer or Payee.
-    public List<Transaction> getAllTxnsByWalletId(String walletId) {
+    public Page<Transaction> getAllTxnsByWalletId(String walletId ,int pageNo) {
 
-        List<Transaction>TotalTxns=new ArrayList<>();
 
-        TotalTxns.addAll(transactionRepo.findByPayerWalletId(walletId)); // This will add all txns made as payer.
-        TotalTxns.addAll(transactionRepo.findByPayeeWalletId(walletId)); // This will add all txns get as payee.
-        return TotalTxns;
+        Pageable pageable = PageRequest.of(pageNo,5);
+        Page<Transaction> txns = transactionRepo.findByPayerWalletIdOrPayeeWalletId(walletId,walletId,pageable);
+        return txns;
     }
 
 
     // Get The Transaction details by it's TxnId.
 
     public Transaction getTxnsByTxnId(Long txnId) {
-
         return transactionRepo.findByTxnId(txnId);
     }
 

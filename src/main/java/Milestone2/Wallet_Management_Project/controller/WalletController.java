@@ -9,6 +9,7 @@ import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,18 +32,21 @@ public class WalletController {
     @RequestMapping(path= "/wallet/{mobileNumber}",method = RequestMethod.POST)
     public ResponseEntity<?> createWallet(@PathVariable String mobileNumber){
 
-        // this will not while it is string class.
-        //System.out.println(mobileNumber.getClass().getSimpleName());
-
         try{
-            User user=userService.findByMobileno(mobileNumber);
-            Wallet w=new Wallet();
-            w.setWalletId(mobileNumber);
-            w.setCurr_bal(0.0F);
-            walletService.createWallet(w);
-            user.setWallet(w);
-            userService.updateUser(user);
-            return new ResponseEntity<>("Wallet created successfully !",HttpStatus.ACCEPTED);
+            User user=userService.findByMobileno(mobileNumber); // check user exist with this mobile number ?
+            if(walletService.getWalletById(mobileNumber)==null) {   // check wallet already exist ?
+                Wallet w = new Wallet();
+                w.setWalletId(mobileNumber);
+                w.setCurr_bal(0.0F);
+                walletService.createWallet(w);
+                user.setWallet(w);
+                userService.updateUser(user);
+                return new ResponseEntity<>("Wallet created successfully !", HttpStatus.ACCEPTED);
+            }
+            else
+            {
+                return new ResponseEntity<>("User have already Wallet !", HttpStatus.CONFLICT);
+            }
         }
         catch (Exception e){
             throw new ResourceNotFoundException("User does not exist with this mobile number ,Please check !");
@@ -54,9 +58,9 @@ public class WalletController {
 
     // Get all txns by wallet Id.
     @RequestMapping(path = "/wallet/{WalletId}/txns",method = RequestMethod.GET)
-    public ResponseEntity<List<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId){
+    public ResponseEntity<Page<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId,@RequestParam int pageNo){
                try{
-                   List<Transaction> txns=transactionService.getAllTxnsByWalletId(WalletId);
+                   Page<Transaction> txns=transactionService.getAllTxnsByWalletId(WalletId,pageNo);
 
                    return ResponseEntity.ok(txns);
                }

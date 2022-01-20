@@ -9,6 +9,7 @@ import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -97,7 +98,7 @@ public class TransactionController {
     //url :http://localhost:8080/transaction?userId=<userId>
 
     @RequestMapping(path = "/transaction/{userId}",method = RequestMethod.GET)
-    public ResponseEntity<List<Transaction>> getAllTxnsByUserId(@PathVariable Long userId){
+    public ResponseEntity<Page<Transaction>> getAllTxnsByUserId(@PathVariable Long userId,@RequestParam int pageNo){
 
         //Done:
         User user=userService.getUserById(userId).orElseThrow(()-> new ResourceNotFoundException("No user find please check user id !"));
@@ -112,9 +113,11 @@ public class TransactionController {
             throw new ResourceNotFoundException("user haven't wallet !");
         }
             // it can be empty.
-            List<Transaction> txns = transactionService.getAllTxnsByWalletId(userWalletId);
-        //ToDo:
+
+        //Done:
         //return result in pagination form.
+            Page<Transaction> txns = transactionService.getAllTxnsByWalletId(userWalletId,pageNo);
+
 
 
    return ResponseEntity.ok(txns);
