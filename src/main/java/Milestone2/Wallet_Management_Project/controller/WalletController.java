@@ -13,9 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
-import java.util.List;
+
 
 @RestController
 public class WalletController {
@@ -45,7 +44,7 @@ public class WalletController {
             }
             else
             {
-                return new ResponseEntity<>("User have already Wallet !", HttpStatus.CONFLICT);
+                return new ResponseEntity<>("User has already Wallet !", HttpStatus.CONFLICT);
             }
         }
         catch (Exception e){
@@ -59,14 +58,21 @@ public class WalletController {
     // Get all txns by wallet Id.
     @RequestMapping(path = "/wallet/{WalletId}/txns",method = RequestMethod.GET)
     public ResponseEntity<Page<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId,@RequestParam int pageNo){
+
+             if(walletService.getWalletById(WalletId)!=null)
                try{
                    Page<Transaction> txns=transactionService.getAllTxnsByWalletId(WalletId,pageNo);
 
                    return ResponseEntity.ok(txns);
                }
                catch (Exception e){
-                   throw  new ResourceNotFoundException("wallet Id does not exist !");
+                   throw  new BadRequestException("No transaction found with this wallet Id");
                }
+
+             else{
+
+                 throw  new ResourceNotFoundException("wallet Id does not exist !");
+             }
 
     }
 

@@ -1,7 +1,6 @@
 package Milestone2.Wallet_Management_Project.model;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -26,7 +25,7 @@ public class User {
     private String name;
 
 
-    @Column(name = "Email" ,nullable = false)
+    @Column(name = "Email" ,nullable = false ,unique = true ,updatable = false)
     private String email;
 
 

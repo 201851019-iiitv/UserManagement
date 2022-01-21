@@ -28,7 +28,7 @@ public class TransactionService {
     public Page<Transaction> getAllTxnsByWalletId(String walletId ,int pageNo) {
 
 
-        Pageable pageable = PageRequest.of(pageNo,5);
+        Pageable pageable = PageRequest.of(pageNo,2);
         Page<Transaction> txns = transactionRepo.findByPayerWalletIdOrPayeeWalletId(walletId,walletId,pageable);
         return txns;
     }

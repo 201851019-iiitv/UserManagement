@@ -2,7 +2,6 @@ package Milestone2.Wallet_Management_Project.returnPackage;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
-
 import java.sql.Timestamp;
 
 

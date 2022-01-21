@@ -1,4 +1,5 @@
 package Milestone2.Wallet_Management_Project.controller;
+
 import Milestone2.Wallet_Management_Project.exception.BadRequestException;
 import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.User;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 
 @RestController

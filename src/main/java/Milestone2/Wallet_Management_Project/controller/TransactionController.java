@@ -1,4 +1,5 @@
 package Milestone2.Wallet_Management_Project.controller;
+
 import Milestone2.Wallet_Management_Project.exception.BadRequestException;
 import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.Transaction;
@@ -13,9 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
-import java.util.List;
+
 
 @RestController
 public class TransactionController {
@@ -33,6 +33,12 @@ public class TransactionController {
     @RequestMapping(path = "/transaction",method = RequestMethod.POST)
     public ResponseEntity<returnMssg> TransferMoney(@RequestBody Transaction txn){
 
+        // check requested amount is positive ?
+        if(txn.getAmount()<=0) {
+            returnMssg mssg=new returnMssg("Please request positive amount value",HttpStatus.BAD_REQUEST);
+            return ResponseEntity.ok(mssg);
+        }
+
          String payer_walletId= txn.getPayerWalletId();
          String payee_walletId= txn.getPayeeWalletId();
 
@@ -42,11 +48,7 @@ public class TransactionController {
         Wallet payeeWallet =walletService.getWalletById(payee_walletId).orElseThrow(()-> new ResourceNotFoundException("No Wallet Found at payee mobile number please check!"));;
 
 
-        // check requested amount is positive ?
-        if(txn.getAmount()<=0) {
-            returnMssg mssg=new returnMssg("Please request positive amount value",HttpStatus.BAD_REQUEST);
-            return ResponseEntity.ok(mssg);
-        }
+
 
         // check payer have sufficient amount request ?
         Float currBalofPayer=payerWallet.getCurr_bal();
