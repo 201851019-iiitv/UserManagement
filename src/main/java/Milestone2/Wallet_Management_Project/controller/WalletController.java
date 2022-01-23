@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 
 @RestController
@@ -33,7 +34,10 @@ public class WalletController {
 
         try{
             User user=userService.findByMobileno(mobileNumber); // check user exist with this mobile number ?
-            if(walletService.getWalletById(mobileNumber)==null) {   // check wallet already exist ?
+
+                Optional<Wallet> TempW=walletService.getWalletById(mobileNumber);
+
+            if(!TempW.isPresent()) {   // check wallet already exist ?
                 Wallet w = new Wallet();
                 w.setWalletId(mobileNumber);
                 w.setCurr_bal(0.0F);

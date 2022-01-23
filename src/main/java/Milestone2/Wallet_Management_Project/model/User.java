@@ -2,6 +2,7 @@ package Milestone2.Wallet_Management_Project.model;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -21,13 +22,18 @@ public class User {
    @Column(name = "mobileNo", nullable = false, unique = true, updatable = false, length = 10)
     private  String mobileno;
 
-    @Column(name = "Name" ,nullable = false)
-    private String name;
+    @Column(name = "userName", nullable = false, unique = true, updatable = false)
+    private  String username;
+
+    @Column(name = "password", nullable = false)
+    private  String password;
 
 
     @Column(name = "Email" ,nullable = false ,unique = true ,updatable = false)
     private String email;
 
+    @Column(name = "Name" ,nullable = false)
+    private String name;
 
     @Column(name = "createdDate")
     private Date createDate;
@@ -41,6 +47,6 @@ public class User {
 
     @OneToOne
     private Wallet  wallet;
-    //create one extra column of walletId which is primary key of wallet tabel;
+ //create one extra column of walletId which is primary key of wallet tabel;
 
 }

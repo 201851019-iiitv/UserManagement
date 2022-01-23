@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @RestController
@@ -100,7 +101,7 @@ public class TransactionController {
     //url :http://localhost:8080/transaction?userId=<userId>
 
     @RequestMapping(path = "/transaction/{userId}",method = RequestMethod.GET)
-    public ResponseEntity<Page<Transaction>> getAllTxnsByUserId(@PathVariable Long userId,@RequestParam int pageNo){
+    public ResponseEntity<List<Transaction>> getAllTxnsByUserId(@PathVariable Long userId, @RequestParam int pageNo){
 
         //Done:
         User user=userService.getUserById(userId).orElseThrow(()-> new ResourceNotFoundException("No user find please check user id !"));
@@ -122,7 +123,7 @@ public class TransactionController {
 
 
 
-   return ResponseEntity.ok(txns);
+   return ResponseEntity.ok(txns.getContent());
     }
 
 

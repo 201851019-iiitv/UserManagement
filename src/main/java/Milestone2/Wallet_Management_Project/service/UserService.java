@@ -56,4 +56,11 @@ public class UserService {
     public User findByEmail(String email) {
         return userRepo.findByEmail(email);
     }
+
+
+    @Transactional
+
+    public  User findUserByUsername(String username){
+        return userRepo.findByUsername(username);
+    }
 }
