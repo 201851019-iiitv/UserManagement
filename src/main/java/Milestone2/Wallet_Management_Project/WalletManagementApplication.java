@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class WalletManagementApplication {
 
+	//spring Runner class
 	public static void main(String[] args) {
 		SpringApplication.run(WalletManagementApplication.class, args);
 	}
