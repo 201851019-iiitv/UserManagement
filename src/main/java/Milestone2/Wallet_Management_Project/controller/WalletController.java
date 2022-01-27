@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -28,6 +29,13 @@ public class WalletController {
 
     @Autowired
     private TransactionService transactionService;
+
+    //Kafka package
+    @Autowired
+    private KafkaTemplate<String,String> kafkaTemplate;
+
+    private static final String TOPIC="wallet";
+
 
     @RequestMapping(path= "/wallet/{mobileNumber}",method = RequestMethod.POST)
     public ResponseEntity<?> createWallet(@PathVariable String mobileNumber){
@@ -108,6 +116,9 @@ public class WalletController {
             txn.setPayeeWalletId("To Self   ");
             txn.setPayerWalletId(wallet.getWalletId());
             transactionService.createTxn(txn);
+
+            // try to publish msg on kafka
+            kafkaTemplate.send(TOPIC,"Money added successfully to your wallet Id :"+WalletId+" amount: "+txn.getAmount());
 
             return new ResponseEntity<>("Added money Successfully", HttpStatus.ACCEPTED);
         }
