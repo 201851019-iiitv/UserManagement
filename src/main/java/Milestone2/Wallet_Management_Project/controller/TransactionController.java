@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -29,6 +30,12 @@ public class TransactionController {
 
      @Autowired
      private UserService userService;
+
+     //Kafka package
+     @Autowired
+     private KafkaTemplate<String,String> kafkaTemplate;
+
+     private static final String TOPIC="txns";
 
 
     @RequestMapping(path = "/transaction",method = RequestMethod.POST)
@@ -82,6 +89,10 @@ public class TransactionController {
             txn.setTimestamp(new Timestamp(System.currentTimeMillis()));
             transactionService.createTxn(txn);
             returnMssg mssg = new returnMssg("Money transferred successfully", HttpStatus.ACCEPTED);
+
+    // try to publish msg on kafka
+           kafkaTemplate.send(TOPIC,"Money transferred successfully from your wallet Id :"+payer_walletId+" amount: "+txn.getAmount()+" to walletId: "+payee_walletId);
+
             return ResponseEntity.ok(mssg);
         }
        catch (Exception e){

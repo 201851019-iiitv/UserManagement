@@ -1,7 +1,7 @@
 package Milestone2.Wallet_Management_Project.JWT.controller;
 
 
-import Milestone2.Wallet_Management_Project.JWT.helper.JwtResponse;
+import Milestone2.Wallet_Management_Project.JWT.model.JwtResponse;
 import Milestone2.Wallet_Management_Project.JWT.helper.JwtUtil;
 import Milestone2.Wallet_Management_Project.JWT.model.JwtRequest;
 import Milestone2.Wallet_Management_Project.JWT.service.CustomUserDetailsService;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.naming.AuthenticationException;
 
 @RestController
 public class JwtTokenController {

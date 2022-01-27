@@ -22,4 +22,8 @@ public class GlobalEception {
         returnMssg msg=new returnMssg(badRequestException.getLocalizedMessage(),HttpStatus.BAD_REQUEST);
         return ResponseEntity.ok(msg);
     }
+
+
+
+
 }

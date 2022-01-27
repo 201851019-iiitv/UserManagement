@@ -1,4 +1,4 @@
-package Milestone2.Wallet_Management_Project.JWT.helper;
+package Milestone2.Wallet_Management_Project.JWT.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
