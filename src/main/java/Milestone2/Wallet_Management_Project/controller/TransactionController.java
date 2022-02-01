@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -39,18 +41,42 @@ public class TransactionController  extends Validation {
      private static final String TOPIC="txns";
 
 
+
+    public  String getUsernameByToken(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        return currentUserName;
+    }
+
+
     @RequestMapping(path = "/transaction",method = RequestMethod.POST)
     public ResponseEntity<returnMssg> TransferMoney(@RequestBody Transaction txn){
 
         if(!mobileNumberValidation(txn.getPayerWalletId()) || !mobileNumberValidation(txn.getPayeeWalletId()) )
             throw new BadRequestException("Invalid Wallet Id!");
+
+        try {
+            User user = userService.findByMobileno(txn.getPayerWalletId());
+            // First get username from token and validity of token
+            String requestTokenUserName=getUsernameByToken();
+
+            // check userToken and with his details.
+            if(user.getUsername().compareTo(requestTokenUserName)!=0)
+                return  ResponseEntity.ok(new returnMssg("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST));
+        }
+        catch (Exception e){
+            throw  new BadRequestException("Invalid WalletId !");
+        }
+
         // check requested amount is positive ?
         if(txn.getAmount()<=0) {
             returnMssg mssg=new returnMssg("Please request positive amount value",HttpStatus.BAD_REQUEST);
             return ResponseEntity.ok(mssg);
         }
 
-         String payer_walletId= txn.getPayerWalletId();
+
+        String payer_walletId= txn.getPayerWalletId();
          String payee_walletId= txn.getPayeeWalletId();
 
          // Done : Handle error .

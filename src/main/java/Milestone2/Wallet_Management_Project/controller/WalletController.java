@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -39,12 +41,30 @@ public class WalletController extends Validation {
     private static final String TOPIC="wallet";
 
 
+    public  String getUsernameByToken(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        return currentUserName;
+    }
+
+
+
+
     @RequestMapping(path= "/wallet/{mobileNumber}",method = RequestMethod.POST)
     public returnMssg createWallet(@PathVariable String mobileNumber){
         if(!mobileNumberValidation(mobileNumber))
             throw new BadRequestException("Invalid mobile number !");
         try{
             User user=userService.findByMobileno(mobileNumber); // check user exist with this mobile number ?
+
+
+            // First get username from token and validity of token
+            String requestTokenUserName=getUsernameByToken();
+
+            // check userToken and with his details.
+               if(user.getUsername().compareTo(requestTokenUserName)!=0)
+                   return new returnMssg("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST);
 
                 Optional<Wallet> TempW=walletService.getWalletById(mobileNumber);
 
@@ -76,6 +96,20 @@ public class WalletController extends Validation {
         if(!mobileNumberValidation(WalletId))
             throw new BadRequestException("Invalid Wallet ID !");
 
+        try {
+            User user = userService.findByMobileno(WalletId);
+            // First get username from token and validity of token
+            String requestTokenUserName=getUsernameByToken();
+
+            // check userToken and with his details.
+            if(user.getUsername().compareTo(requestTokenUserName)!=0)
+                throw new BadRequestException("User Unauthorized ,Pls use your Token !");
+        }
+        catch (Exception e){
+            throw  new BadRequestException("Invalid WalletId !");
+        }
+
+
              if(walletService.getWalletById(WalletId)!=null)
                try{
                    Page<Transaction> txns=transactionService.getAllTxnsByWalletId(WalletId,pageNo);
@@ -99,6 +133,19 @@ public class WalletController extends Validation {
 
         if(!mobileNumberValidation(WalletId))
             throw new BadRequestException("Invalid Wallet ID !");
+
+        try {
+            User user = userService.findByMobileno(WalletId);
+            // First get username from token and validity of token
+            String requestTokenUserName=getUsernameByToken();
+
+            // check userToken and with his details.
+            if(user.getUsername().compareTo(requestTokenUserName)!=0)
+                return new returnMssg("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST);
+        }
+        catch (Exception e){
+            throw  new BadRequestException("Invalid WalletId !");
+        }
 
         //check Enter amount is positive ?
 
