@@ -9,6 +9,7 @@ import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
 import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
+import Milestone2.Wallet_Management_Project.validation.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import java.util.List;
 
 
 @RestController
-public class TransactionController {
+public class TransactionController  extends Validation {
 
       @Autowired
       private WalletService walletService;
@@ -41,6 +42,8 @@ public class TransactionController {
     @RequestMapping(path = "/transaction",method = RequestMethod.POST)
     public ResponseEntity<returnMssg> TransferMoney(@RequestBody Transaction txn){
 
+        if(!mobileNumberValidation(txn.getPayerWalletId()) || !mobileNumberValidation(txn.getPayeeWalletId()) )
+            throw new BadRequestException("Invalid Wallet Id!");
         // check requested amount is positive ?
         if(txn.getAmount()<=0) {
             returnMssg mssg=new returnMssg("Please request positive amount value",HttpStatus.BAD_REQUEST);

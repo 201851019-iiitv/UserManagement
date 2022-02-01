@@ -5,6 +5,7 @@ import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
 import Milestone2.Wallet_Management_Project.service.UserService;
+import Milestone2.Wallet_Management_Project.validation.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.Date;
 
 @RestController
 
-public class UserController {
+public class UserController extends Validation {
 
     @Autowired
     private UserService userService;
@@ -21,6 +22,11 @@ public class UserController {
 
     @PostMapping("/user")
     public returnMssg createUser(@RequestBody User user) {
+          //validate user mobile number
+           if(!mobileNumberValidation(user.getMobileno()))
+               throw new BadRequestException("Invalid mobile number !");
+           if(!emailValidation(user.getEmail()))
+               throw new BadRequestException("Invalid email number !");
             if(userService.findByMobileno(user.getMobileno())==null && userService.findByEmail(user.getEmail())==null ) {
                try {
                     user.setStatus("Active");
@@ -50,6 +56,10 @@ public class UserController {
 
     @PutMapping("/user")
     public  void updateUser(User user){
+        if(!mobileNumberValidation(user.getMobileno()))
+            throw new BadRequestException("Invalid mobile number !");
+        if(!emailValidation(user.getEmail()))
+            throw new BadRequestException("Invalid email number !");
         try {
             userService.updateUser(user);
         }
@@ -60,6 +70,7 @@ public class UserController {
 
     @DeleteMapping("/user")
     public void deleteUser(User user){
+
         try {
             userService.deleteUser(user);
 //            user.setStatus("Inactive");

@@ -9,6 +9,7 @@ import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
 import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
+import Milestone2.Wallet_Management_Project.validation.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import java.util.Optional;
 
 
 @RestController
-public class WalletController {
+public class WalletController extends Validation {
 
     @Autowired
     private WalletService walletService;
@@ -40,7 +41,8 @@ public class WalletController {
 
     @RequestMapping(path= "/wallet/{mobileNumber}",method = RequestMethod.POST)
     public returnMssg createWallet(@PathVariable String mobileNumber){
-
+        if(!mobileNumberValidation(mobileNumber))
+            throw new BadRequestException("Invalid mobile number !");
         try{
             User user=userService.findByMobileno(mobileNumber); // check user exist with this mobile number ?
 
@@ -71,6 +73,8 @@ public class WalletController {
     // Get all txns by wallet Id.
     @RequestMapping(path = "/wallet/{WalletId}/txns",method = RequestMethod.GET)
     public ResponseEntity<Page<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId,@RequestParam int pageNo){
+        if(!mobileNumberValidation(WalletId))
+            throw new BadRequestException("Invalid Wallet ID !");
 
              if(walletService.getWalletById(WalletId)!=null)
                try{
@@ -93,6 +97,8 @@ public class WalletController {
     @RequestMapping(path = "/wallet/{WalletId}/{amount}" ,method = RequestMethod.POST)
     public returnMssg AddMoney(@PathVariable String WalletId,@PathVariable  Float amount){
 
+        if(!mobileNumberValidation(WalletId))
+            throw new BadRequestException("Invalid Wallet ID !");
 
         //check Enter amount is positive ?
 
