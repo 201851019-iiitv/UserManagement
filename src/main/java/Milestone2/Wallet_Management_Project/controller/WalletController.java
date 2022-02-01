@@ -5,6 +5,7 @@ import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.Transaction;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.model.Wallet;
+import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
 import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
@@ -38,7 +39,7 @@ public class WalletController {
 
 
     @RequestMapping(path= "/wallet/{mobileNumber}",method = RequestMethod.POST)
-    public ResponseEntity<?> createWallet(@PathVariable String mobileNumber){
+    public returnMssg createWallet(@PathVariable String mobileNumber){
 
         try{
             User user=userService.findByMobileno(mobileNumber); // check user exist with this mobile number ?
@@ -52,11 +53,11 @@ public class WalletController {
                 walletService.createWallet(w);
                 user.setWallet(w);
                 userService.updateUser(user);
-                return new ResponseEntity<>("Wallet created successfully !", HttpStatus.ACCEPTED);
+                return new returnMssg("Wallet created successfully !", HttpStatus.CREATED);
             }
             else
             {
-                return new ResponseEntity<>("User has already Wallet !", HttpStatus.CONFLICT);
+                throw new BadRequestException("User has already Wallet !");
             }
         }
         catch (Exception e){
@@ -90,13 +91,13 @@ public class WalletController {
 
     // Add money in the user wallet
     @RequestMapping(path = "/wallet/{WalletId}/{amount}" ,method = RequestMethod.POST)
-    public ResponseEntity<?> AddMoney(@PathVariable String WalletId,@PathVariable  Float amount){
+    public returnMssg AddMoney(@PathVariable String WalletId,@PathVariable  Float amount){
 
 
         //check Enter amount is positive ?
 
         if(amount<=0)
-            return new ResponseEntity<>("Amount is not valid !", HttpStatus.BAD_REQUEST);
+            throw  new BadRequestException("Amount is not valid !");
 
         //Check User wallet exist ?
         // if yes the add money otherwise can't be
@@ -120,7 +121,7 @@ public class WalletController {
             // try to publish msg on kafka
             kafkaTemplate.send(TOPIC,"Money added successfully to your wallet Id :"+WalletId+" amount: "+txn.getAmount());
 
-            return new ResponseEntity<>("Added money Successfully", HttpStatus.ACCEPTED);
+            return new returnMssg("Added money Successfully", HttpStatus.ACCEPTED);
         }
         catch (Exception e){
             throw new BadRequestException("can't be added money !");
