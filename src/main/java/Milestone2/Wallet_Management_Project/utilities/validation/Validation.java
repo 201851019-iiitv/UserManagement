@@ -1,4 +1,4 @@
-package Milestone2.Wallet_Management_Project.validation;
+package Milestone2.Wallet_Management_Project.utilities.validation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

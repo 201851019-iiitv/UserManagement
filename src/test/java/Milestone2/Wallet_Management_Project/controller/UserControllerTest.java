@@ -1,14 +1,12 @@
 package Milestone2.Wallet_Management_Project.controller;
 
-import Milestone2.Wallet_Management_Project.model.User;
-import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
+import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -48,7 +46,7 @@ class UserControllerTest {
                        .andExpect( MockMvcResultMatchers.status().isOk())
                        .andReturn();
        String resultContent=result.getResponse().getContentAsString();
-        returnMssg response=objectMapper.readValue(resultContent,returnMssg.class);
+        CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
         Assert.assertEquals("User created successfully !",response.getMsg()) ;
         Assert.assertEquals(HttpStatus.CREATED ,response.getStatus());
     }
@@ -71,7 +69,7 @@ class UserControllerTest {
         String resultContent=result.getResponse().getContentAsString();
 
         System.out.println(resultContent);
-        returnMssg response=objectMapper.readValue(resultContent,returnMssg.class);
+        CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
 
         System.out.println("result" +response.getMsg());
 

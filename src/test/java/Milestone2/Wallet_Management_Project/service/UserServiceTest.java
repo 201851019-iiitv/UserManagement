@@ -1,7 +1,7 @@
 package Milestone2.Wallet_Management_Project.service;
 
 import Milestone2.Wallet_Management_Project.model.User;
-import Milestone2.Wallet_Management_Project.repository.UserRepo;
+import Milestone2.Wallet_Management_Project.DAO.UserRepo;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,8 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @ExtendWith(MockitoExtension.class)

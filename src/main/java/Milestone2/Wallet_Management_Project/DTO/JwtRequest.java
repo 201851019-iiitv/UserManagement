@@ -1,4 +1,4 @@
-package Milestone2.Wallet_Management_Project.JWT.model;
+package Milestone2.Wallet_Management_Project.DTO;
 
 
 import lombok.*;

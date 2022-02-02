@@ -5,11 +5,11 @@ import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.Transaction;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.model.Wallet;
-import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
+import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
 import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
-import Milestone2.Wallet_Management_Project.validation.Validation;
+import Milestone2.Wallet_Management_Project.utilities.validation.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -52,7 +52,7 @@ public class WalletController extends Validation {
 
 
     @RequestMapping(path= "/wallet/{mobileNumber}",method = RequestMethod.POST)
-    public returnMssg createWallet(@PathVariable String mobileNumber){
+    public CustomReturnType createWallet(@PathVariable String mobileNumber){
         if(!mobileNumberValidation(mobileNumber))
             throw new BadRequestException("Invalid mobile number !");
         try{
@@ -64,7 +64,7 @@ public class WalletController extends Validation {
 
             // check userToken and with his details.
                if(user.getUsername().compareTo(requestTokenUserName)!=0)
-                   return new returnMssg("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST);
+                   return new CustomReturnType("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST);
 
                 Optional<Wallet> TempW=walletService.getWalletById(mobileNumber);
 
@@ -75,7 +75,7 @@ public class WalletController extends Validation {
                 walletService.createWallet(w);
                 user.setWallet(w);
                 userService.updateUser(user);
-                return new returnMssg("Wallet created successfully !", HttpStatus.CREATED);
+                return new CustomReturnType("Wallet created successfully !", HttpStatus.CREATED);
             }
             else
             {
@@ -129,7 +129,7 @@ public class WalletController extends Validation {
 
     // Add money in the user wallet
     @RequestMapping(path = "/wallet/{WalletId}/{amount}" ,method = RequestMethod.POST)
-    public returnMssg AddMoney(@PathVariable String WalletId,@PathVariable  Float amount){
+    public CustomReturnType AddMoney(@PathVariable String WalletId, @PathVariable  Float amount){
 
         if(!mobileNumberValidation(WalletId))
             throw new BadRequestException("Invalid Wallet ID !");
@@ -141,7 +141,7 @@ public class WalletController extends Validation {
 
             // check userToken and with his details.
             if(user.getUsername().compareTo(requestTokenUserName)!=0)
-                return new returnMssg("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST);
+                return new CustomReturnType("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST);
         }
         catch (Exception e){
             throw  new BadRequestException("Invalid WalletId !");
@@ -174,7 +174,7 @@ public class WalletController extends Validation {
             // try to publish msg on kafka
             kafkaTemplate.send(TOPIC,"Money added successfully to your wallet Id :"+WalletId+" amount: "+txn.getAmount());
 
-            return new returnMssg("Added money Successfully", HttpStatus.ACCEPTED);
+            return new CustomReturnType("Added money Successfully", HttpStatus.ACCEPTED);
         }
         catch (Exception e){
             throw new BadRequestException("can't be added money !");

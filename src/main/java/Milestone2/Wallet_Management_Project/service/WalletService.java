@@ -1,7 +1,7 @@
 package Milestone2.Wallet_Management_Project.service;
 
 import Milestone2.Wallet_Management_Project.model.Wallet;
-import Milestone2.Wallet_Management_Project.repository.WalletRepo;
+import Milestone2.Wallet_Management_Project.DAO.WalletRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

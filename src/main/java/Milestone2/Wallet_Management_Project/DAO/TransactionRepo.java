@@ -1,4 +1,4 @@
-package Milestone2.Wallet_Management_Project.repository;
+package Milestone2.Wallet_Management_Project.DAO;
 
 import Milestone2.Wallet_Management_Project.model.Transaction;
 import org.springframework.data.domain.Page;

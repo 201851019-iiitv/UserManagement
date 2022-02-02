@@ -1,4 +1,4 @@
-package Milestone2.Wallet_Management_Project.JWT.helper;
+package Milestone2.Wallet_Management_Project.utilities.Jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

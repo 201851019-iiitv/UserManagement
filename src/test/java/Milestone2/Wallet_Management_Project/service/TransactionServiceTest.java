@@ -1,7 +1,7 @@
 package Milestone2.Wallet_Management_Project.service;
 
 import Milestone2.Wallet_Management_Project.model.Transaction;
-import Milestone2.Wallet_Management_Project.repository.TransactionRepo;
+import Milestone2.Wallet_Management_Project.DAO.TransactionRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)

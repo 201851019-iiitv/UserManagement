@@ -5,11 +5,11 @@ import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.Transaction;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.model.Wallet;
-import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
+import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
 import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
-import Milestone2.Wallet_Management_Project.validation.Validation;
+import Milestone2.Wallet_Management_Project.utilities.validation.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -51,7 +51,7 @@ public class TransactionController  extends Validation {
 
 
     @RequestMapping(path = "/transaction",method = RequestMethod.POST)
-    public ResponseEntity<returnMssg> TransferMoney(@RequestBody Transaction txn){
+    public ResponseEntity<CustomReturnType> TransferMoney(@RequestBody Transaction txn){
 
         if(!mobileNumberValidation(txn.getPayerWalletId()) || !mobileNumberValidation(txn.getPayeeWalletId()) )
             throw new BadRequestException("Invalid Wallet Id!");
@@ -63,7 +63,7 @@ public class TransactionController  extends Validation {
 
             // check userToken and with his details.
             if(user.getUsername().compareTo(requestTokenUserName)!=0)
-                return  ResponseEntity.ok(new returnMssg("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST));
+                return  ResponseEntity.ok(new CustomReturnType("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST));
         }
         catch (Exception e){
             throw  new BadRequestException("Invalid WalletId !");
@@ -71,7 +71,7 @@ public class TransactionController  extends Validation {
 
         // check requested amount is positive ?
         if(txn.getAmount()<=0) {
-            returnMssg mssg=new returnMssg("Please request positive amount value",HttpStatus.BAD_REQUEST);
+            CustomReturnType mssg=new CustomReturnType("Please request positive amount value",HttpStatus.BAD_REQUEST);
             return ResponseEntity.ok(mssg);
         }
 
@@ -91,7 +91,7 @@ public class TransactionController  extends Validation {
         Float currBalofPayer=payerWallet.getCurr_bal();
 
         if(currBalofPayer< txn.getAmount()){
-            returnMssg mssg=new returnMssg("Insufficient Balance !",HttpStatus.BAD_REQUEST);
+            CustomReturnType mssg=new CustomReturnType("Insufficient Balance !",HttpStatus.BAD_REQUEST);
             return ResponseEntity.ok(mssg);
         }
 
@@ -117,7 +117,7 @@ public class TransactionController  extends Validation {
             txn.setStatus("Success");
             txn.setTimestamp(new Timestamp(System.currentTimeMillis()));
             transactionService.createTxn(txn);
-            returnMssg mssg = new returnMssg("Money transferred successfully", HttpStatus.ACCEPTED);
+            CustomReturnType mssg = new CustomReturnType("Money transferred successfully", HttpStatus.ACCEPTED);
 
     // try to publish msg on kafka
            kafkaTemplate.send(TOPIC,"Money transferred successfully from your wallet Id :"+payer_walletId+" amount: "+txn.getAmount()+" to walletId: "+payee_walletId);

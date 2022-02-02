@@ -1,14 +1,12 @@
-package Milestone2.Wallet_Management_Project.JWT.config;
+package Milestone2.Wallet_Management_Project.config;
 
 
-import Milestone2.Wallet_Management_Project.JWT.service.CustomUserDetailsService;
+import Milestone2.Wallet_Management_Project.service.CustomUserDetailsJwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsJwtService customUserDetailsService;
 
     @Autowired
     private JwtAuthFilter jwtAuthFilter;

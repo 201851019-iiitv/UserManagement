@@ -1,12 +1,11 @@
 package Milestone2.Wallet_Management_Project.controller;
 
-import Milestone2.Wallet_Management_Project.JWT.model.JwtRequest;
-import Milestone2.Wallet_Management_Project.JWT.model.JwtResponse;
+import Milestone2.Wallet_Management_Project.DTO.JwtRequest;
+import Milestone2.Wallet_Management_Project.DTO.JwtResponse;
 import Milestone2.Wallet_Management_Project.model.User;
-import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
+import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.kafka.common.protocol.types.Field;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 
@@ -84,7 +81,7 @@ class WalletControllerTest {
              .andReturn();
 
      String response =result.getResponse().getContentAsString();
-        returnMssg msg =objectMapper.readValue(response,returnMssg.class);
+        CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
 
         Assert.assertEquals("Wallet created successfully !" ,msg.getMsg());
         Assert.assertEquals(HttpStatus.CREATED ,msg.getStatus());

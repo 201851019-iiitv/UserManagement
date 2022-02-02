@@ -1,10 +1,10 @@
-package Milestone2.Wallet_Management_Project.JWT.controller;
+package Milestone2.Wallet_Management_Project.controller;
 
 
-import Milestone2.Wallet_Management_Project.JWT.model.JwtResponse;
-import Milestone2.Wallet_Management_Project.JWT.helper.JwtUtil;
-import Milestone2.Wallet_Management_Project.JWT.model.JwtRequest;
-import Milestone2.Wallet_Management_Project.JWT.service.CustomUserDetailsService;
+import Milestone2.Wallet_Management_Project.DTO.JwtResponse;
+import Milestone2.Wallet_Management_Project.utilities.Jwt.JwtUtil;
+import Milestone2.Wallet_Management_Project.DTO.JwtRequest;
+import Milestone2.Wallet_Management_Project.service.CustomUserDetailsJwtService;
 import Milestone2.Wallet_Management_Project.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class JwtTokenController {
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsJwtService customUserDetailsService;
 
 
     @Autowired

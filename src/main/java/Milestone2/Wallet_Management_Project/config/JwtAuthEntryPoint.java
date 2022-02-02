@@ -1,4 +1,4 @@
-package Milestone2.Wallet_Management_Project.JWT.config;
+package Milestone2.Wallet_Management_Project.config;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

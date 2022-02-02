@@ -3,9 +3,9 @@ package Milestone2.Wallet_Management_Project.controller;
 import Milestone2.Wallet_Management_Project.exception.BadRequestException;
 import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.User;
-import Milestone2.Wallet_Management_Project.returnPackage.returnMssg;
+import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
 import Milestone2.Wallet_Management_Project.service.UserService;
-import Milestone2.Wallet_Management_Project.validation.Validation;
+import Milestone2.Wallet_Management_Project.utilities.validation.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class UserController extends Validation {
 
 
     @PostMapping("/user")
-    public returnMssg createUser(@RequestBody User user) {
+    public CustomReturnType createUser(@RequestBody User user) {
           //validate user mobile number
            if(!mobileNumberValidation(user.getMobileno()))
                throw new BadRequestException("Invalid mobile number !");
@@ -32,7 +32,7 @@ public class UserController extends Validation {
                     user.setStatus("Active");
                     user.setCreateDate(new Date());
                     userService.createUser(user);
-                   returnMssg mssg=new returnMssg("User created successfully !",HttpStatus.CREATED);
+                   CustomReturnType mssg=new CustomReturnType("User created successfully !",HttpStatus.CREATED);
                     return mssg;
                 }
                catch (Exception e){
