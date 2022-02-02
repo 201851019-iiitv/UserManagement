@@ -21,9 +21,9 @@ public class UserService {
         return userRepo.findAll();
     }
     @Transactional
-    public boolean createUser(User user){
+    public User createUser(User user){
 
-        return userRepo.save(user) !=null;
+        return userRepo.save(user) ;
     }
 
     @Transactional

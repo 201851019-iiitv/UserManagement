@@ -16,6 +16,7 @@
 /Users/ambesh.kumar/Documents/project/UserManagement/src/main/java/Milestone2/Wallet_Management_Project/model/Wallet.java
 /Users/ambesh.kumar/Documents/project/UserManagement/src/main/java/Milestone2/Wallet_Management_Project/returnPackage/returnMssg.java
 /Users/ambesh.kumar/Documents/project/UserManagement/src/main/java/Milestone2/Wallet_Management_Project/JWT/helper/JwtUtil.java
+/Users/ambesh.kumar/Documents/project/UserManagement/src/main/java/Milestone2/Wallet_Management_Project/validation/Validation.java
 /Users/ambesh.kumar/Documents/project/UserManagement/src/main/java/Milestone2/Wallet_Management_Project/WalletManagementApplication.java
 /Users/ambesh.kumar/Documents/project/UserManagement/src/main/java/Milestone2/Wallet_Management_Project/exception/GlobalEception.java
 /Users/ambesh.kumar/Documents/project/UserManagement/src/main/java/Milestone2/Wallet_Management_Project/controller/WalletController.java

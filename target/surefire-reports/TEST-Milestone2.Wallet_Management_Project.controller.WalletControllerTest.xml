@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="Milestone2.Wallet_Management_Project.WalletManagementApplicationTests" time="7.517" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="Milestone2.Wallet_Management_Project.controller.WalletControllerTest" time="0.112" tests="2" errors="0" skipped="0" failures="1">
   <properties>
     <property name="http.proxyHost" value="proxy.paytmbankproxy.net"/>
     <property name="java.specification.version" value="17"/>
@@ -59,5 +59,94 @@
     <property name="java.class.version" value="61.0"/>
     <property name="http.proxyPort" value="8080"/>
   </properties>
-  <testcase name="contextLoads" classname="Milestone2.Wallet_Management_Project.WalletManagementApplicationTests" time="0.229"/>
+  <testcase name="addMoney" classname="Milestone2.Wallet_Management_Project.controller.WalletControllerTest" time="0.006"/>
+  <testcase name="createWallet" classname="Milestone2.Wallet_Management_Project.controller.WalletControllerTest" time="0.084">
+    <failure message="expected:&lt;[Wallet created successfully] !&gt; but was:&lt;[User does not exist with this mobile number ,Please check] !&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[Wallet created successfully] !> but was:<[User does not exist with this mobile number ,Please check] !>
+	at Milestone2.Wallet_Management_Project.controller.WalletControllerTest.createWallet(WalletControllerTest.java:89)
+]]></failure>
+    <system-out><![CDATA[Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.mobile_no=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.user_name=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.user_name=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.user_name=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.mobile_no=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /GenerateTokens
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"48"]
+             Body = {"username":"kamlesh22","password":"kamlesh@22"}
+    Session Attrs = {}
+
+Handler:
+             Type = Milestone2.Wallet_Management_Project.JWT.controller.JwtTokenController
+           Method = Milestone2.Wallet_Management_Project.JWT.controller.JwtTokenController#generateToken(JwtRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = application/json
+             Body = {"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW1sZXNoMjIiLCJleHAiOjE2NDM3NTk1NTAsImlhdCI6MTY0MzcyMzU1MH0.p9dVJauWj5IQI7auMDhsSlvwtpVYIjTVtg__QqGm0SA"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /wallet/9123456781
+       Parameters = {}
+          Headers = [Authorization:"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW1sZXNoMjIiLCJleHAiOjE2NDM3NTk1NTAsImlhdCI6MTY0MzcyMzU1MH0.p9dVJauWj5IQI7auMDhsSlvwtpVYIjTVtg__QqGm0SA"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = Milestone2.Wallet_Management_Project.controller.WalletController
+           Method = Milestone2.Wallet_Management_Project.controller.WalletController#createWallet(String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = application/json
+             Body = {"msg":"User does not exist with this mobile number ,Please check !","timestamp":"2022-02-01T13:52:30.610+00:00","status":"NOT_FOUND"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
 </testsuite>

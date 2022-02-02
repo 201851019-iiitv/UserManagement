@@ -18,9 +18,11 @@ public class TransactionService {
     TransactionRepo transactionRepo;
 
     // This Function create new Transaction.
-    public void createTxn(Transaction txn) {
+    public Transaction createTxn(Transaction txn) {
 
           transactionRepo.save(txn);
+
+          return txn;
     }
 
 

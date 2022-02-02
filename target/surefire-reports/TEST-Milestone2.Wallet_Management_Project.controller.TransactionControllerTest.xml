@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="Milestone2.Wallet_Management_Project.WalletManagementApplicationTests" time="7.517" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="Milestone2.Wallet_Management_Project.controller.TransactionControllerTest" time="60.643" tests="3" errors="0" skipped="0" failures="1">
   <properties>
     <property name="http.proxyHost" value="proxy.paytmbankproxy.net"/>
     <property name="java.specification.version" value="17"/>
@@ -59,5 +59,318 @@
     <property name="java.class.version" value="61.0"/>
     <property name="http.proxyPort" value="8080"/>
   </properties>
-  <testcase name="contextLoads" classname="Milestone2.Wallet_Management_Project.WalletManagementApplicationTests" time="0.229"/>
+  <testcase name="transferMoney" classname="Milestone2.Wallet_Management_Project.controller.TransactionControllerTest" time="60.557">
+    <failure message="expected:&lt;[Money transferred successfully]&gt; but was:&lt;[Unsuccessful transaction !]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[Money transferred successfully]> but was:<[Unsuccessful transaction !]>
+	at Milestone2.Wallet_Management_Project.controller.TransactionControllerTest.transferMoney(TransactionControllerTest.java:106)
+]]></failure>
+    <system-out><![CDATA[2022-02-01 19:21:29.837  INFO 41096 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [Milestone2.Wallet_Management_Project.controller.TransactionControllerTest], using SpringBootContextLoader
+2022-02-01 19:21:29.841  INFO 41096 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [Milestone2.Wallet_Management_Project.controller.TransactionControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-02-01 19:21:29.842  INFO 41096 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [Milestone2.Wallet_Management_Project.controller.TransactionControllerTest]: TransactionControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-02-01 19:21:29.863  INFO 41096 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration Milestone2.Wallet_Management_Project.WalletManagementApplication for test class Milestone2.Wallet_Management_Project.controller.TransactionControllerTest
+2022-02-01 19:21:29.872  INFO 41096 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener]
+2022-02-01 19:21:29.872  INFO 41096 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6b58a0f9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7b6c3b37, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@a8964c1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@38320819, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@16c3388e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@cec1ce2, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4d82ded2, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@655875bb, org.springframework.test.context.event.EventPublishingTestExecutionListener@6ad036d6, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@6b72c62, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@5d180628, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7b4b559d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1046aaa4, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2fad50f2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@32192a69, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@135f760a, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@36e9fd4f]
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.mobile_no=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.user_name=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.user_name=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.user_name=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.mobile_no=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+Hibernate: update wallet set curr_bal=? where wallet_id=?
+Hibernate: update wallet set curr_bal=? where wallet_id=?
+Hibernate: select next_val as id_val from hibernate_sequence for update
+Hibernate: update hibernate_sequence set next_val= ? where next_val=?
+Hibernate: insert into transaction (status, amount, payee_wallet_id, payer_wallet_id, timestamp, txn_id) values (?, ?, ?, ?, ?, ?)
+2022-02-01 19:21:30.215  INFO 41096 --- [           main] o.a.k.clients.producer.ProducerConfig    : ProducerConfig values: 
+	acks = -1
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = producer-1
+	compression.type = none
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 120000
+	enable.idempotence = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 0
+	max.block.ms = 60000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.class = class org.apache.kafka.clients.producer.internals.DefaultPartitioner
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+2022-02-01 19:21:30.387  INFO 41096 --- [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.0.0
+2022-02-01 19:21:30.387  INFO 41096 --- [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 8cb0a5e9d3441962
+2022-02-01 19:21:30.387  INFO 41096 --- [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1643723490381
+2022-02-01 19:21:30.397  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:30.398  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:30.500  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:30.501  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:30.661  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:30.663  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:30.878  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:30.881  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:31.248  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:31.254  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:31.949  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:31.950  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:33.092  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:33.095  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:34.124  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:34.125  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:35.046  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:35.047  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:35.918  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:35.919  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:37.010  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:37.011  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:37.899  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:37.901  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:38.918  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:38.919  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:39.789  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:39.790  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:40.836  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:40.842  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:41.651  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:41.652  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:42.789  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:42.789  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:43.939  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:43.940  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:44.816  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:44.817  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:46.018  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:46.021  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:46.952  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:46.953  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:48.193  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:48.194  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:49.064  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:49.064  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:50.207  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:50.208  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:51.317  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:51.317  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:52.462  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:52.463  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:53.583  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:53.584  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:54.451  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:54.451  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:55.487  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:55.488  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:56.346  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:56.347  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:57.552  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:57.553  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:58.559  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:58.561  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:21:59.756  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:21:59.757  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:01.005  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:01.005  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:01.982  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:01.984  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:03.176  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:03.177  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:04.095  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:04.096  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:05.019  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:05.022  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:05.974  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:05.975  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:06.995  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:06.996  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:08.178  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:08.179  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:09.369  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:09.370  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:10.238  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:10.241  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:11.157  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:11.157  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:12.080  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:12.081  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:12.997  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:12.998  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:14.141  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:14.142  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:15.012  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:15.013  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:15.985  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:15.986  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:17.191  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:17.199  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:18.160  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:18.162  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:19.138  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:19.138  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:20.223  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:20.223  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:21.149  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:21.150  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:22.069  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:22.069  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:23.163  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:23.163  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:24.076  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:24.076  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:25.014  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:25.015  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:26.040  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:26.041  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:27.185  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:27.186  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:28.220  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:28.224  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:29.410  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:29.411  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+2022-02-01 19:22:30.417 ERROR 41096 --- [           main] o.s.k.support.LoggingProducerListener    : Exception thrown when sending a message with key='null' and payload='Money transferred successfully from your wallet Id :1234567890 amount: 1.2 to walletId: 9123456780' to topic txns:
+
+org.apache.kafka.common.errors.TimeoutException: Topic txns not present in metadata after 60000 ms.
+
+2022-02-01 19:22:30.429  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available.
+2022-02-01 19:22:30.429  WARN 41096 --- [ad | producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected
+Hibernate: update transaction set status=?, amount=?, payee_wallet_id=?, payer_wallet_id=?, timestamp=? where txn_id=?
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /GenerateTokens
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"43"]
+             Body = {"username":"ab12","password":"kamlesh@22"}
+    Session Attrs = {}
+
+Handler:
+             Type = Milestone2.Wallet_Management_Project.JWT.controller.JwtTokenController
+           Method = Milestone2.Wallet_Management_Project.JWT.controller.JwtTokenController#generateToken(JwtRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = application/json
+             Body = {"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYjEyIiwiZXhwIjoxNjQzNzU5NDg5LCJpYXQiOjE2NDM3MjM0ODl9.hBMobmRBesT3Fi7g_XH7YLJGCV-Ym7z-5RCB1oN9mtk"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /transaction
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Authorization:"Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYjEyIiwiZXhwIjoxNjQzNzU5NDg5LCJpYXQiOjE2NDM3MjM0ODl9.hBMobmRBesT3Fi7g_XH7YLJGCV-Ym7z-5RCB1oN9mtk", Content-Length:"86"]
+             Body = {
+  "payerWalletId":"1234567890",
+  "payeeWalletId": "9123456780",
+  "amount":"1.2"
+
+}
+    Session Attrs = {}
+
+Handler:
+             Type = Milestone2.Wallet_Management_Project.controller.TransactionController
+           Method = Milestone2.Wallet_Management_Project.controller.TransactionController#TransferMoney(Transaction)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = Milestone2.Wallet_Management_Project.exception.BadRequestException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = application/json
+             Body = {"msg":"Unsuccessful transaction !","timestamp":"2022-02-01T13:52:30.446+00:00","status":"BAD_REQUEST"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="getAllTxnsByUserId" classname="Milestone2.Wallet_Management_Project.controller.TransactionControllerTest" time="0.007"/>
+  <testcase name="getStatusByTxnId" classname="Milestone2.Wallet_Management_Project.controller.TransactionControllerTest" time="0.011"/>
 </testsuite>

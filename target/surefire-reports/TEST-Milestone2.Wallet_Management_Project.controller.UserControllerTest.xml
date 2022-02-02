@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="Milestone2.Wallet_Management_Project.WalletManagementApplicationTests" time="7.517" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="Milestone2.Wallet_Management_Project.controller.UserControllerTest" time="2.224" tests="4" errors="0" skipped="0" failures="2">
   <properties>
     <property name="http.proxyHost" value="proxy.paytmbankproxy.net"/>
     <property name="java.specification.version" value="17"/>
@@ -59,5 +59,102 @@
     <property name="java.class.version" value="61.0"/>
     <property name="http.proxyPort" value="8080"/>
   </properties>
-  <testcase name="contextLoads" classname="Milestone2.Wallet_Management_Project.WalletManagementApplicationTests" time="0.229"/>
+  <testcase name="updateUser" classname="Milestone2.Wallet_Management_Project.controller.UserControllerTest" time="0.006"/>
+  <testcase name="createSuccessfulUser" classname="Milestone2.Wallet_Management_Project.controller.UserControllerTest" time="0.479">
+    <failure message="expected:&lt;User [created successfully ]!&gt; but was:&lt;User [already exist]!&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<User [created successfully ]!> but was:<User [already exist]!>
+	at Milestone2.Wallet_Management_Project.controller.UserControllerTest.createSuccessfulUser(UserControllerTest.java:52)
+]]></failure>
+    <system-out><![CDATA[Hibernate: select user0_.user_id as user_id1_1_, user0_.address as address2_1_, user0_.created_date as created_3_1_, user0_.email as email4_1_, user0_.mobile_no as mobile_n5_1_, user0_.name as name6_1_, user0_.password as password7_1_, user0_.status as status8_1_, user0_.user_name as user_nam9_1_, user0_.wallet_wallet_id as wallet_10_1_ from user user0_ where user0_.mobile_no=?
+Hibernate: select wallet0_.wallet_id as wallet_i1_2_0_, wallet0_.curr_bal as curr_bal2_2_0_ from wallet wallet0_ where wallet0_.wallet_id=?
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /user
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"156"]
+             Body = {
+  "mobileno":"9123456781",
+  "name":"kamlesh",
+  "email":"kamlesh22@gmail.com",
+  "address":"RJH",
+  "username":"kamlesh22",
+  "password":"kamlesh@22"
+
+
+}
+    Session Attrs = {}
+
+Handler:
+             Type = Milestone2.Wallet_Management_Project.controller.UserController
+           Method = Milestone2.Wallet_Management_Project.controller.UserController#createUser(User)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = Milestone2.Wallet_Management_Project.exception.BadRequestException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = application/json
+             Body = {"msg":"User already exist!","timestamp":"2022-02-01T13:51:29.699+00:00","status":"BAD_REQUEST"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="deleteUser" classname="Milestone2.Wallet_Management_Project.controller.UserControllerTest" time="0.005"/>
+  <testcase name="getUserById" classname="Milestone2.Wallet_Management_Project.controller.UserControllerTest" time="0.024">
+    <failure message="Status expected:&lt;200&gt; but was:&lt;401&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<401>
+	at Milestone2.Wallet_Management_Project.controller.UserControllerTest.getUserById(UserControllerTest.java:69)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /user
+       Parameters = {userId=[2]}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = null
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 401
+    Error message = Unauthorized user !
+          Headers = [X-Content-Type-Options:"nosniff", X-XSS-Protection:"1; mode=block", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
 </testsuite>
