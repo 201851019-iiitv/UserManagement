@@ -11,15 +11,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 
 
 @SpringBootTest
@@ -69,7 +69,7 @@ class WalletControllerTest {
 
     @Test
     void createWallet() throws Exception {
-        String mobileNumber="9123456781";
+        String mobileNumber="9123456785";
 
         //generate token
         String userToken = GenerateMockMvcToken(mobileNumber);
@@ -83,13 +83,18 @@ class WalletControllerTest {
      String response =result.getResponse().getContentAsString();
         CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
 
-        Assert.assertEquals("Wallet created successfully !" ,msg.getMsg());
-        Assert.assertEquals(HttpStatus.CREATED ,msg.getStatus());
+        // Response class .
+        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/createWalletRes.json")));
+        CustomReturnType resMsg =objectMapper.readValue(walletResJson, CustomReturnType.class);
+
+        Assert.assertEquals( resMsg.getMsg(),msg.getMsg());
+        Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
 
 
 
     }
 
+    // Done Work Perfectly .
     @Test
     void addMoney() throws Exception {
 
@@ -107,8 +112,13 @@ class WalletControllerTest {
         String response =result.getResponse().getContentAsString();
         CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
 
-        Assert.assertEquals("Wallet created successfully !" ,msg.getMsg());
-        Assert.assertEquals(HttpStatus.CREATED ,msg.getStatus());
+        // Response class .
+        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/AddMoneyRes.json")));
+        CustomReturnType resMsg =objectMapper.readValue(walletResJson, CustomReturnType.class);
+
+
+        Assert.assertEquals(resMsg.getMsg() ,msg.getMsg());
+        Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
 
 
 
