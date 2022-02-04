@@ -63,4 +63,12 @@ public class UserService {
     public  User findUserByUsername(String username){
         return userRepo.findByUsername(username);
     }
+
+
+    @Transactional
+    public User deleteUserByMobileNumber(String mobileNumber) {
+        User user=userRepo.findByMobileno(mobileNumber);
+        userRepo.delete(user);
+        return  user;
+    }
 }

@@ -30,7 +30,12 @@ public class WalletService {
     }
 
 
+   public Wallet DeleteWalletById(String walletId) {
+        Wallet w=walletRepo.getById(walletId);
+        walletRepo.delete(w);
 
+        return  w;
+   }
 
     public Wallet updateWallet(Wallet wallet){
         walletRepo.save(wallet);

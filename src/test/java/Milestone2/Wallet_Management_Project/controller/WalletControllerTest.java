@@ -4,7 +4,9 @@ import Milestone2.Wallet_Management_Project.DTO.JwtRequest;
 import Milestone2.Wallet_Management_Project.DTO.JwtResponse;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
+import Milestone2.Wallet_Management_Project.model.Wallet;
 import Milestone2.Wallet_Management_Project.service.UserService;
+import Milestone2.Wallet_Management_Project.service.WalletService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -34,8 +36,10 @@ class WalletControllerTest {
     ObjectMapper objectMapper;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
+    @Autowired
+    private WalletService walletService;
 
     // for generate token .
     public  String  GenerateMockMvcToken(String userWalletId) throws Exception {
@@ -91,6 +95,9 @@ class WalletControllerTest {
         Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
 
 
+        //Delete wallet as well because it is only for testing purpose.
+        walletService.DeleteWalletById(mobileNumber);
+
 
     }
 
@@ -120,7 +127,11 @@ class WalletControllerTest {
         Assert.assertEquals(resMsg.getMsg() ,msg.getMsg());
         Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
 
-
+      //Substract add money from the wallet.
+       // first find the wallet .
+       Wallet w =walletService.getWalletById(mobileNumber).orElseThrow(()-> new RuntimeException("Invalid ID"));
+       w.setCurr_bal(w.getCurr_bal()-amount);
+       walletService.updateWallet(w);
 
 
     }

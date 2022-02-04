@@ -5,25 +5,25 @@ import Milestone2.Wallet_Management_Project.DTO.JwtResponse;
 import Milestone2.Wallet_Management_Project.model.Transaction;
 import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
+import Milestone2.Wallet_Management_Project.model.Wallet;
 import Milestone2.Wallet_Management_Project.service.UserService;
+import Milestone2.Wallet_Management_Project.service.WalletService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 
 
 @SpringBootTest
@@ -34,10 +34,13 @@ class TransactionControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private WalletService walletService;
 
    // for generate token .
     public  String  GenerateMockMvcToken(String userWalletId) throws Exception {
@@ -102,11 +105,28 @@ class TransactionControllerTest {
         Assert.assertEquals(response1.getMsg(),response.getMsg()) ;
         Assert.assertEquals(response1.getStatus() ,response.getStatus());
 
+       // return money back to  account only for testing only .
+        //get json data for that string .
+        JSONObject jsonObject = new JSONObject(requestJson);
+        String payeeWalletId= jsonObject.getString("payerWalletId");
+        String payerWalletId= jsonObject.getString("payeeWalletId");
+        Float amount=Float.parseFloat(jsonObject.getString("amount"));
+
+        //change payerWallet
+        Wallet payerWallet= walletService.getWalletById(payerWalletId).orElseThrow();
+        payerWallet.setCurr_bal(payerWallet.getCurr_bal()-amount);
+        walletService.updateWallet(payerWallet);
+        //change payeeWallet
+        Wallet payeeWallet= walletService.getWalletById(payeeWalletId).orElseThrow();
+        payeeWallet.setCurr_bal(payeeWallet.getCurr_bal()+amount);
+        walletService.updateWallet(payeeWallet);
+
 
 
     }
 
 
+    //Todo : how can pass long value in requesturl.
     @Test
     void getStatusByTxnId() throws Exception {
 

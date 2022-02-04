@@ -3,6 +3,7 @@ package Milestone2.Wallet_Management_Project.controller;
 import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -32,6 +32,8 @@ class UserControllerTest {
 
     @Autowired
     UserService userService;
+
+    //Done work Perfectly
     @Test
     void createSuccessfulUser() throws Exception {
 
@@ -48,6 +50,13 @@ class UserControllerTest {
        CustomReturnType expectedResponse = objectMapper.readValue(ExpectedOutputJson ,CustomReturnType.class);
         Assert.assertEquals(expectedResponse.getMsg(),response.getMsg()) ;
         Assert.assertEquals(expectedResponse.getStatus() ,response.getStatus());
+
+        //Delete user as well because it is only for testing purpose.
+        //get json data for that string .
+        JSONObject jsonObject = new JSONObject(requestJson);
+        String mobileNumber = jsonObject.getString("mobileno");
+        userService.deleteUserByMobileNumber(mobileNumber);
+
     }
 
     @Test
