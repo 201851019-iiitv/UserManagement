@@ -55,7 +55,7 @@ public class UserController extends Validation {
     }
 
     @PutMapping("/user")
-    public  void updateUser(User user){
+    public  CustomReturnType updateUser(User user){
         if(!mobileNumberValidation(user.getMobileno()))
             throw new BadRequestException("Invalid mobile number !");
         if(!emailValidation(user.getEmail()))
@@ -66,19 +66,24 @@ public class UserController extends Validation {
         catch (Exception e){
             throw new BadRequestException("User can't be Updated");
         }
+
+        CustomReturnType mssg=new CustomReturnType("User delete successfully",HttpStatus.ACCEPTED);
+        return mssg;
     }
 
     @DeleteMapping("/user")
-    public void deleteUser(User user){
+    public CustomReturnType deleteUser(Long userId){
 
+            User user=userService.getUserById(userId).orElseThrow(()->new BadRequestException("user Id not found !"));
         try {
             userService.deleteUser(user);
-//            user.setStatus("Inactive");
-//            userService.updateUser(user);
         }
         catch (Exception e){
             throw new BadRequestException("User can't be Deleted");
         }
+
+        CustomReturnType mssg=new CustomReturnType("User delete successfully",HttpStatus.ACCEPTED);
+        return mssg;
 
     }
 

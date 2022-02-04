@@ -172,7 +172,7 @@ public class TransactionController  extends Validation {
     //● url:http://localhost:8080/transaction?txnId=<txnID>
 
     @RequestMapping(path = "/transaction",method = RequestMethod.GET)
-    public ResponseEntity<?> getStatusByTxnId(@RequestParam Long txnId){
+    public String getStatusByTxnId(@RequestParam Long txnId){
 
         // Done: check transaction id exist ?
         Transaction txn;
@@ -184,7 +184,7 @@ public class TransactionController  extends Validation {
             throw  new ResourceNotFoundException("Transaction Id not exist !");
         }
 
-            return ResponseEntity.ok(txn.getStatus());
+            return txn.getStatus();
 
     }
 

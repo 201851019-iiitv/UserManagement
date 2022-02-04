@@ -126,15 +126,14 @@ class TransactionControllerTest {
     }
 
 
-    //Todo : how can pass long value in requesturl.
+    //Done: how can pass long value in requesturl.
     @Test
     void getStatusByTxnId() throws Exception {
 
-        Long txnId=12L;
-
-        final String requestUrl="/transaction?txnId="+ txnId;
-        MvcResult result=  mockMvc.perform(MockMvcRequestBuilders.post(requestUrl))
-                        .andReturn();
+        Long txnId=16L;
+        MvcResult result=  mockMvc.perform(MockMvcRequestBuilders.get("/transaction").param("txnId",String.valueOf(txnId)))
+                                  .andExpect(MockMvcResultMatchers.status().isOk())
+                                  .andReturn();
 
         String resultJson=result.getResponse().getContentAsString();
       Assert.assertEquals(resultJson,"Success");
