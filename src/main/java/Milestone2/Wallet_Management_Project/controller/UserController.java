@@ -48,10 +48,10 @@ public class UserController extends Validation {
 
 
     @GetMapping("/user")
-    public  ResponseEntity<User> getUserById(@RequestParam long userId){
+    public  User getUserById(@RequestParam long userId){
         // Done:
         User user =userService.getUserById(userId).orElseThrow(()-> new ResourceNotFoundException("User does not exist with this Id !"));
-        return ResponseEntity.ok(user);
+        return user;
     }
 
     @PutMapping("/user")

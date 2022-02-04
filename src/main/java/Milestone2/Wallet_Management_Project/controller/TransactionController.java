@@ -31,8 +31,8 @@ public class TransactionController  extends Validation {
       @Autowired
       private TransactionService transactionService;
 
-     @Autowired
-     private UserService userService;
+      @Autowired
+      private UserService userService;
 
      //Kafka package
      @Autowired

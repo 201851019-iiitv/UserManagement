@@ -181,4 +181,11 @@ public class WalletController extends Validation {
         }
     }
 
+    @RequestMapping(path = "/wallet/{mobileNumber}",method = RequestMethod.GET)
+    public Optional<Wallet> getWalletDetailsById(@PathVariable String mobileNumber){
+
+        return walletService.getWalletById(mobileNumber);
+    }
+
+
 }

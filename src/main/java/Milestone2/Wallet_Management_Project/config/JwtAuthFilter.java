@@ -33,6 +33,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         // start with bearer and validate the tokens.
 
         String authToken=request.getHeader("Authorization");
+        String methodUrl= request.getRequestURI();
         String username ,jwtToken;
 
         //Auth token is not null and start with Bearer check condition;
@@ -54,7 +55,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
               }
 
               else{
-                  throw  new BadRequestException("invalid token !");
+                   throw new BadRequestException("invalid token !");
 
               }
             }

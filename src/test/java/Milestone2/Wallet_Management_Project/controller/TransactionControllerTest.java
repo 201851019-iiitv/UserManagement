@@ -52,7 +52,7 @@ class TransactionControllerTest {
 
         String requestTokenJson =objectMapper.writeValueAsString(jwtRequest);
 
-        //GenrateToken for user.
+        //GenerateToken for user.
 
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/GenerateTokens")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -73,6 +73,7 @@ class TransactionControllerTest {
     void transferMoney() throws Exception {
 
         String requestJson =new String(Files.readAllBytes(Paths.get("src/test/java/DTO/TransferMoneyReq.json")));
+        String responseJson =new String(Files.readAllBytes(Paths.get("src/test/java/DTO/TransferMoneyRes.json")));
         // First generateToken of payer by its walletId.
 
         Transaction txns=objectMapper.readValue(requestJson,Transaction.class);
@@ -87,33 +88,35 @@ class TransactionControllerTest {
         // TransferMoney Api
 
 
-      MvcResult result1=  mockMvc.perform(MockMvcRequestBuilders.post("/transaction")
+      MvcResult result=  mockMvc.perform(MockMvcRequestBuilders.post("/transaction")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(requestJson).header(AUTHORIZATION,"Bearer "+userToken))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-        String resultContent1=result1.getResponse().getContentAsString();
-        CustomReturnType response=objectMapper.readValue(resultContent1, CustomReturnType.class);
-        Assert.assertEquals("Money transferred successfully",response.getMsg()) ;
-        Assert.assertEquals(HttpStatus.ACCEPTED ,response.getStatus());
+
+        String resultContent=result.getResponse().getContentAsString();
+        CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
+        CustomReturnType response1=objectMapper.readValue(responseJson, CustomReturnType.class);
+        Assert.assertEquals(response1.getMsg(),response.getMsg()) ;
+        Assert.assertEquals(response1.getStatus() ,response.getStatus());
 
 
 
     }
 
-    @Test
-    void getAllTxnsByUserId() {
-
-
-
-
-
-
-    }
 
     @Test
-    void getStatusByTxnId() {
+    void getStatusByTxnId() throws Exception {
+
+        Long txnId=12L;
+
+        final String requestUrl="/transaction?txnId="+ txnId;
+        MvcResult result=  mockMvc.perform(MockMvcRequestBuilders.post(requestUrl))
+                        .andReturn();
+
+        String resultJson=result.getResponse().getContentAsString();
+      Assert.assertEquals(resultJson,"Success");
     }
 
 

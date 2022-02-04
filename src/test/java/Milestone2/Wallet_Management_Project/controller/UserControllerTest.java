@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -40,42 +42,31 @@ class UserControllerTest {
     void createSuccessfulUser() throws Exception {
 
         String requestJson =new String(Files.readAllBytes(Paths.get("src/test/java/DTO/UserCreateReq.json")));
+        String ExpectedOutputJson = new String(Files.readAllBytes(Paths.get("src/test/java/DTO/UserCreateRes.json")));
+
        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/user")
                        .contentType(MediaType.APPLICATION_JSON_VALUE)
                        .content(requestJson))
-                       .andExpect( MockMvcResultMatchers.status().isOk())
+                       .andExpect(MockMvcResultMatchers.status().isOk())
                        .andReturn();
        String resultContent=result.getResponse().getContentAsString();
-        CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
-        Assert.assertEquals("User created successfully !",response.getMsg()) ;
-        Assert.assertEquals(HttpStatus.CREATED ,response.getStatus());
+       CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
+       CustomReturnType expectedResponse = objectMapper.readValue(ExpectedOutputJson ,CustomReturnType.class);
+        Assert.assertEquals(expectedResponse.getMsg(),response.getMsg()) ;
+        Assert.assertEquals(expectedResponse.getStatus() ,response.getStatus());
     }
 
     @Test
     void getUserById() throws Exception {
 
-        String requestJson =new String(Files.readAllBytes(Paths.get("src/test/java/DTO/UserByIdReq.json")));
-
-//        User user =userService.getUserById()
-//        String token =mockMvc.perform(MockMvcRequestBuilders.post("/genarateTokens")
-//                .contentType(MediaType.APPLICATION_JSON_VALUE)
-//                .content(requestJson)
-//
-//        )
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.get("/user")
                         .param("userId" ,"2"))
                         .andExpect( MockMvcResultMatchers.status().isOk())
                         .andReturn();
         String resultContent=result.getResponse().getContentAsString();
 
-        System.out.println(resultContent);
         CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
 
-        System.out.println("result" +response.getMsg());
-
-
-        Assert.assertEquals("User created successfully !",response.getMsg()) ;
-        Assert.assertEquals(HttpStatus.CREATED ,response.getStatus());
 
 
     }

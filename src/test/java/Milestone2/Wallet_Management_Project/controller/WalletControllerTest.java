@@ -93,6 +93,26 @@ class WalletControllerTest {
     @Test
     void addMoney() throws Exception {
 
+        String mobileNumber="9123456781";
+        Long amount=10L;
+        //generate token
+        String userToken = GenerateMockMvcToken(mobileNumber);
+
+        final String requestUrl ="/wallet/"+mobileNumber+"/"+String.valueOf(amount);
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post(requestUrl)
+                        .header(AUTHORIZATION,"Bearer "+userToken))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String response =result.getResponse().getContentAsString();
+        CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
+
+        Assert.assertEquals("Wallet created successfully !" ,msg.getMsg());
+        Assert.assertEquals(HttpStatus.CREATED ,msg.getStatus());
+
+
+
+
     }
 
 

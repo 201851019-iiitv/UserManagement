@@ -9,11 +9,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
@@ -26,23 +27,15 @@ class TransactionServiceTest {
     @InjectMocks
     private TransactionService transactionService;
 
-    @Autowired
-    ObjectMapper objectMapper;
+
+     ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    public void getTxnByTxnIDTest(){
-        Long txnId=5L;
-
-        Transaction t=new Transaction();
-          t.setStatus("Success");
-          t.setAmount(10F);
-          t.setTxnId(txnId);
-          t.setPayeeWalletId("9123456780");
-          t.setPayerWalletId("1234567890");
-          t.setTimestamp(java.sql.Timestamp.valueOf("2022-01-27 10:09:58.512000"));
-
-          Mockito.when(transactionRepo.findByTxnId(5L)).thenReturn(t);
-     Transaction t1= transactionService.getTxnsByTxnId(txnId);
+    public void getTxnByTxnIDTest() throws IOException {
+        String s=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/TransactionDetails.json")));
+        Transaction t=objectMapper.readValue(s,Transaction.class);
+          Mockito.when(transactionRepo.findByTxnId(t.getTxnId())).thenReturn(t);
+     Transaction t1= transactionService.getTxnsByTxnId(t.getTxnId());
 
         Assert.assertEquals(t,t1);
 
@@ -51,22 +44,10 @@ class TransactionServiceTest {
 
     @Test
     public void createTxnTest() throws IOException {
-
-        Long txnId=25L;
-        Transaction t=new Transaction();
-        t.setStatus("Success");
-        t.setAmount(10F);
-        t.setTxnId(txnId);
-        t.setPayeeWalletId("9123456780");
-        t.setPayerWalletId("1234567890");
-        t.setTimestamp(java.sql.Timestamp.valueOf("2022-01-27 10:09:58.512000"));
-
-//        String s=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/createTransactionServiceTest.json")));
-//        Transaction t=objectMapper.readValue(s,Transaction.class);
+        String s=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/TransactionDetails.json")));
+        Transaction t=objectMapper.readValue(s,Transaction.class);
         Mockito.when(transactionRepo.save(t)).thenReturn(t);
         Assert.assertEquals(transactionService.createTxn(t),t);
-        //Assert.assertNotNull(transactionRepo.findByTxnId(19L));
-       //transactionRepo.delete(t);
     }
 
 
