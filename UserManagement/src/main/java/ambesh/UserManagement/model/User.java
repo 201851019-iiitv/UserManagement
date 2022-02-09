@@ -1,110 +1,48 @@
 package ambesh.UserManagement.model;
 
-import ambesh.UserManagement.exception.ResourceNotFoundException;
 import lombok.*;
-import org.hibernate.annotations.Check;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "User")    // create user table
+@Table(name = "user")
+// for user table id will his mobile number
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    private Long userId;
+
+    @Column(name = "mobileNo", nullable = false, unique = true, updatable = false, length = 10)
+    private  String mobileno;
+
+    @Column(name = "userName", nullable = false, unique = true, updatable = false)
+    private  String username;
+
+    @Column(name = "password", nullable = false)
+    private  String password;
 
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "Email" ,nullable = false ,unique = true ,updatable = false)
+    private String email;
+
+    @Column(name = "Name" ,nullable = false)
+    private String name;
+
+    @Column(name = "createdDate")
+    private Date createDate;
 
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "Status")
+    private String status;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-
-    @Column(name = "mobile_number")
-    private String mobileNumber;
-
-
-    @Column(name = "email_id")
-    private String emailID;
-
-
-    @Column(name = "address1")
-    private String address1;
-
-    @Column(name = "address2")
-    private String address2;
-
-    public User() {
-    }
-
-    public Long getUserId() {
-        return user_id;
-    }
-
-    public void setUserId(Long userId) {
-        this.user_id = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getEmailID() {
-        return emailID;
-    }
-
-    public void setEmailID(String emailID) {
-        this.emailID = emailID;
-    }
-    public String getAddress1() {
-        return address1;
-    }
-
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
-
+    @Column(name = "Address")
+    private String address;
 
 }

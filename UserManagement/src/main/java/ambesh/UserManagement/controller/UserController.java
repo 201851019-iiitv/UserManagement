@@ -1,113 +1,102 @@
 package ambesh.UserManagement.controller;
 
-import ambesh.UserManagement.Validation.validity;
 import ambesh.UserManagement.exception.ResourceNotFoundException;
 import ambesh.UserManagement.model.User;
-import ambesh.UserManagement.repository.UserRepository;
+import ambesh.UserManagement.service.UserService;
+import ambesh.UserManagement.utilities.CustomReturnType;
+import ambesh.UserManagement.utilities.validity;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Date;
 
-import java.util.List;
-
-
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UserController extends validity {
 
+    // create Logger
+    private static Logger logger = LogManager.getLogger(UserController.class);
+
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-
-    @PostMapping
-    public HttpStatus createUser(@RequestBody User user) {
-
-        if(validation(user)){
-            if(!doesExist(user)) {
-                userRepository.save(user);
-                return HttpStatus.CREATED;
-
+    @PostMapping("/user")
+    public CustomReturnType createUser(@RequestBody User user) {
+        //validate user mobile number
+        if(!mobileNumberValidation(user.getMobileno()))
+            throw new ResourceNotFoundException("Invalid mobile number !");
+        if(!emailValidation(user.getEmail()))
+            throw new ResourceNotFoundException("Invalid email number !");
+        if(userService.findByMobileno(user.getMobileno())==null && userService.findByEmail(user.getEmail())==null ) {
+            try {
+                logger.debug("user created successfully "+user.getMobileno()+" "+user.getName());
+                user.setStatus("Active");
+                user.setCreateDate(new Date());
+                userService.createUser(user);
+                CustomReturnType mssg=new CustomReturnType("User created successfully !",HttpStatus.CREATED);
+                return mssg;
             }
-            else
-            {
-                return HttpStatus.CONFLICT;
+            catch (Exception e){
+                throw  new ResourceNotFoundException("User can't be created !");
             }
+
         }
 
-        return HttpStatus.BAD_REQUEST;
+        throw new ResourceNotFoundException("User already exist!");
     }
 
 
-    @GetMapping
-    public  String getUserById(@RequestParam long userId){
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not exist with id:" + userId));
-        return user.getFirstName() +","+user.getLastName()+","+user.getMobileNumber()+","+user.getEmailID();
+
+
+    @GetMapping("/user")
+    public  User getUserById(@RequestParam long userId){
+        // Done:
+        User user =userService.getUserById(userId).orElseThrow(()-> new ResourceNotFoundException("User does not exist with this Id !"));
+        logger.debug("user retrieved by userId "+user.getUserId()+" "+user.getName());
+        return user;
     }
 
- @PutMapping
- public HttpStatus updateUser(@RequestParam long userId,@RequestBody User userDetails) {
-     User updateUser = userRepository.findById(userId)
-             .orElseThrow(() -> new ResourceNotFoundException("User not exist with id: " + userId));
+    @PutMapping("/user")
+    public  CustomReturnType updateUser(User user){
+        if(!mobileNumberValidation(user.getMobileno()))
+            throw new ResourceNotFoundException("Invalid mobile number !");
+        if(!emailValidation(user.getEmail()))
+            throw new ResourceNotFoundException("Invalid email number !");
+        try {
+            userService.updateUser(user);
+            logger.debug("user updated successfully "+"User ID:  "+user.getUserId());
+        }
+        catch (Exception e){
+            throw new ResourceNotFoundException("User can't be Updated");
+        }
 
-     boolean dataCorrect=true;
-     if(dataCorrect && userDetails.getUserName()!=null && doesUserExist(userDetails.getUserName()))
-         dataCorrect=false;
+        CustomReturnType mssg=new CustomReturnType("User delete successfully",HttpStatus.ACCEPTED);
+        return mssg;
+    }
 
-     if(dataCorrect && userDetails.getEmailID()!=null && doesEmailIDExist(userDetails.getEmailID()))
-         dataCorrect=false;
-     if(dataCorrect && userDetails.getMobileNumber()!=null && doesMobileExist(userDetails.getMobileNumber()))
-         dataCorrect=false;
+    @DeleteMapping("/user")
+    public CustomReturnType deleteUser(Long userId){
 
-     if(dataCorrect) {
-
-         if(userDetails.getUserName()!=null){
-             updateUser.setUserName(userDetails.getUserName());
-         }
-         if(userDetails.getFirstName()!=null){
-             updateUser.setFirstName(userDetails.getFirstName());
-         }
-         if(userDetails.getLastName()!=null){
-             updateUser.setLastName(userDetails.getLastName());
-         }
-         if(userDetails.getEmailID()!=null)
-             updateUser.setEmailID(userDetails.getEmailID());
-         if(userDetails.getMobileNumber()!=null)
-             updateUser.setMobileNumber(userDetails.getMobileNumber());
-         if(userDetails.getAddress1()!=null){
-             updateUser.setAddress1(userDetails.getAddress1());
-         }
-         if(userDetails.getAddress2()!=null){
-             updateUser.setAddress2(userDetails.getAddress2());
-         }
+        User user=userService.getUserById(userId).orElseThrow(()->new ResourceNotFoundException("user Id not found !"));
+        try {
+            userService.deleteUser(user);
+        }
+        catch (Exception e){
+            throw new ResourceNotFoundException("User can't be Deleted");
+        }
 
 
-         updateUser.setMobileNumber(userDetails.getMobileNumber());
-         updateUser.setEmailID(userDetails.getEmailID());
-         userRepository.save(updateUser);
-
-         return HttpStatus.OK;
-
-     }
-
-
-     return HttpStatus.BAD_REQUEST;
-
- }
-
-    @DeleteMapping
-    public ResponseEntity<HttpStatus> deleteUser(@RequestParam long userId){
-
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not exist with id: " + userId));
-
-        userRepository.delete(user);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        CustomReturnType mssg=new CustomReturnType("User delete successfully",HttpStatus.ACCEPTED);
+        logger.debug("user deleted");
+        return mssg;
 
     }
+
+
+
+
 
 
 }
