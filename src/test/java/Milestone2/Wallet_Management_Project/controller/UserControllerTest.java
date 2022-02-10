@@ -110,7 +110,7 @@ class UserControllerTest {
     @Test
     void deleteUser() throws Exception {
 
-       Long userId=17L;
+       Long userId=33L;
         //Store already user so we can back again data .
         User user=userService.getUserById(userId).orElseThrow(()->new BadRequestException("user Id not found !"));
 

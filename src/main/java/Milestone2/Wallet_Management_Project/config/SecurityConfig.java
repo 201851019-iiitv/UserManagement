@@ -49,12 +49,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
        http
                .csrf()
                .disable()
+               .cors()
+               .disable()
                .authorizeRequests()
-               .antMatchers(HttpMethod.POST,"/GenerateTokens").permitAll()
-               .antMatchers(HttpMethod.POST,"/user").permitAll()
-               .antMatchers(HttpMethod.GET,"/transaction*").permitAll()
-               .antMatchers(HttpMethod.GET,"/transaction/*").permitAll()
-               .antMatchers(HttpMethod.GET,"/user*").permitAll()
+               //Todo: remove this line just for testing
+               .antMatchers("/swagger-ui/**","/swagger-ui.html","/swagger**","/wallet-openapi", "/api/GenerateTokens","/api/transaction*","/api/transaction/*","/api/user","/api/user*").permitAll()
                .anyRequest().authenticated()
                .and()
                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

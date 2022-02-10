@@ -3,6 +3,8 @@ package Milestone2.Wallet_Management_Project.config;
 import Milestone2.Wallet_Management_Project.utilities.Jwt.JwtUtil;
 import Milestone2.Wallet_Management_Project.service.CustomUserDetailsJwtService;
 import Milestone2.Wallet_Management_Project.exception.BadRequestException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -26,6 +29,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Autowired
     private CustomUserDetailsJwtService customUserDetailsService;
 
+    Logger logger = LogManager.getLogger(JwtAuthFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -48,6 +52,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
               //ToDo: I was not able to understand that "whole if condition "
 
               if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null){
+                  logger.info(username);
                   UserDetails userDetails=customUserDetailsService.loadUserByUsername(username);
                   UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken= new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
                   usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

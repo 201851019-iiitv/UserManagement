@@ -51,7 +51,7 @@ public class WalletController extends Validation {
 
 
 
-    @RequestMapping(path= "/wallet/{mobileNumber}",method = RequestMethod.POST)
+    @PostMapping("/wallet/{mobileNumber}")
     public CustomReturnType createWallet(@PathVariable String mobileNumber){
         if(!mobileNumberValidation(mobileNumber))
             throw new BadRequestException("Invalid mobile number !");
@@ -75,6 +75,7 @@ public class WalletController extends Validation {
                 walletService.createWallet(w);
                 user.setWallet(w);
                 userService.updateUser(user);
+
                 return new CustomReturnType("Wallet created successfully !", HttpStatus.CREATED);
             }
             else
@@ -91,7 +92,7 @@ public class WalletController extends Validation {
 
 
     // Get all txns by wallet Id.
-    @RequestMapping(path = "/wallet/{WalletId}/txns",method = RequestMethod.GET)
+    @GetMapping("/wallet/{WalletId}/txns")
     public ResponseEntity<Page<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId,@RequestParam int pageNo){
         if(!mobileNumberValidation(WalletId))
             throw new BadRequestException("Invalid Wallet ID !");
@@ -128,7 +129,7 @@ public class WalletController extends Validation {
     }
 
     // Add money in the user wallet
-    @RequestMapping(path = "/wallet/{WalletId}/{amount}" ,method = RequestMethod.POST)
+    @PostMapping("/wallet/{WalletId}/{amount}")
     public CustomReturnType AddMoney(@PathVariable String WalletId, @PathVariable  Float amount){
 
         if(!mobileNumberValidation(WalletId))
@@ -181,7 +182,7 @@ public class WalletController extends Validation {
         }
     }
 
-    @RequestMapping(path = "/wallet/{mobileNumber}",method = RequestMethod.GET)
+    @GetMapping("/wallet/{mobileNumber}")
     public Optional<Wallet> getWalletDetailsById(@PathVariable String mobileNumber){
 
         return walletService.getWalletById(mobileNumber);

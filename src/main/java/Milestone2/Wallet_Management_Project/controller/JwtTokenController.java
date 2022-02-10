@@ -11,10 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class JwtTokenController {
@@ -29,7 +26,7 @@ public class JwtTokenController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @RequestMapping(path="/GenerateTokens",method = RequestMethod.POST)
+    @PostMapping("/GenerateTokens")
     public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest){
      try{
          this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(),jwtRequest.getPassword()));

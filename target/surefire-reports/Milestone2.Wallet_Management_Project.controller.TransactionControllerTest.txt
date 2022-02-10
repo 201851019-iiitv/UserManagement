@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: Milestone2.Wallet_Management_Project.controller.TransactionControllerTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 60.643 s <<< FAILURE! - in Milestone2.Wallet_Management_Project.controller.TransactionControllerTest
-transferMoney  Time elapsed: 60.557 s  <<< FAILURE!
-org.junit.ComparisonFailure: expected:<[Money transferred successfully]> but was:<[Unsuccessful transaction !]>
-	at Milestone2.Wallet_Management_Project.controller.TransactionControllerTest.transferMoney(TransactionControllerTest.java:106)
-

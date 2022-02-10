@@ -1,6 +1,6 @@
 package Milestone2.Wallet_Management_Project.controller;
 
-import Milestone2.Wallet_Management_Project.WalletManagementApplication;
+
 import Milestone2.Wallet_Management_Project.exception.BadRequestException;
 import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.Transaction;
@@ -51,7 +51,7 @@ public class TransactionController  extends Validation {
     }
 
 
-    @RequestMapping(path = "/transaction",method = RequestMethod.POST)
+    @PostMapping("/transaction")
     public ResponseEntity<CustomReturnType> TransferMoney(@RequestBody Transaction txn){
 
         if(!mobileNumberValidation(txn.getPayerWalletId()) || !mobileNumberValidation(txn.getPayeeWalletId()) )
@@ -141,7 +141,7 @@ public class TransactionController  extends Validation {
     //Get all transaction summary by userId
     //url :http://localhost:8080/transaction?userId=<userId>
 
-    @RequestMapping(path = "/transaction/{userId}",method = RequestMethod.GET)
+    @GetMapping("/transaction/{userId}")
     public ResponseEntity<List<Transaction>> getAllTxnsByUserId(@PathVariable Long userId, @RequestParam int pageNo){
 
         //Done:
@@ -172,7 +172,7 @@ public class TransactionController  extends Validation {
     // get status of transaction by txnId
     //● url:http://localhost:8080/transaction?txnId=<txnID>
 
-    @RequestMapping(path = "/transaction",method = RequestMethod.GET)
+    @GetMapping("/transaction")
     public String getStatusByTxnId(@RequestParam Long txnId){
 
         // Done: check transaction id exist ?
