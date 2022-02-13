@@ -78,7 +78,7 @@ public class UserController extends Validation {
     }
 
     @DeleteMapping("/user")
-    public CustomReturnType deleteUser(Long userId){
+    public CustomReturnType deleteUser(@RequestParam Long userId){
 
             User user=userService.getUserById(userId).orElseThrow(()->new BadRequestException("user Id not found !"));
         try {
