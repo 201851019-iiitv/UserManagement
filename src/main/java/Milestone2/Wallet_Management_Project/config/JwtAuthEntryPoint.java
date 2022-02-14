@@ -14,11 +14,12 @@ import java.io.IOException;
 @Component
 public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
 
-    Logger logger = LogManager.getLogger(JwtAuthEntryPoint.class);
+    final static Logger logger = Logger.getLogger(JwtAuthEntryPoint.class.getName());
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
-         logger.debug("Error happened due to unauthorized user");
+         logger.warn("Error happened due to unauthorized user");
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.getOutputStream().println("{ \"error\": \"" + "You are unauthorized user ,Pls authorized first ." + "\" }");

@@ -2,6 +2,7 @@ package Milestone2.Wallet_Management_Project.service;
 
 import Milestone2.Wallet_Management_Project.exception.ResourceNotFoundException;
 import Milestone2.Wallet_Management_Project.model.User;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 @Service
 public class CustomUserDetailsJwtService implements UserDetailsService {
 
+    final static Logger logger = Logger.getLogger(CustomUserDetailsJwtService.class.getName());
+
     @Autowired
     private UserService userService;
 
@@ -22,7 +25,8 @@ public class CustomUserDetailsJwtService implements UserDetailsService {
         try{
 
             User user=userService.findUserByUsername(username);
-
+            logger.debug("load by username !");
+            logger.info("username :" + username);
             return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),new ArrayList<>());
 
         }

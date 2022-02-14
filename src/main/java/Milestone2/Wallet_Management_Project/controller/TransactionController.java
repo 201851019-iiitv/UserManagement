@@ -11,6 +11,7 @@ import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
 import Milestone2.Wallet_Management_Project.utilities.validation.Validation;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,8 @@ import java.util.List;
 
 @RestController
 public class TransactionController  extends Validation {
+
+  final static Logger logger = Logger.getLogger(TransactionController.class.getName());
 
       @Autowired
       private WalletService walletService;
@@ -63,10 +66,13 @@ public class TransactionController  extends Validation {
             String requestTokenUserName=getUsernameByToken();
 
             // check userToken and with his details.
-            if(user.getUsername().compareTo(requestTokenUserName)!=0)
-                return  ResponseEntity.ok(new CustomReturnType("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST));
+            if(user.getUsername().compareTo(requestTokenUserName)!=0) {
+                logger.error("user unauthorized token !" +"with token : "+requestTokenUserName);
+                return ResponseEntity.ok(new CustomReturnType("User Unauthorized ,Pls use your Token !", HttpStatus.BAD_REQUEST));
+            }
         }
         catch (Exception e){
+            logger.error("Transfer failed !"+"with  txn Id: " + txn.getTxnId());
             throw  new BadRequestException("Invalid WalletId !");
         }
 
@@ -120,12 +126,16 @@ public class TransactionController  extends Validation {
             transactionService.createTxn(txn);
             CustomReturnType mssg = new CustomReturnType("Money transferred successfully", HttpStatus.ACCEPTED);
 
+            logger.debug("money transfer successfully");
+            logger.info("amount :"+ txn.getAmount() +" txn Id : "+txn.getTxnId()+ " payer Wallet  :"+ txn.getPayerWalletId() +" payeeWallet id "+txn.getPayeeWalletId());
     // try to publish msg on kafka
            kafkaTemplate.send(TOPIC,"Money transferred successfully from your wallet Id :"+payer_walletId+" amount: "+txn.getAmount()+" to walletId: "+payee_walletId);
 
             return ResponseEntity.ok(mssg);
         }
        catch (Exception e){
+
+           logger.warn("transaction failed with txn Id :" + txn.getTxnId());
            walletService.updateWallet(TempPayeeWallet);
            walletService.updateWallet(TempPayerWallet);
 
@@ -161,7 +171,7 @@ public class TransactionController  extends Validation {
         //Done:
         //return result in pagination form.
             Page<Transaction> txns = transactionService.getAllTxnsByWalletId(userWalletId,pageNo);
-
+         logger.debug("retrieve all transaction by user Id" + userId);
 
 
    return ResponseEntity.ok(txns.getContent());
@@ -185,6 +195,7 @@ public class TransactionController  extends Validation {
             throw  new ResourceNotFoundException("Transaction Id not exist !");
         }
 
+        logger.debug("retrieve transaction status  by txn Id" + txnId);
             return txn.getStatus();
 
     }

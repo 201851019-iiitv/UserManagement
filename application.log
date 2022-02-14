@@ -1,0 +1,21 @@
+2022-02-14 16:21:34,906 DEBUG [http-nio-8080-exec-2] UserService:70 - retrieved user by username: ab12
+2022-02-14 16:21:35,044 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-14 16:21:35,046  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ab12
+2022-02-14 16:21:35,049 DEBUG [http-nio-8080-exec-2] UserService:70 - retrieved user by username: ab12
+2022-02-14 16:21:35,052 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-14 16:21:35,053  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ab12
+2022-02-14 16:21:35,136  INFO [http-nio-8080-exec-2] JwtTokenController:48 -  username :ab12 password : kamlesh@22
+2022-02-14 16:21:35,138  INFO [http-nio-8080-exec-2] JwtTokenController:49 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYjEyIiwiZXhwIjoxNjQ0ODcxODk1LCJpYXQiOjE2NDQ4MzU4OTV9.n4G4JjbxrYT3uoW9nv1NU9nebc6WNjd3hS2684_xw5E
+2022-02-14 16:35:40,329 DEBUG [http-nio-8080-exec-3] UserService:56 - retrieved user by mobileNumber: 1234567890
+2022-02-14 16:36:27,521 DEBUG [http-nio-8080-exec-5] UserService:56 - retrieved user by mobileNumber: 1234567890
+2022-02-14 16:38:18,903 DEBUG [http-nio-8080-exec-8] UserService:56 - retrieved user by mobileNumber: 1234567890
+2022-02-14 16:39:00,926 DEBUG [http-nio-8080-exec-9] UserService:70 - retrieved user by username: ab12
+2022-02-14 16:39:00,943 DEBUG [http-nio-8080-exec-9] CustomUserDetailsJwtService:28 - load by username !
+2022-02-14 16:39:00,944  INFO [http-nio-8080-exec-9] CustomUserDetailsJwtService:29 - username :ab12
+2022-02-14 16:39:00,946 DEBUG [http-nio-8080-exec-9] UserService:70 - retrieved user by username: ab12
+2022-02-14 16:39:00,949 DEBUG [http-nio-8080-exec-9] CustomUserDetailsJwtService:28 - load by username !
+2022-02-14 16:39:00,949  INFO [http-nio-8080-exec-9] CustomUserDetailsJwtService:29 - username :ab12
+2022-02-14 16:39:00,965  INFO [http-nio-8080-exec-9] JwtTokenController:48 -  username :ab12 password : kamlesh@22
+2022-02-14 16:39:00,966  INFO [http-nio-8080-exec-9] JwtTokenController:49 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYjEyIiwiZXhwIjoxNjQ0ODcyOTQwLCJpYXQiOjE2NDQ4MzY5NDB9.Dn2O7TbiETxy2s3RZzjsTO_fC6boaHo5_m6lCzcOiZE
+2022-02-14 16:39:24,043 DEBUG [http-nio-8080-exec-10] UserService:56 - retrieved user by mobileNumber: 1234567890
+2022-02-14 16:39:29,841 DEBUG [http-nio-8080-exec-1] UserService:56 - retrieved user by mobileNumber: 1234567890

@@ -7,7 +7,6 @@ import Milestone2.Wallet_Management_Project.model.User;
 import Milestone2.Wallet_Management_Project.DTO.CustomReturnType;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.utilities.validation.Validation;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ import java.util.Date;
 public class UserController extends Validation {
 
     // create Logger
-    private static Logger logger = LogManager.getLogger(UserController.class);
+    private static Logger logger = Logger.getLogger(UserController.class.getName());
 
     @Autowired
     private UserService userService;
@@ -32,10 +31,12 @@ public class UserController extends Validation {
                throw new BadRequestException("Invalid email number !");
             if(userService.findByMobileno(user.getMobileno())==null && userService.findByEmail(user.getEmail())==null ) {
                try {
-                   logger.debug("user created successfully "+user.getMobileno()+" "+user.getName());
+                   logger.debug("user created successfully ");
+
                     user.setStatus("Active");
                     user.setCreateDate(new Date());
                     userService.createUser(user);
+                   logger.info("user Id: "+user.getUserId()+" user mobile number: "+user.getMobileno()+" user name : "+user.getName());
                    CustomReturnType mssg=new CustomReturnType("User created successfully !",HttpStatus.CREATED);
                     return mssg;
                 }
@@ -44,7 +45,7 @@ public class UserController extends Validation {
                }
 
             }
-
+                logger.warn("user already exist with this mobile number "+user.getMobileno());
                 throw new BadRequestException("User already exist!");
         }
 
@@ -55,7 +56,7 @@ public class UserController extends Validation {
     public  User getUserById(@RequestParam long userId){
         // Done:
         User user =userService.getUserById(userId).orElseThrow(()-> new ResourceNotFoundException("User does not exist with this Id !"));
-        logger.debug("user retrieved by userId "+user.getUserId()+" "+user.getName());
+        logger.info("user retrieved by userId "+user.getUserId());
         return user;
     }
 
@@ -67,13 +68,14 @@ public class UserController extends Validation {
             throw new BadRequestException("Invalid email number !");
         try {
             userService.updateUser(user);
-            logger.debug("user updated successfully "+"User ID:  "+user.getUserId());
+            logger.debug("user updated successfully ");
+            logger.info("User ID: "+user.getUserId());
         }
         catch (Exception e){
             throw new BadRequestException("User can't be Updated");
         }
 
-        CustomReturnType mssg=new CustomReturnType("User delete successfully",HttpStatus.ACCEPTED);
+        CustomReturnType mssg=new CustomReturnType("User updated successfully",HttpStatus.ACCEPTED);
         return mssg;
     }
 
@@ -83,6 +85,8 @@ public class UserController extends Validation {
             User user=userService.getUserById(userId).orElseThrow(()->new BadRequestException("user Id not found !"));
         try {
             userService.deleteUser(user);
+            logger.debug("user deleted successfully ");
+            logger.info("User ID: "+userId);
         }
         catch (Exception e){
             throw new BadRequestException("User can't be Deleted");
@@ -90,7 +94,6 @@ public class UserController extends Validation {
 
 
         CustomReturnType mssg=new CustomReturnType("User delete successfully",HttpStatus.ACCEPTED);
-        logger.debug("user deleted");
         return mssg;
 
     }

@@ -10,6 +10,7 @@ import Milestone2.Wallet_Management_Project.service.TransactionService;
 import Milestone2.Wallet_Management_Project.service.UserService;
 import Milestone2.Wallet_Management_Project.service.WalletService;
 import Milestone2.Wallet_Management_Project.utilities.validation.Validation;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import java.util.Optional;
 @RestController
 public class WalletController extends Validation {
 
+    final static Logger logger =Logger.getLogger(WalletController.class.getName());
     @Autowired
     private WalletService walletService;
 
@@ -63,9 +65,10 @@ public class WalletController extends Validation {
             String requestTokenUserName=getUsernameByToken();
 
             // check userToken and with his details.
-               if(user.getUsername().compareTo(requestTokenUserName)!=0)
-                   return new CustomReturnType("User Unauthorized ,Pls use your Token !",HttpStatus.BAD_REQUEST);
-
+               if(user.getUsername().compareTo(requestTokenUserName)!=0) {
+                   logger.error("user has unauthorized token !" +"with token : "+requestTokenUserName);
+                   return new CustomReturnType("User Unauthorized ,Pls use your Token !", HttpStatus.BAD_REQUEST);
+               }
                 Optional<Wallet> TempW=walletService.getWalletById(mobileNumber);
 
             if(!TempW.isPresent()) {   // check wallet already exist ?
@@ -75,11 +78,13 @@ public class WalletController extends Validation {
                 walletService.createWallet(w);
                 user.setWallet(w);
                 userService.updateUser(user);
-
+                logger.debug("user created wallet");
+                logger.info("wallet Id: "+ mobileNumber);
                 return new CustomReturnType("Wallet created successfully !", HttpStatus.CREATED);
             }
             else
             {
+                logger.warn("user already wallet :" + mobileNumber);
                 throw new BadRequestException("User has already Wallet !");
             }
         }
@@ -114,7 +119,7 @@ public class WalletController extends Validation {
              if(walletService.getWalletById(WalletId)!=null)
                try{
                    Page<Transaction> txns=transactionService.getAllTxnsByWalletId(WalletId,pageNo);
-
+                   logger.debug("retrieve all transaction by wallet Id" +WalletId);
                    return ResponseEntity.ok(txns);
                }
                catch (Exception e){
@@ -171,7 +176,8 @@ public class WalletController extends Validation {
             txn.setPayeeWalletId("To Self   ");
             txn.setPayerWalletId(wallet.getWalletId());
             transactionService.createTxn(txn);
-
+            logger.debug("Add money successfully in self wallet ");
+            logger.info("amount : "+amount +" txnId :" +txn.getTxnId()+ " walletId: "+ wallet.getWalletId());
             // try to publish msg on kafka
             kafkaTemplate.send(TOPIC,"Money added successfully to your wallet Id :"+WalletId+" amount: "+txn.getAmount());
 
@@ -185,6 +191,7 @@ public class WalletController extends Validation {
     @GetMapping("/wallet/{mobileNumber}")
     public Optional<Wallet> getWalletDetailsById(@PathVariable String mobileNumber){
 
+        logger.debug("retrieve wallet details by wallet Id" + mobileNumber);
         return walletService.getWalletById(mobileNumber);
     }
 
