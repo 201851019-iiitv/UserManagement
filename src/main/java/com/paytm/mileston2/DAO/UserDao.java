@@ -25,7 +25,8 @@ public class UserDao implements IUserDao {
 
     @Override
     public User saveUser(User user) {
-        return userRepo.save(user);
+         userRepo.save(user);
+         return user;
     }
 
     @Override
@@ -38,6 +39,7 @@ public class UserDao implements IUserDao {
     public void deleteUser(Long userId) {
         User user = userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("user Id not found ."));
         userRepo.delete(user);
+
     }
 
     @Override

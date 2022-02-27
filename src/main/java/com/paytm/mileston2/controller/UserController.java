@@ -1,14 +1,14 @@
 package com.paytm.mileston2.controller;
 
 
-import com.paytm.mileston2.DTO.ReqUser;
 import com.paytm.mileston2.exception.BadRequestException;
 import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,6 +21,7 @@ public class UserController{
     private UserService userService;
     
     @PostMapping("/user")
+    @Operation(description = "This method use to create new user .",summary="to create new user .JWT Token is not required")
     public CustomReturnType createUser(@RequestBody User Requser) {
 
         try{
@@ -34,6 +35,7 @@ public class UserController{
     }
 
     @GetMapping("/user")
+    @Operation(summary= "This method use to get user by user Id .",description="JWT Token is not required")
     public  User getUserById(@RequestParam long userId){
         // Done:
         User user =userService.getUserById(userId);
@@ -42,6 +44,7 @@ public class UserController{
     }
 
     @PutMapping("/user")
+    @Operation(summary = "This method use to update a existing user .",description="to update existing user . Required JWT Token",security = @SecurityRequirement(name = "bearerAuth"))
     public  CustomReturnType updateUser(User user){
         try {
 
@@ -54,6 +57,7 @@ public class UserController{
     }
 
     @DeleteMapping("/user")
+    @Operation(summary = "This method use to delete existing user .",description="to delete exist user .Required JWT Token",security = @SecurityRequirement(name = "bearerAuth"))
     public CustomReturnType deleteUser(@RequestParam Long userId){
         try {
            return  userService.deleteUser(userId);

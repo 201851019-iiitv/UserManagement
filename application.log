@@ -482,3 +482,412 @@
 2022-02-26 21:12:46,268 DEBUG [http-nio-8080-exec-3] WalletDao:23 - save wallet
 2022-02-26 21:12:46,283  INFO [http-nio-8080-exec-3] WalletService:65 - wallet created :Wallet{walletId='1234567892', currBal=0.0}
 2022-02-26 21:12:46,293  WARN [http-nio-8080-exec-3] WalletController:54 - wallet can't create 
+2022-02-27 08:59:07,391 DEBUG [http-nio-8080-exec-2] UserService:43 - create : User{userId=null, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 08:59:07 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 08:59:07,593  INFO [http-nio-8080-exec-2] UserService:54 - created user  User{userId=1, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 08:59:07 IST 2022, isActiveUser=true, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 09:00:05,452 DEBUG [http-nio-8080-exec-3] UserService:43 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:00:05 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:00:05,464  INFO [http-nio-8080-exec-3] UserService:54 - created user  User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:00:05 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:01:20,797  WARN [http-nio-8080-exec-5] JwtAuthEntryPoint:21 - Error happened due to unauthorized user
+2022-02-27 09:01:57,199 DEBUG [http-nio-8080-exec-7] UserService:106 - retrieved user by username: ak
+2022-02-27 09:01:57,214 DEBUG [http-nio-8080-exec-7] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:01:57,215  INFO [http-nio-8080-exec-7] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:01:57,218 DEBUG [http-nio-8080-exec-7] UserService:106 - retrieved user by username: ak
+2022-02-27 09:01:57,229 DEBUG [http-nio-8080-exec-7] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:01:57,231  INFO [http-nio-8080-exec-7] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:01:57,310  INFO [http-nio-8080-exec-7] JwtTokenController:47 -  username :ak password : ak
+2022-02-27 09:01:57,310  INFO [http-nio-8080-exec-7] JwtTokenController:48 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhayIsImV4cCI6MTY0NTk2ODcxNywiaWF0IjoxNjQ1OTMyNzE3fQ.fzKFESrDqiEMSU9jYnRmVIEuL4HNRghMQrubePDSqoY
+2022-02-27 09:02:37,740 DEBUG [http-nio-8080-exec-8] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:02:37,740  INFO [http-nio-8080-exec-8] JwtAuthFilter:55 - username : ak
+2022-02-27 09:02:37,742 DEBUG [http-nio-8080-exec-8] UserService:106 - retrieved user by username: ak
+2022-02-27 09:02:37,748 DEBUG [http-nio-8080-exec-8] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:02:37,749  INFO [http-nio-8080-exec-8] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:02:37,809  INFO [http-nio-8080-exec-8] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:02:37,819  INFO [http-nio-8080-exec-8] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:00:05.45, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:02:37,819 DEBUG [http-nio-8080-exec-8] WalletDao:22 - save wallet
+2022-02-27 09:02:37,834  INFO [http-nio-8080-exec-8] WalletService:65 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:02:37,839  WARN [http-nio-8080-exec-8] WalletController:52 - wallet can't create 
+2022-02-27 09:09:01,874 DEBUG [http-nio-8080-exec-2] UserService:43 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:09:01 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:09:02,075  INFO [http-nio-8080-exec-2] UserService:54 - created user  User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:09:01 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:09:11,247 DEBUG [http-nio-8080-exec-3] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:09:11,250  INFO [http-nio-8080-exec-3] JwtAuthFilter:55 - username : ak
+2022-02-27 09:09:11,253 DEBUG [http-nio-8080-exec-3] UserService:106 - retrieved user by username: ak
+2022-02-27 09:09:11,271 DEBUG [http-nio-8080-exec-3] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:09:11,271  INFO [http-nio-8080-exec-3] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:09:11,342  INFO [http-nio-8080-exec-3] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:09:11,357  INFO [http-nio-8080-exec-3] UserService:73 - updated user : User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:09:01.871, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:09:11,358 DEBUG [http-nio-8080-exec-3] WalletDao:22 - save wallet
+2022-02-27 09:09:11,382  INFO [http-nio-8080-exec-3] WalletService:65 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:09:11,385  WARN [http-nio-8080-exec-3] WalletController:53 - wallet can't create 
+2022-02-27 09:14:06,276 DEBUG [http-nio-8080-exec-2] UserService:43 - create : User{userId=null, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 09:14:06 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 09:14:06,465  INFO [http-nio-8080-exec-2] UserService:54 - created user  User{userId=1, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 09:14:06 IST 2022, isActiveUser=true, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 09:14:08,064 DEBUG [http-nio-8080-exec-3] UserService:43 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:14:08 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:14:08,077  INFO [http-nio-8080-exec-3] UserService:54 - created user  User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:14:08 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:14:13,292 DEBUG [http-nio-8080-exec-4] UserService:106 - retrieved user by username: ak
+2022-02-27 09:14:13,312 DEBUG [http-nio-8080-exec-4] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:14:13,312  INFO [http-nio-8080-exec-4] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:14:13,315 DEBUG [http-nio-8080-exec-4] UserService:106 - retrieved user by username: ak
+2022-02-27 09:14:13,326 DEBUG [http-nio-8080-exec-4] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:14:13,327  INFO [http-nio-8080-exec-4] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:14:13,402  INFO [http-nio-8080-exec-4] JwtTokenController:47 -  username :ak password : ak
+2022-02-27 09:14:13,403  INFO [http-nio-8080-exec-4] JwtTokenController:48 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhayIsImV4cCI6MTY0NTk2OTQ1MywiaWF0IjoxNjQ1OTMzNDUzfQ.gD6B_g9kCXsMe_6RL70qx-3_p44lPKLOreKU3PO-iew
+2022-02-27 09:14:38,193 DEBUG [http-nio-8080-exec-5] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:14:38,194  INFO [http-nio-8080-exec-5] JwtAuthFilter:55 - username : ak
+2022-02-27 09:14:38,195 DEBUG [http-nio-8080-exec-5] UserService:106 - retrieved user by username: ak
+2022-02-27 09:14:38,201 DEBUG [http-nio-8080-exec-5] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:14:38,202  INFO [http-nio-8080-exec-5] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:14:38,228 DEBUG [http-nio-8080-exec-5] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:14:38,268  INFO [http-nio-8080-exec-5] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:14:38,275  INFO [http-nio-8080-exec-5] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:14:38,275 DEBUG [http-nio-8080-exec-5] WalletDao:22 - save wallet
+2022-02-27 09:14:38,291  INFO [http-nio-8080-exec-5] WalletService:65 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:14:38,296  WARN [http-nio-8080-exec-5] WalletController:55 - wallet can't create 
+2022-02-27 09:15:24,761 DEBUG [http-nio-8080-exec-1] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:15:24,763  INFO [http-nio-8080-exec-1] JwtAuthFilter:55 - username : ak
+2022-02-27 09:15:24,797 DEBUG [http-nio-8080-exec-1] UserService:106 - retrieved user by username: ak
+2022-02-27 09:15:24,914 DEBUG [http-nio-8080-exec-1] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:15:24,914  INFO [http-nio-8080-exec-1] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:15:24,975 DEBUG [http-nio-8080-exec-1] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:15:25,014  INFO [http-nio-8080-exec-1] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:15:25,048  INFO [http-nio-8080-exec-1] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:15:25,048 DEBUG [http-nio-8080-exec-1] WalletDao:22 - save wallet
+2022-02-27 09:15:25,064  INFO [http-nio-8080-exec-1] WalletService:65 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:15:25,067  WARN [http-nio-8080-exec-1] WalletController:55 - wallet can't create 
+2022-02-27 09:24:48,480 DEBUG [http-nio-8080-exec-1] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:24:48,487  INFO [http-nio-8080-exec-1] JwtAuthFilter:55 - username : ak
+2022-02-27 09:24:48,523 DEBUG [http-nio-8080-exec-1] UserService:106 - retrieved user by username: ak
+2022-02-27 09:24:48,664 DEBUG [http-nio-8080-exec-1] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:24:48,665  INFO [http-nio-8080-exec-1] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:24:48,729 DEBUG [http-nio-8080-exec-1] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:24:48,763  INFO [http-nio-8080-exec-1] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:24:48,795  INFO [http-nio-8080-exec-1] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:24:48,796 DEBUG [http-nio-8080-exec-1] WalletDao:22 - save wallet
+2022-02-27 09:24:48,812  INFO [http-nio-8080-exec-1] WalletService:65 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:24:48,815  WARN [http-nio-8080-exec-1] WalletController:55 - wallet can't create 
+2022-02-27 09:31:11,474 DEBUG [http-nio-8080-exec-1] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:31:11,481  INFO [http-nio-8080-exec-1] JwtAuthFilter:55 - username : ak
+2022-02-27 09:31:11,521 DEBUG [http-nio-8080-exec-1] UserService:106 - retrieved user by username: ak
+2022-02-27 09:31:11,667 DEBUG [http-nio-8080-exec-1] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:31:11,668  INFO [http-nio-8080-exec-1] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:31:11,732 DEBUG [http-nio-8080-exec-1] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:31:11,766  INFO [http-nio-8080-exec-1] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:31:11,799  INFO [http-nio-8080-exec-1] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:31:11,800 DEBUG [http-nio-8080-exec-1] WalletDao:22 - save wallet
+2022-02-27 09:31:11,815  INFO [http-nio-8080-exec-1] WalletService:74 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:31:11,817  WARN [http-nio-8080-exec-1] WalletController:55 - wallet can't create 
+2022-02-27 09:33:31,442 DEBUG [http-nio-8080-exec-2] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:33:31,445  INFO [http-nio-8080-exec-2] JwtAuthFilter:55 - username : ak
+2022-02-27 09:33:31,495 DEBUG [http-nio-8080-exec-2] UserService:106 - retrieved user by username: ak
+2022-02-27 09:33:31,658 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:33:31,659  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:33:31,730 DEBUG [http-nio-8080-exec-2] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:33:31,765  INFO [http-nio-8080-exec-2] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:33:31,803  INFO [http-nio-8080-exec-2] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:33:31,803 DEBUG [http-nio-8080-exec-2] WalletDao:22 - save wallet
+2022-02-27 09:33:31,818  INFO [http-nio-8080-exec-2] WalletService:74 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:33:31,823  WARN [http-nio-8080-exec-2] WalletController:58 - wallet can't create 
+2022-02-27 09:34:10,610 DEBUG [http-nio-8080-exec-2] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:34:10,617  INFO [http-nio-8080-exec-2] JwtAuthFilter:55 - username : ak
+2022-02-27 09:34:10,661 DEBUG [http-nio-8080-exec-2] UserService:106 - retrieved user by username: ak
+2022-02-27 09:34:10,799 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:34:10,799  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:34:10,870 DEBUG [http-nio-8080-exec-2] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:34:10,911  INFO [http-nio-8080-exec-2] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:34:10,942  INFO [http-nio-8080-exec-2] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:34:10,942 DEBUG [http-nio-8080-exec-2] WalletDao:22 - save wallet
+2022-02-27 09:34:10,956  INFO [http-nio-8080-exec-2] WalletService:74 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:34:10,959  WARN [http-nio-8080-exec-2] WalletController:58 - wallet can't create 
+2022-02-27 09:36:31,924 DEBUG [http-nio-8080-exec-2] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:36:31,930  INFO [http-nio-8080-exec-2] JwtAuthFilter:55 - username : ak
+2022-02-27 09:36:31,971 DEBUG [http-nio-8080-exec-2] UserService:106 - retrieved user by username: ak
+2022-02-27 09:36:32,149 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:36:32,150  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:36:32,221 DEBUG [http-nio-8080-exec-2] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:36:32,253  INFO [http-nio-8080-exec-2] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:36:32,284  INFO [http-nio-8080-exec-2] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:36:32,285 DEBUG [http-nio-8080-exec-2] WalletDao:22 - save wallet
+2022-02-27 09:36:32,300  INFO [http-nio-8080-exec-2] WalletService:74 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:36:32,305  WARN [http-nio-8080-exec-2] WalletController:58 - wallet can't create 
+2022-02-27 09:36:37,331 DEBUG [http-nio-8080-exec-3] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:36:37,337  INFO [http-nio-8080-exec-3] JwtAuthFilter:55 - username : ak
+2022-02-27 09:36:37,339 DEBUG [http-nio-8080-exec-3] UserService:106 - retrieved user by username: ak
+2022-02-27 09:36:37,351 DEBUG [http-nio-8080-exec-3] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:36:37,352  INFO [http-nio-8080-exec-3] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:36:37,358 DEBUG [http-nio-8080-exec-3] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:36:37,359  INFO [http-nio-8080-exec-3] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:36:37,363  INFO [http-nio-8080-exec-3] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:36:37,363 DEBUG [http-nio-8080-exec-3] WalletDao:22 - save wallet
+2022-02-27 09:36:37,365  INFO [http-nio-8080-exec-3] WalletService:74 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:36:37,369  WARN [http-nio-8080-exec-3] WalletController:58 - wallet can't create 
+2022-02-27 09:39:51,125 DEBUG [http-nio-8080-exec-1] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:39:51,131  INFO [http-nio-8080-exec-1] JwtAuthFilter:55 - username : ak
+2022-02-27 09:39:51,178 DEBUG [http-nio-8080-exec-1] UserService:106 - retrieved user by username: ak
+2022-02-27 09:39:51,320 DEBUG [http-nio-8080-exec-1] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:39:51,320  INFO [http-nio-8080-exec-1] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:39:51,394 DEBUG [http-nio-8080-exec-1] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:39:51,425  INFO [http-nio-8080-exec-1] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:39:51,434 DEBUG [http-nio-8080-exec-1] WalletDao:22 - save wallet
+2022-02-27 09:39:51,472  INFO [http-nio-8080-exec-1] UserService:73 - updated user : User{userId=2, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:14:08.063, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:39:51,472  INFO [http-nio-8080-exec-1] WalletService:65 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:39:51,475  WARN [http-nio-8080-exec-1] WalletController:54 - wallet can't create 
+2022-02-27 09:44:00,212 DEBUG [http-nio-8080-exec-1] UserService:43 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:44:00 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:44:00,439  INFO [http-nio-8080-exec-1] UserService:54 - created user  User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:44:00 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:44:06,604 DEBUG [http-nio-8080-exec-3] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:44:06,606  INFO [http-nio-8080-exec-3] JwtAuthFilter:55 - username : ak
+2022-02-27 09:44:06,608 DEBUG [http-nio-8080-exec-3] UserService:106 - retrieved user by username: ak
+2022-02-27 09:44:06,625 DEBUG [http-nio-8080-exec-3] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:44:06,626  INFO [http-nio-8080-exec-3] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:44:06,652 DEBUG [http-nio-8080-exec-3] WalletController:49 - request for mobile number .1234567890
+2022-02-27 09:44:06,688  INFO [http-nio-8080-exec-3] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:44:06,724  INFO [http-nio-8080-exec-3] UserService:73 - updated user : User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=2022-02-27 09:44:00.207, isActiveUser=true, address='ak', isActiveWallet=true, wallet=Wallet{walletId='1234567890', currBal=0.0}}
+2022-02-27 09:44:06,724 DEBUG [http-nio-8080-exec-3] WalletDao:22 - save wallet
+2022-02-27 09:44:06,739  INFO [http-nio-8080-exec-3] WalletService:65 - wallet created :Wallet{walletId='1234567890', currBal=0.0}
+2022-02-27 09:48:43,830 DEBUG [http-nio-8080-exec-1] UserService:43 - create : User{userId=null, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 09:48:43 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 09:48:43,990  INFO [http-nio-8080-exec-1] UserService:54 - created user  User{userId=2, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 09:48:43 IST 2022, isActiveUser=true, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 09:48:51,962 DEBUG [http-nio-8080-exec-3] UserService:43 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Feb 27 09:48:51 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-02-27 09:48:51,993  WARN [http-nio-8080-exec-3] UserService:49 - user already exist with this mobile number/email/username 1234567890 ak@gmail.com
+2022-02-27 09:48:55,667 DEBUG [http-nio-8080-exec-4] UserService:43 - create : User{userId=null, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 09:48:55 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 09:48:55,674  WARN [http-nio-8080-exec-4] UserService:49 - user already exist with this mobile number/email/username 1234567892 ak12@gmail.com
+2022-02-27 09:49:09,070 DEBUG [http-nio-8080-exec-5] UserService:43 - create : User{userId=null, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Sun Feb 27 09:49:09 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-02-27 09:49:09,078  WARN [http-nio-8080-exec-5] UserService:49 - user already exist with this mobile number/email/username 1234567892 ak12@gmail.com
+2022-02-27 09:49:52,799 DEBUG [http-nio-8080-exec-6] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:49:52,810 DEBUG [http-nio-8080-exec-6] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:49:52,811  INFO [http-nio-8080-exec-6] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:49:52,815 DEBUG [http-nio-8080-exec-6] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:49:52,819 DEBUG [http-nio-8080-exec-6] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:49:52,819  INFO [http-nio-8080-exec-6] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:49:52,902  INFO [http-nio-8080-exec-6] JwtTokenController:47 -  username :ak12 password : ak11
+2022-02-27 09:49:52,902  INFO [http-nio-8080-exec-6] JwtTokenController:48 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhazEyIiwiZXhwIjoxNjQ1OTcxNTkyLCJpYXQiOjE2NDU5MzU1OTJ9.LWr6rZCagjq6uG9k3ZBBRZEMPQVlHcRc-XCPSWbIerY
+2022-02-27 09:50:02,617 DEBUG [http-nio-8080-exec-7] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:50:02,626 DEBUG [http-nio-8080-exec-7] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:50:02,627  INFO [http-nio-8080-exec-7] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:50:02,628 ERROR [http-nio-8080-exec-7] JwtTokenController:39 - Bad credentials ! username :ak12 password : ak1
+2022-02-27 09:50:13,107 DEBUG [http-nio-8080-exec-8] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:50:13,111  INFO [http-nio-8080-exec-8] JwtAuthFilter:55 - username : ak
+2022-02-27 09:50:13,116 DEBUG [http-nio-8080-exec-8] UserService:106 - retrieved user by username: ak
+2022-02-27 09:50:13,122 DEBUG [http-nio-8080-exec-8] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:50:13,122  INFO [http-nio-8080-exec-8] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 09:50:13,156 DEBUG [http-nio-8080-exec-8] WalletController:49 - request for mobile number .1234567892
+2022-02-27 09:50:13,176  INFO [http-nio-8080-exec-8] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:50:13,178  WARN [http-nio-8080-exec-8] WalletService:54 - user has unauthorized token !with token : ak
+2022-02-27 09:50:35,195 DEBUG [http-nio-8080-exec-9] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:50:35,200  INFO [http-nio-8080-exec-9] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:50:35,203 DEBUG [http-nio-8080-exec-9] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:50:35,207 DEBUG [http-nio-8080-exec-9] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:50:35,208  INFO [http-nio-8080-exec-9] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:50:35,212 DEBUG [http-nio-8080-exec-9] WalletController:49 - request for mobile number .1234567892
+2022-02-27 09:50:35,213  INFO [http-nio-8080-exec-9] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:50:35,239  INFO [http-nio-8080-exec-9] UserService:73 - updated user : User{userId=2, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=2022-02-27 09:48:43.828, isActiveUser=true, address='ask22', isActiveWallet=true, wallet=Wallet{walletId='1234567892', currBal=0.0}}
+2022-02-27 09:50:35,239 DEBUG [http-nio-8080-exec-9] WalletDao:22 - save wallet
+2022-02-27 09:50:35,253  INFO [http-nio-8080-exec-9] WalletService:65 - wallet created :Wallet{walletId='1234567892', currBal=0.0}
+2022-02-27 09:50:57,621 DEBUG [http-nio-8080-exec-10] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:50:57,622  INFO [http-nio-8080-exec-10] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:50:57,625 DEBUG [http-nio-8080-exec-10] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:50:57,636 DEBUG [http-nio-8080-exec-10] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:50:57,637  INFO [http-nio-8080-exec-10] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:50:57,640 DEBUG [http-nio-8080-exec-10] WalletController:49 - request for mobile number .1234567892
+2022-02-27 09:50:57,643  INFO [http-nio-8080-exec-10] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:51:40,759 DEBUG [http-nio-8080-exec-2] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:51:40,760  INFO [http-nio-8080-exec-2] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:51:40,763 DEBUG [http-nio-8080-exec-2] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:51:40,774 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:51:40,775  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:51:40,778 DEBUG [http-nio-8080-exec-2] WalletController:96 - retrieve wallet details by wallet Id1234567892
+2022-02-27 09:51:40,780 DEBUG [http-nio-8080-exec-2] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 09:52:11,136 DEBUG [http-nio-8080-exec-1] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:52:11,138  INFO [http-nio-8080-exec-1] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:52:11,141 DEBUG [http-nio-8080-exec-1] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:52:11,153 DEBUG [http-nio-8080-exec-1] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:52:11,154  INFO [http-nio-8080-exec-1] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:52:25,613  INFO [http-nio-8080-exec-4] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:55:07,356  INFO [http-nio-8080-exec-7] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:55:56,018 DEBUG [http-nio-8080-exec-8] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:55:56,019  INFO [http-nio-8080-exec-8] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:55:56,022 DEBUG [http-nio-8080-exec-8] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:55:56,034 DEBUG [http-nio-8080-exec-8] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:55:56,035  INFO [http-nio-8080-exec-8] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:55:56,038  INFO [http-nio-8080-exec-8] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:55:56,041  INFO [http-nio-8080-exec-8] WalletService:108 - amount added in your wallet : Wallet{walletId='1234567892', currBal=5.5}
+2022-02-27 09:55:56,042 DEBUG [http-nio-8080-exec-8] WalletDao:22 - save wallet
+2022-02-27 09:55:56,074 DEBUG [http-nio-8080-exec-8] TransactionService:47 - created transaction & txnId: null
+2022-02-27 09:55:56,114  INFO [http-nio-8080-exec-8] WalletService:119 - new transaction happened : Transaction{txnId=1, payerWalletId='1234567892', payeeWalletId='Self', amount=5.5, timestamp=2022-02-27 09:55:56.044048, status='Success'}
+2022-02-27 09:56:31,441 DEBUG [http-nio-8080-exec-9] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:56:31,442  INFO [http-nio-8080-exec-9] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:56:31,443 DEBUG [http-nio-8080-exec-9] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:56:31,453 DEBUG [http-nio-8080-exec-9] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:56:31,453  INFO [http-nio-8080-exec-9] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:56:31,458  INFO [http-nio-8080-exec-9] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-02-27 09:56:42,902 DEBUG [http-nio-8080-exec-10] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:56:42,903  INFO [http-nio-8080-exec-10] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:56:42,907 DEBUG [http-nio-8080-exec-10] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:56:42,922 DEBUG [http-nio-8080-exec-10] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:56:42,923  INFO [http-nio-8080-exec-10] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:56:42,933  INFO [http-nio-8080-exec-10] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:56:42,939  INFO [http-nio-8080-exec-10] WalletService:108 - amount added in your wallet : Wallet{walletId='1234567892', currBal=105.5}
+2022-02-27 09:56:42,940 DEBUG [http-nio-8080-exec-10] WalletDao:22 - save wallet
+2022-02-27 09:56:42,941 DEBUG [http-nio-8080-exec-10] TransactionService:47 - created transaction & txnId: null
+2022-02-27 09:56:42,946  INFO [http-nio-8080-exec-10] WalletService:119 - new transaction happened : Transaction{txnId=2, payerWalletId='1234567892', payeeWalletId='Self', amount=100.0, timestamp=2022-02-27 09:56:42.941395, status='Success'}
+2022-02-27 09:59:01,495 DEBUG [http-nio-8080-exec-5] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:59:01,497  INFO [http-nio-8080-exec-5] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:59:01,502 DEBUG [http-nio-8080-exec-5] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:59:01,514 DEBUG [http-nio-8080-exec-5] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:59:01,515  INFO [http-nio-8080-exec-5] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:59:22,431 DEBUG [http-nio-8080-exec-6] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 09:59:22,432  INFO [http-nio-8080-exec-6] JwtAuthFilter:55 - username : ak12
+2022-02-27 09:59:22,435 DEBUG [http-nio-8080-exec-6] UserService:106 - retrieved user by username: ak12
+2022-02-27 09:59:22,450 DEBUG [http-nio-8080-exec-6] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 09:59:22,451  INFO [http-nio-8080-exec-6] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 09:59:22,468  INFO [http-nio-8080-exec-6] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 09:59:22,476 DEBUG [http-nio-8080-exec-6] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 09:59:22,478 DEBUG [http-nio-8080-exec-6] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 10:01:40,705 DEBUG [http-nio-8080-exec-9] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 10:01:40,707  INFO [http-nio-8080-exec-9] JwtAuthFilter:55 - username : ak12
+2022-02-27 10:01:40,709 DEBUG [http-nio-8080-exec-9] UserService:106 - retrieved user by username: ak12
+2022-02-27 10:01:40,719 DEBUG [http-nio-8080-exec-9] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:01:40,720  INFO [http-nio-8080-exec-9] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 10:01:40,726  INFO [http-nio-8080-exec-9] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 10:01:40,729 DEBUG [http-nio-8080-exec-9] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 10:01:40,734 DEBUG [http-nio-8080-exec-9] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 10:03:17,350 DEBUG [http-nio-8080-exec-2] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 10:03:17,354  INFO [http-nio-8080-exec-2] JwtAuthFilter:55 - username : ak12
+2022-02-27 10:03:17,393 DEBUG [http-nio-8080-exec-2] UserService:106 - retrieved user by username: ak12
+2022-02-27 10:03:17,546 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:03:17,547  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 10:03:17,680  INFO [http-nio-8080-exec-2] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 10:03:17,706 DEBUG [http-nio-8080-exec-2] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 10:03:17,727 DEBUG [http-nio-8080-exec-2] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 10:03:17,729 DEBUG [http-nio-8080-exec-2] WalletDao:22 - save wallet
+2022-02-27 10:03:17,757 DEBUG [http-nio-8080-exec-2] WalletService:95 - update wallet by walletId : 1234567890
+2022-02-27 10:03:17,759 DEBUG [http-nio-8080-exec-2] WalletDao:22 - save wallet
+2022-02-27 10:03:17,760 DEBUG [http-nio-8080-exec-2] WalletService:95 - update wallet by walletId : 1234567892
+2022-02-27 10:03:17,775  INFO [http-nio-8080-exec-2] TransactionService:115 - new transaction happened : Transaction{txnId=3, payerWalletId='1234567892', payeeWalletId='1234567890', amount=25.5, timestamp=2022-02-27 10:03:17.760678, status='Success'}
+2022-02-27 10:06:49,064 DEBUG [http-nio-8080-exec-2] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 10:06:49,070  INFO [http-nio-8080-exec-2] JwtAuthFilter:55 - username : ak12
+2022-02-27 10:06:49,112 DEBUG [http-nio-8080-exec-2] UserService:106 - retrieved user by username: ak12
+2022-02-27 10:06:49,268 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:06:49,269  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 10:06:49,390  INFO [http-nio-8080-exec-2] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 10:06:49,413 DEBUG [http-nio-8080-exec-2] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 10:06:49,428 DEBUG [http-nio-8080-exec-2] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 10:06:49,430 DEBUG [http-nio-8080-exec-2] WalletDao:22 - save wallet
+2022-02-27 10:06:49,444 DEBUG [http-nio-8080-exec-2] WalletService:95 - update wallet by walletId : 1234567890
+2022-02-27 10:06:49,444 DEBUG [http-nio-8080-exec-2] WalletDao:22 - save wallet
+2022-02-27 10:06:49,444 DEBUG [http-nio-8080-exec-2] WalletService:95 - update wallet by walletId : 1234567892
+2022-02-27 10:06:49,456  INFO [http-nio-8080-exec-2] TransactionService:115 - new transaction happened : Transaction{txnId=4, payerWalletId='1234567892', payeeWalletId='1234567890', amount=25.5, timestamp=2022-02-27 10:06:49.445242, status='Success'}
+2022-02-27 10:08:06,765 DEBUG [http-nio-8080-exec-5] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 10:08:06,767  INFO [http-nio-8080-exec-5] JwtAuthFilter:55 - username : ak12
+2022-02-27 10:08:06,773 DEBUG [http-nio-8080-exec-5] UserService:106 - retrieved user by username: ak12
+2022-02-27 10:08:06,792 DEBUG [http-nio-8080-exec-5] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:08:06,793  INFO [http-nio-8080-exec-5] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 10:08:06,806  INFO [http-nio-8080-exec-5] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 10:08:06,811 DEBUG [http-nio-8080-exec-5] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 10:08:06,812 DEBUG [http-nio-8080-exec-5] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 10:08:06,817 DEBUG [http-nio-8080-exec-5] WalletDao:22 - save wallet
+2022-02-27 10:08:06,818 DEBUG [http-nio-8080-exec-5] WalletService:95 - update wallet by walletId : 1234567890
+2022-02-27 10:08:06,818 DEBUG [http-nio-8080-exec-5] WalletDao:22 - save wallet
+2022-02-27 10:08:06,819 DEBUG [http-nio-8080-exec-5] WalletService:95 - update wallet by walletId : 1234567892
+2022-02-27 10:08:06,823  INFO [http-nio-8080-exec-5] TransactionService:115 - new transaction happened : Transaction{txnId=5, payerWalletId='1234567892', payeeWalletId='1234567890', amount=1.5, timestamp=2022-02-27 10:08:06.819612, status='Success'}
+2022-02-27 10:08:36,689 DEBUG [http-nio-8080-exec-6] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 10:08:36,691  INFO [http-nio-8080-exec-6] JwtAuthFilter:55 - username : ak12
+2022-02-27 10:08:36,692 DEBUG [http-nio-8080-exec-6] UserService:106 - retrieved user by username: ak12
+2022-02-27 10:08:36,702 DEBUG [http-nio-8080-exec-6] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:08:36,704  INFO [http-nio-8080-exec-6] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 10:08:36,710  INFO [http-nio-8080-exec-6] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 10:08:36,712 DEBUG [http-nio-8080-exec-6] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 10:08:36,714 DEBUG [http-nio-8080-exec-6] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 10:08:56,757 DEBUG [http-nio-8080-exec-7] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 10:08:56,758  INFO [http-nio-8080-exec-7] JwtAuthFilter:55 - username : ak12
+2022-02-27 10:08:56,760 DEBUG [http-nio-8080-exec-7] UserService:106 - retrieved user by username: ak12
+2022-02-27 10:08:56,770 DEBUG [http-nio-8080-exec-7] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:08:56,771  INFO [http-nio-8080-exec-7] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 10:08:56,780  INFO [http-nio-8080-exec-7] UserService:92 - retrieved user by mobileNumber: 1234567892
+2022-02-27 10:08:56,784 DEBUG [http-nio-8080-exec-7] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 10:08:56,785 DEBUG [http-nio-8080-exec-7] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 10:24:14,712  INFO [http-nio-8080-exec-9] UserService:63 - retrieved user by userId :1
+2022-02-27 10:24:14,777  INFO [http-nio-8080-exec-9] UserController:38 - user retrieved by userId 1
+2022-02-27 10:26:30,584  INFO [http-nio-8080-exec-4] UserService:63 - retrieved user by userId :4
+2022-02-27 10:28:43,465 DEBUG [http-nio-8080-exec-5] UserService:42 - create : User{userId=null, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=Sun Feb 27 10:28:43 IST 2022, isActiveUser=false, address='address', isActiveWallet=false, wallet=null}
+2022-02-27 10:28:43,598  INFO [http-nio-8080-exec-5] UserService:53 - created user  User{userId=3, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=Sun Feb 27 10:28:43 IST 2022, isActiveUser=true, address='address', isActiveWallet=false, wallet=null}
+2022-02-27 10:29:10,012 DEBUG [http-nio-8080-exec-6] UserService:105 - retrieved user by username: atal
+2022-02-27 10:29:10,024 DEBUG [http-nio-8080-exec-6] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:29:10,025  INFO [http-nio-8080-exec-6] CustomUserDetailsJwtService:29 - username :atal
+2022-02-27 10:29:10,030 ERROR [http-nio-8080-exec-6] JwtTokenController:39 - Bad credentials ! username :atal password : atal
+2022-02-27 10:29:17,805 DEBUG [http-nio-8080-exec-8] UserService:105 - retrieved user by username: atal
+2022-02-27 10:29:17,822 DEBUG [http-nio-8080-exec-8] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:29:17,823  INFO [http-nio-8080-exec-8] CustomUserDetailsJwtService:29 - username :atal
+2022-02-27 10:29:17,826 DEBUG [http-nio-8080-exec-8] UserService:105 - retrieved user by username: atal
+2022-02-27 10:29:17,832 DEBUG [http-nio-8080-exec-8] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 10:29:17,832  INFO [http-nio-8080-exec-8] CustomUserDetailsJwtService:29 - username :atal
+2022-02-27 10:29:17,919  INFO [http-nio-8080-exec-8] JwtTokenController:47 -  username :atal password : Atal
+2022-02-27 10:29:17,920  INFO [http-nio-8080-exec-8] JwtTokenController:48 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ1OTczOTU3LCJpYXQiOjE2NDU5Mzc5NTd9.ygS0eV7iowKilIxlDTPPWjPhC9NMWcB48wYnC2lGXaI
+2022-02-27 10:29:54,704 DEBUG [http-nio-8080-exec-9] TransactionService:57 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 0
+2022-02-27 10:29:54,705 DEBUG [http-nio-8080-exec-9] WalletController:57 - retrieve all transaction by wallet Id1234567890
+2022-02-27 10:31:54,299 DEBUG [http-nio-8080-exec-1] TransactionService:57 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 0
+2022-02-27 10:31:54,306 DEBUG [http-nio-8080-exec-1] WalletController:59 - retrieve all transaction by wallet Id 1234567890
+2022-02-27 10:32:04,587 DEBUG [http-nio-8080-exec-2] TransactionService:57 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 1
+2022-02-27 10:32:04,589 DEBUG [http-nio-8080-exec-2] WalletController:59 - retrieve all transaction by wallet Id 1234567890
+2022-02-27 10:32:16,580 DEBUG [http-nio-8080-exec-3] TransactionService:57 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 2
+2022-02-27 10:32:16,582 DEBUG [http-nio-8080-exec-3] WalletController:59 - retrieve all transaction by wallet Id 1234567890
+2022-02-27 10:32:59,074  WARN [http-nio-8080-exec-4] JwtAuthEntryPoint:21 - Error happened due to unauthorized user
+2022-02-27 11:11:06,092 DEBUG [http-nio-8080-exec-2] UserService:105 - retrieved user by username: ak
+2022-02-27 11:11:06,223 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:11:06,224  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 11:11:06,227 DEBUG [http-nio-8080-exec-2] UserService:105 - retrieved user by username: ak
+2022-02-27 11:11:06,230 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:11:06,231  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 11:11:06,298  INFO [http-nio-8080-exec-2] JwtTokenController:49 -  username :ak password : ak
+2022-02-27 11:11:06,299  INFO [http-nio-8080-exec-2] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhayIsImV4cCI6MTY0NTk3NjQ2NiwiaWF0IjoxNjQ1OTQwNDY2fQ.oNxk-Lom1xykwDylC4hvTaMidFEFLXKPJvJuYaUf2fE
+2022-02-27 11:12:10,077 DEBUG [http-nio-8080-exec-3] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 11:12:10,078  INFO [http-nio-8080-exec-3] JwtAuthFilter:55 - username : ak
+2022-02-27 11:12:10,080 DEBUG [http-nio-8080-exec-3] UserService:105 - retrieved user by username: ak
+2022-02-27 11:12:10,087 DEBUG [http-nio-8080-exec-3] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:12:10,090  INFO [http-nio-8080-exec-3] CustomUserDetailsJwtService:29 - username :ak
+2022-02-27 11:12:10,128  INFO [http-nio-8080-exec-3] UserService:91 - retrieved user by mobileNumber: 1234567890
+2022-02-27 11:12:10,143 DEBUG [http-nio-8080-exec-3] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 11:12:10,158 DEBUG [http-nio-8080-exec-3] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 11:12:10,160 DEBUG [http-nio-8080-exec-3] WalletDao:22 - save wallet
+2022-02-27 11:12:10,171 DEBUG [http-nio-8080-exec-3] WalletService:95 - update wallet by walletId : 1234567892
+2022-02-27 11:12:10,171 DEBUG [http-nio-8080-exec-3] WalletDao:22 - save wallet
+2022-02-27 11:12:10,171 DEBUG [http-nio-8080-exec-3] WalletService:95 - update wallet by walletId : 1234567890
+2022-02-27 11:12:10,184  INFO [http-nio-8080-exec-3] TransactionService:112 - new transaction happened : Transaction{txnId=6, payerWalletId='1234567890', payeeWalletId='1234567892', amount=10.0, timestamp=2022-02-27 11:12:10.1721, status='Success'}
+2022-02-27 11:12:36,085 DEBUG [http-nio-8080-exec-5] UserService:105 - retrieved user by username: ak12
+2022-02-27 11:12:36,106 DEBUG [http-nio-8080-exec-5] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:12:36,107  INFO [http-nio-8080-exec-5] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 11:12:36,108 DEBUG [http-nio-8080-exec-5] UserService:105 - retrieved user by username: ak12
+2022-02-27 11:12:36,113 DEBUG [http-nio-8080-exec-5] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:12:36,115  INFO [http-nio-8080-exec-5] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 11:12:36,118  INFO [http-nio-8080-exec-5] JwtTokenController:49 -  username :ak12 password : ak11
+2022-02-27 11:12:36,118  INFO [http-nio-8080-exec-5] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhazEyIiwiZXhwIjoxNjQ1OTc2NTU2LCJpYXQiOjE2NDU5NDA1NTZ9.ymGivNC8_HIu6EJZ10gLlXESNAIZ6lHE_m7JFb-BzTs
+2022-02-27 11:12:53,778 DEBUG [http-nio-8080-exec-6] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 11:12:53,779  INFO [http-nio-8080-exec-6] JwtAuthFilter:55 - username : ak12
+2022-02-27 11:12:53,781 DEBUG [http-nio-8080-exec-6] UserService:105 - retrieved user by username: ak12
+2022-02-27 11:12:53,785 DEBUG [http-nio-8080-exec-6] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:12:53,785  INFO [http-nio-8080-exec-6] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 11:12:53,789  INFO [http-nio-8080-exec-6] UserService:91 - retrieved user by mobileNumber: 1234567890
+2022-02-27 11:12:53,792 ERROR [http-nio-8080-exec-6] TransactionService:84 - user unauthorized token !with token : ak12
+2022-02-27 11:13:11,886 DEBUG [http-nio-8080-exec-8] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 11:13:11,887  INFO [http-nio-8080-exec-8] JwtAuthFilter:55 - username : ak12
+2022-02-27 11:13:11,890 DEBUG [http-nio-8080-exec-8] UserService:105 - retrieved user by username: ak12
+2022-02-27 11:13:11,903 DEBUG [http-nio-8080-exec-8] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:13:11,904  INFO [http-nio-8080-exec-8] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 11:13:11,910  INFO [http-nio-8080-exec-8] UserService:91 - retrieved user by mobileNumber: 1234567892
+2022-02-27 11:13:11,921 DEBUG [http-nio-8080-exec-8] WalletService:79 - retrieved wallet by walletId: 1234567892
+2022-02-27 11:13:11,923 DEBUG [http-nio-8080-exec-8] WalletService:79 - retrieved wallet by walletId: 1234567890
+2022-02-27 11:13:11,931 DEBUG [http-nio-8080-exec-8] WalletDao:22 - save wallet
+2022-02-27 11:13:11,933 DEBUG [http-nio-8080-exec-8] WalletService:95 - update wallet by walletId : 1234567890
+2022-02-27 11:13:11,933 DEBUG [http-nio-8080-exec-8] WalletDao:22 - save wallet
+2022-02-27 11:13:11,934 DEBUG [http-nio-8080-exec-8] WalletService:95 - update wallet by walletId : 1234567892
+2022-02-27 11:13:11,940  INFO [http-nio-8080-exec-8] TransactionService:112 - new transaction happened : Transaction{txnId=7, payerWalletId='1234567892', payeeWalletId='1234567890', amount=1.0, timestamp=2022-02-27 11:13:11.934483, status='Success'}
+2022-02-27 11:20:16,531 DEBUG [http-nio-8080-exec-6] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 11:20:16,534  INFO [http-nio-8080-exec-6] JwtAuthFilter:55 - username : ak12
+2022-02-27 11:20:16,578 DEBUG [http-nio-8080-exec-6] UserService:105 - retrieved user by username: ak12
+2022-02-27 11:20:16,766 DEBUG [http-nio-8080-exec-6] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:20:16,767  INFO [http-nio-8080-exec-6] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 11:20:48,278 DEBUG [http-nio-8080-exec-2] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 11:20:48,280  INFO [http-nio-8080-exec-2] JwtAuthFilter:55 - username : ak12
+2022-02-27 11:20:48,283 DEBUG [http-nio-8080-exec-2] UserService:105 - retrieved user by username: ak12
+2022-02-27 11:20:48,294 DEBUG [http-nio-8080-exec-2] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:20:48,294  INFO [http-nio-8080-exec-2] CustomUserDetailsJwtService:29 - username :ak12
+2022-02-27 11:21:06,861 DEBUG [http-nio-8080-exec-4] JwtAuthFilter:54 - user login successfully from dofilterInternal ! 
+2022-02-27 11:21:06,862  INFO [http-nio-8080-exec-4] JwtAuthFilter:55 - username : ak12
+2022-02-27 11:21:06,864 DEBUG [http-nio-8080-exec-4] UserService:105 - retrieved user by username: ak12
+2022-02-27 11:21:06,875 DEBUG [http-nio-8080-exec-4] CustomUserDetailsJwtService:28 - load by username !
+2022-02-27 11:21:06,875  INFO [http-nio-8080-exec-4] CustomUserDetailsJwtService:29 - username :ak12

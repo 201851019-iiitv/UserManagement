@@ -1,26 +1,23 @@
 package com.paytm.mileston2.controller;
 
 import com.paytm.mileston2.exception.BadRequestException;
-import com.paytm.mileston2.exception.ResourceNotFoundException;
 import com.paytm.mileston2.model.Transaction;
-import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.model.Wallet;
 import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.service.TransactionService;
 import com.paytm.mileston2.service.UserService;
 import com.paytm.mileston2.service.WalletService;
-import com.paytm.mileston2.utilities.validation.Validation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import java.sql.Timestamp;
-import java.util.Optional;
+
+import java.util.List;
 
 
 @RestController
@@ -44,24 +41,28 @@ public class WalletController{
 
 
     @PostMapping("/wallet/{mobileNumber}")
+    @Operation(summary = "This method use to create new wallet for existing user .",description="to create new wallet .Required JWT Token ",security = @SecurityRequirement(name = "bearerAuth"))
     public CustomReturnType createWallet(@PathVariable String mobileNumber){
         try {
+             logger.debug("request for mobile number ."+mobileNumber);
+
             return walletService.createWallet(mobileNumber);
         }
         catch (Exception e){
             logger.warn("wallet can't create ");
-            throw  new BadRequestException("can't create wallet.");
+            throw  new BadRequestException(e.getMessage());
         }
     }
 
 
     // Get all txns by wallet Id.
     @GetMapping("/wallet/{WalletId}/txns")
-    public ResponseEntity<Page<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId,@RequestParam int pageNo){
+    @Operation(summary = "This method use to get all transactions by user wallet Id .",description="to get all transactions .JWT Token is not required")
+    public ResponseEntity<List<Transaction>> getAllTransactionByWalletId(@PathVariable String WalletId, @RequestParam int pageNo){
         try {
             Page<Transaction> txns=transactionService.getAllTxnsByWalletId(WalletId,pageNo);
-            logger.debug("retrieve all transaction by wallet Id" +WalletId);
-            return ResponseEntity.ok(txns);
+            logger.debug("retrieve all transaction by wallet Id " +WalletId);
+            return ResponseEntity.ok(txns.getContent());
          }
         catch (Exception e){
             throw  new BadRequestException("Invalid WalletId !");
@@ -70,12 +71,14 @@ public class WalletController{
 
     // Add money in the user wallet
     @PostMapping("/wallet/{WalletId}/{amount}")
+    @Operation(summary = "This method use to add money to your wallet .",description="to add money in your wallet .Required JWT Token",security = @SecurityRequirement(name = "bearerAuth"))
     public CustomReturnType AddMoney(@PathVariable String WalletId, @PathVariable  Float amount){
 
         try{
             CustomReturnType msg= walletService.AddMoney(WalletId,amount);
             try {
                 // try to publish msg on kafka
+                if(msg.getStatus().compareTo(HttpStatus.ACCEPTED)==0)
                 kafkaTemplate.send(TOPIC, "Money added successfully to your wallet Id :" + WalletId + " amount: " + amount);
             }
             catch (Exception e) {
@@ -89,6 +92,7 @@ public class WalletController{
     }
 
     @GetMapping("/wallet/{mobileNumber}")
+    @Operation(summary = "This method use to get wallet Details by user walletId .",description="to get wallet details .JWT Token is not required")
     public Wallet getWalletDetailsById(@PathVariable String mobileNumber){
 
         logger.debug("retrieve wallet details by wallet Id" + mobileNumber);

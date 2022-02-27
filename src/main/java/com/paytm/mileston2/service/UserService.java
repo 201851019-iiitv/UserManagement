@@ -2,7 +2,6 @@ package com.paytm.mileston2.service;
 
 import com.paytm.mileston2.DAO.UserDao;
 import com.paytm.mileston2.DTO.CustomReturnType;
-import com.paytm.mileston2.DTO.ReqUser;
 import com.paytm.mileston2.exception.BadRequestException;
 import com.paytm.mileston2.model.User;
 import org.apache.log4j.Logger;

@@ -6,6 +6,7 @@ import com.paytm.mileston2.utilities.Jwt.JwtUtil;
 import com.paytm.mileston2.DTO.JwtRequest;
 import com.paytm.mileston2.service.CustomUserDetailsJwtService;
 import com.paytm.mileston2.exception.BadRequestException;
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ public class JwtTokenController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/GenerateTokens")
+    @Operation(summary = "This method use to generate JWT token for user",description="to get token .Required username and password")
     public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest){
      try{
          this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(),jwtRequest.getPassword()));

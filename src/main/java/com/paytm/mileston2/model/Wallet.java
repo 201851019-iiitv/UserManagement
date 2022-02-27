@@ -21,7 +21,7 @@ public class Wallet {
     @Id
     private String walletId;  // it will be user mobile number.
 
-    @Column(name="Curr_bal",nullable = false)
+    @Column(name="curr_bal")
     private float currBal;
 
     @Override

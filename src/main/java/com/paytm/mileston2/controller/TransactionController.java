@@ -11,6 +11,8 @@ import com.paytm.mileston2.service.TransactionService;
 import com.paytm.mileston2.service.UserService;
 import com.paytm.mileston2.service.WalletService;
 import com.paytm.mileston2.utilities.validation.Validation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,18 +47,16 @@ public class TransactionController{
      private static final String TOPIC="txns";
 
 
-
-
-
-
     @PostMapping("/transaction")
+    @Operation(summary = "This method use to transfer money one wallet to another wallet .",description="to transfer money.Required JWT Token of payer. ",security = @SecurityRequirement(name = "bearerAuth"))
     public CustomReturnType TransferMoney(@RequestBody Transaction txn){
 
            CustomReturnType msg =transactionService.TransferMoney(txn);
 
              // try to publish msg on kafka
         try {
-            kafkaTemplate.send(TOPIC, "Money transferred successfully from your wallet Id :" + txn.payerWalletId + " amount: " + txn.getAmount() + " to walletId: " + txn.payeeWalletId);
+            if(msg.getStatus().compareTo(HttpStatus.ACCEPTED)==0)
+             kafkaTemplate.send(TOPIC, "Money transferred successfully from your wallet Id :" + txn.payerWalletId + " amount: " + txn.getAmount() + " to walletId: " + txn.payeeWalletId);
         }
         catch (Exception e){
                 throw new RuntimeException("can't push msg in  kafka");
@@ -71,6 +71,7 @@ public class TransactionController{
     //url :http://localhost:8080/transaction?userId=<userId>
 
     @GetMapping("/transaction/{userId}")
+    @Operation(summary = "This method use to get all transactions by user Id.",description="to all transaction.JWT Token is not required")
     public ResponseEntity<List<Transaction>> getAllTxnsByUserId(@PathVariable Long userId, @RequestParam int pageNo){
         //return result in pagination form.
             Page<Transaction> txns = transactionService.getAllTxnsByUserId(userId,pageNo);
@@ -84,6 +85,7 @@ public class TransactionController{
     //● url:http://localhost:8080/transaction?txnId=<txnID>
 
     @GetMapping("/transaction")
+    @Operation(summary = "This method use to get particular transaction status by it's transaction Id .",description="to get transaction status .JWT Token is not required")
     public String getStatusByTxnId(@RequestParam Long txnId){
 
         // Done: check transaction id exist ?

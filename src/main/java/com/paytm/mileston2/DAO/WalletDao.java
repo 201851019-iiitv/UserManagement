@@ -18,12 +18,10 @@ public class WalletDao implements IWalletDao {
 
 
     @Override
-    public void saveWallet(Wallet wallet) {
-
+    public Wallet saveWallet(Wallet wallet) {
         logger.debug("save wallet");
         walletRepo.save(wallet);
-
-
+        return wallet;
     }
 
     @Override

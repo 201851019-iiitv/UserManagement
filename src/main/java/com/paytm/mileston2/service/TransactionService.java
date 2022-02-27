@@ -2,7 +2,6 @@ package com.paytm.mileston2.service;
 
 import com.paytm.mileston2.DAO.TransactionDao;
 import com.paytm.mileston2.DTO.CustomReturnType;
-import com.paytm.mileston2.exception.BadRequestException;
 import com.paytm.mileston2.model.Transaction;
 import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.model.Wallet;
@@ -12,12 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -91,7 +88,7 @@ public class TransactionService {
       Wallet payerWallet = walletService.getWalletById(txns.getPayerWalletId());
       Wallet payeeWallet = walletService.getWalletById(txns.getPayeeWalletId());
 
-        if(txns.getAmount()<=0 || payeeWallet.getCurrBal()< txns.getAmount())
+        if(txns.getAmount()<=0 || payerWallet.getCurrBal()< txns.getAmount())
             return new CustomReturnType("Invalid amount", HttpStatus.BAD_REQUEST);
 
         // it create temp replication data when server failed in b\w execution.
@@ -100,7 +97,7 @@ public class TransactionService {
 
         try{
             payerWallet.setCurrBal(payerWallet.getCurrBal()- txns.getAmount());
-            payeeWallet.setCurrBal(payerWallet.getCurrBal()+ txns.getAmount());
+            payeeWallet.setCurrBal(payeeWallet.getCurrBal()+ txns.getAmount());
             walletService.updateWallet(payeeWallet);
             walletService.updateWallet(payerWallet);
             //Done: create new transaction .
@@ -114,7 +111,7 @@ public class TransactionService {
             transactionDao.saveTxn(transaction);
             logger.info("new transaction happened : "+ transaction);
 
-            return new CustomReturnType("money transfer successfully with transtion",HttpStatus.ACCEPTED);
+            return new CustomReturnType("money transfer successfully with transtion \n"+transaction,HttpStatus.ACCEPTED);
 
         }
         catch (Exception e){

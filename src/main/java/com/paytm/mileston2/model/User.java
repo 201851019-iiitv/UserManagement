@@ -50,7 +50,7 @@ public class User extends Validation {
 
 
 
-    @OneToOne(cascade ={CascadeType.REMOVE})
+    @OneToOne(cascade = CascadeType.ALL)
     private Wallet  wallet;
 
 
