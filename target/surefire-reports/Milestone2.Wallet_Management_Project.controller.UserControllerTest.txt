@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: Milestone2.Wallet_Management_Project.controller.UserControllerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 3.275 s <<< FAILURE! - in Milestone2.Wallet_Management_Project.controller.UserControllerTest
+deleteUser  Time elapsed: 0.024 s  <<< ERROR!
+Milestone2.Wallet_Management_Project.exception.BadRequestException: user Id not found !
+	at Milestone2.Wallet_Management_Project.controller.UserControllerTest.lambda$deleteUser$0(UserControllerTest.java:115)
+	at Milestone2.Wallet_Management_Project.controller.UserControllerTest.deleteUser(UserControllerTest.java:115)
+
+getUserById  Time elapsed: 0.057 s  <<< FAILURE!
+java.lang.AssertionError: 
+createDate
+Expected: 1643277646635
+     got: 2022-01-27T10:00:46.635+00:00
+
+	at Milestone2.Wallet_Management_Project.controller.UserControllerTest.getUserById(UserControllerTest.java:104)
+
