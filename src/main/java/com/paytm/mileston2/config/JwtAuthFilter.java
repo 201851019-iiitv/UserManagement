@@ -51,7 +51,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
               //ToDo: I was not able to understand that "whole if condition "
 
               if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null){
-                  logger.debug("user login successfully from dofilterInternal ! ");
+                  logger.debug("user login successfully from do filterInternal ! ");
                   logger.info("username : "+username);
                   UserDetails userDetails=customUserDetailsService.loadUserByUsername(username);
                   UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken= new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());

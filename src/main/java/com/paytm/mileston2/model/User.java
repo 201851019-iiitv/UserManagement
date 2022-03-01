@@ -1,11 +1,9 @@
 package com.paytm.mileston2.model;
 
-import com.paytm.mileston2.exception.BadRequestException;
-import com.paytm.mileston2.utilities.validation.Validation;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -13,27 +11,40 @@ import java.util.Date;
 @Entity
 @Table(name = "user")
 // for user table id will his mobile number
-public class User extends Validation {
+public class User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long userId;
 
+
+   @NotBlank(message = "mobile Number can't be null ")
+   @Pattern(regexp = "[0-9]+" ,message = "enter only digit b/w 0-9")
+   @Size(min=10,max=10,message = "Enter only 10 digit mobile Number")
    @Column(name = "mobile_number", nullable = false, unique = true, updatable = false, length = 10)
     private  String mobileNumber;
 
+
+    @NotBlank(message = "username can't be null")
     @Column(name = "username", nullable = false, unique = true, updatable = false)
     private  String username;
 
+    @NotNull
+    @NotBlank(message = "password can't be null")
     @Column(name = "password", nullable = false)
     private  String password;
 
 
+    @NotNull
+    @NotBlank(message = "email can't be null")
+    @Email(message = "user need a valid email")
     @Column(name = "Email" ,nullable = false ,unique = true ,updatable = false)
     private String email;
 
+    @NotBlank(message = "name can't be null")
     @Column(name = "Name" ,nullable = false)
     private String name;
+
 
     @Column(name = "createDate")
     private Date createDate;
@@ -179,14 +190,7 @@ public class User extends Validation {
             this.createDate= createDate;
             return this;
         }
-
-        //1. email,username,password,name,mobile
-        //2. check email & mobile formatting .
         public User build() {
-            if (this.mobileNumber == null || this.email == null || this.username == null || this.password == null || this.name == null || !emailValidation(this.email) || !mobileNumberValidation(this.mobileNumber)) {
-                throw new BadRequestException("All required attributes(email,username,password,name,mobile) are not present or email/mobile not in correct format .");
-            }
-
             return new User(this);
         }
     }

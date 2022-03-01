@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
+//ToDo: verify the requested usertoken and request token.
 @RestController
 public class UserController{
 
@@ -22,8 +25,7 @@ public class UserController{
     
     @PostMapping("/user")
     @Operation(description = "This method use to create new user .",summary="to create new user .JWT Token is not required")
-    public CustomReturnType createUser(@RequestBody User Requser) {
-
+    public CustomReturnType createUser(@Valid @RequestBody User Requser) {
         try{
              return userService.createUser(Requser);
         }
@@ -45,13 +47,13 @@ public class UserController{
 
     @PutMapping("/user")
     @Operation(summary = "This method use to update a existing user .",description="to update existing user . Required JWT Token",security = @SecurityRequirement(name = "bearerAuth"))
-    public  CustomReturnType updateUser(User user){
+    public  CustomReturnType updateUser(@Valid User user){
         try {
 
            return userService.updateUser(user);
         }
         catch (Exception e){
-            throw new BadRequestException("User can't be Updated");
+            throw new BadRequestException("User can't be Updated" +e.getLocalizedMessage());
         }
 
     }

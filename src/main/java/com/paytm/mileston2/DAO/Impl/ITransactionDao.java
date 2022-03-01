@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ITransactionDao {
 
-    void saveTxn(Transaction txn);
+    Transaction saveTxn(Transaction txn);
     Page<Transaction> findByPayerWalletIdOrPayeeWalletId(String walletId, String walletId1, Pageable pageable);
     Transaction findTxnByTxnId(Long txnId);
 }

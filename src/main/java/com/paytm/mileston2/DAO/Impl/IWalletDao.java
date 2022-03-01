@@ -6,5 +6,5 @@ public interface IWalletDao {
 
     Wallet saveWallet(Wallet wallet);                 // save wallet
     Wallet findWalletById(String walletId);       // get wallet by wallet Id.
-    void deleteWallet(Wallet w);                //delete wallet by Id.
+    Wallet deleteWallet(Wallet w);                //delete wallet by Id.
 }

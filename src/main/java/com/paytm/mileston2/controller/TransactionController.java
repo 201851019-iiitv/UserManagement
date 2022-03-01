@@ -1,16 +1,11 @@
 package com.paytm.mileston2.controller;
 
-
-import com.paytm.mileston2.exception.BadRequestException;
 import com.paytm.mileston2.exception.ResourceNotFoundException;
 import com.paytm.mileston2.model.Transaction;
-import com.paytm.mileston2.model.User;
-import com.paytm.mileston2.model.Wallet;
 import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.service.TransactionService;
 import com.paytm.mileston2.service.UserService;
 import com.paytm.mileston2.service.WalletService;
-import com.paytm.mileston2.utilities.validation.Validation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.apache.log4j.Logger;
@@ -19,10 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 
@@ -49,14 +45,14 @@ public class TransactionController{
 
     @PostMapping("/transaction")
     @Operation(summary = "This method use to transfer money one wallet to another wallet .",description="to transfer money.Required JWT Token of payer. ",security = @SecurityRequirement(name = "bearerAuth"))
-    public CustomReturnType TransferMoney(@RequestBody Transaction txn){
+    public CustomReturnType TransferMoney(@Valid @RequestBody Transaction txn){
 
            CustomReturnType msg =transactionService.TransferMoney(txn);
 
              // try to publish msg on kafka
         try {
             if(msg.getStatus().compareTo(HttpStatus.ACCEPTED)==0)
-             kafkaTemplate.send(TOPIC, "Money transferred successfully from your wallet Id :" + txn.payerWalletId + " amount: " + txn.getAmount() + " to walletId: " + txn.payeeWalletId);
+             kafkaTemplate.send(TOPIC, "Money transferred successfully from your wallet Id :" + txn.payerWalletId + " amount: " + txn.getAmount() + " to walletId: " + txn.payeeWalletId +" & Timestamp : "+Timestamp.from(Instant.now()));
         }
         catch (Exception e){
                 throw new RuntimeException("can't push msg in  kafka");

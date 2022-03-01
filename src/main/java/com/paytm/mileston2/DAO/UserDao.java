@@ -18,7 +18,6 @@ public class UserDao implements IUserDao {
 
     @Override
     public List<User> findAllUsers() {
-
         return userRepo.findAll();
     }
 
@@ -36,27 +35,42 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public void deleteUser(Long userId) {
+    public User deleteUser(Long userId) {
         User user = userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("user Id not found ."));
         userRepo.delete(user);
-
+     return  user;
     }
 
     @Override
     public User findByMobileNumber(String mobileNumber) {
-        User user = userRepo.findByMobileNumber(mobileNumber);
-        return user;
+        try {
+            User user = userRepo.findByMobileNumber(mobileNumber);
+            return user;
+        }
+        catch(Exception e){
+            throw new ResourceNotFoundException("user not exist.");
+        }
     }
 
     @Override
     public User findByEmail(String email) {
-        User user = userRepo.findByEmail(email);
-        return user;
+        try {
+            User user = userRepo.findByEmail(email);
+            return user;
+        }
+        catch (Exception e) {
+            throw new ResourceNotFoundException("user not exist.");
+        }
     }
 
     @Override
     public User findByUsername(String username) {
-        User user = userRepo.findByUsername(username);
-        return user;
+        try {
+            User user = userRepo.findByUsername(username);
+            return user;
+        }
+        catch (Exception e){
+            throw new ResourceNotFoundException("user not exist.");
+        }
     }
 }

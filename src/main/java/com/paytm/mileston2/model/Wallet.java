@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 
 // one wallet have many transaction .
@@ -20,6 +21,7 @@ public class Wallet {
 
     @Id
     private String walletId;  // it will be user mobile number.
+
 
     @Column(name="curr_bal")
     private float currBal;

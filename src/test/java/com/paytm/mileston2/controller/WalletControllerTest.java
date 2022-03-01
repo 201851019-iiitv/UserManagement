@@ -54,7 +54,7 @@ class WalletControllerTest {
 
         String requestTokenJson =objectMapper.writeValueAsString(jwtRequest);
 
-        //GenrateToken for user.
+        //GenerateToken for user.
 
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/GenerateTokens")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -73,8 +73,7 @@ class WalletControllerTest {
 
     @Test
     void createWallet() throws Exception {
-        String mobileNumber="9494949493";
-
+        String mobileNumber="9292929292";
         //generate token
         String userToken = GenerateMockMvcToken(mobileNumber);
 
@@ -87,12 +86,8 @@ class WalletControllerTest {
      String response =result.getResponse().getContentAsString();
         CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
 
-        // Response class .
-        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/createWalletRes.json")));
-        CustomReturnType resMsg =objectMapper.readValue(walletResJson, CustomReturnType.class);
 
-        Assert.assertEquals( resMsg.getMsg(),msg.getMsg());
-        Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
+        Assert.assertEquals(msg.getMsg(),"wallet created successfully");
 
 
         //Delete wallet as well because it is only for testing purpose.
@@ -105,8 +100,8 @@ class WalletControllerTest {
     @Test
     void addMoney() throws Exception {
 
-        String mobileNumber="9123456781";
-        Long amount=10L;
+        String mobileNumber="1234567890";
+        Long amount=3L;
         //generate token
         String userToken = GenerateMockMvcToken(mobileNumber);
 
@@ -119,13 +114,7 @@ class WalletControllerTest {
         String response =result.getResponse().getContentAsString();
         CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
 
-        // Response class .
-        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/AddMoneyRes.json")));
-        CustomReturnType resMsg =objectMapper.readValue(walletResJson, CustomReturnType.class);
-
-
-        Assert.assertEquals(resMsg.getMsg() ,msg.getMsg());
-        Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
+        Assert.assertEquals(msg.getMsg(),"money added successfully in your wallet ");
 
       //Substract add money from the wallet.
        // first find the wallet .
@@ -133,8 +122,27 @@ class WalletControllerTest {
        w.setCurrBal(w.getCurrBal()-amount);
        walletService.updateWallet(w);
 
-
     }
 
 
+    @Test
+    void getAllTransactionByWalletId() {
+
+
+    }
+
+    @Test
+    void getWalletDetailsById() throws Exception {
+        String mobileNumber="1234567890";
+        String userToken = GenerateMockMvcToken(mobileNumber);
+
+        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/WalletDetails.json")));
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.get("/wallet/{mobileNumber}",mobileNumber)
+                        .header(AUTHORIZATION,"Bearer "+userToken))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(walletResJson))
+                .andReturn();
+
+
+    }
 }

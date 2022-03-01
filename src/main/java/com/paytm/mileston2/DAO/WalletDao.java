@@ -32,7 +32,8 @@ public class WalletDao implements IWalletDao {
 
 
     @Override
-    public void deleteWallet(Wallet w) {
+    public Wallet deleteWallet(Wallet w) {
         walletRepo.delete(w);
+        return w;
     }
 }

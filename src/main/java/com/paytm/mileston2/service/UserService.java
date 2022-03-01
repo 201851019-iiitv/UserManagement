@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Date;
 import java.util.List;
 
@@ -67,13 +66,12 @@ public class UserService {
     @Transactional
     public  CustomReturnType updateUser(User user1){
             try {
-
                 userDao.saveUser(user1);
                 logger.info("updated user : " + user1);
                 return new CustomReturnType("User updated successfully.", HttpStatus.ACCEPTED);
 
             } catch (Exception e) {
-                throw new RuntimeException("User can't be update !. userDetails :"+ user1);
+                throw new RuntimeException("User can't be update !. because user doesn't exist with : "+ user1);
             }
 
     }
@@ -89,7 +87,7 @@ public class UserService {
    @Transactional
     public User findByMobileNumber(String mobileNumber) {
        logger.info("retrieved user by mobileNumber: " + mobileNumber);
-        return userDao.findByMobileNumber(mobileNumber);
+       return userDao.findByMobileNumber(mobileNumber);
     }
 
     @Transactional

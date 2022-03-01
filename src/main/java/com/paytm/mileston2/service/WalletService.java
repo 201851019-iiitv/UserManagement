@@ -30,30 +30,9 @@ public class WalletService {
     @Autowired
     private TransactionService transactionService;
 
-
-    public  String getUsernameByToken(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-
-        return currentUserName;
-    }
-
-
-    // post ->create new wallet .
-    // first verify user exist or not with his mobile number
-    // if exist then create wallet for that user .
-    //otherwise throw exception user does not exist.
     public CustomReturnType createWallet(String mobileNumber){
         try {
-            User user = userService.findByMobileNumber(mobileNumber);
-            // First get username from token and validity of token
-            String requestTokenUserName = getUsernameByToken();
-
-            // check userToken and with his details.
-            if (user.getUsername().compareTo(requestTokenUserName) != 0) {
-                logger.warn("user has unauthorized token !" + "with token : " + requestTokenUserName);
-                return new CustomReturnType("User Unauthorized ,Pls use your Token !", HttpStatus.BAD_REQUEST);
-            }
+            User user=userService.findByMobileNumber(mobileNumber);
             if (!user.getIsActiveWallet()) {
                 Wallet wallet = new Wallet();
                 wallet.setWalletId(mobileNumber);
@@ -63,7 +42,7 @@ public class WalletService {
                 userService.updateUser(user);
                 walletDao.saveWallet(wallet);
                 logger.info("wallet created :" + wallet);
-                return new CustomReturnType("wallet created successfully ", HttpStatus.ACCEPTED);
+                return new CustomReturnType("wallet created successfully", HttpStatus.ACCEPTED);
             }
             else {
                 return new CustomReturnType("User has already wallet .", HttpStatus.BAD_REQUEST);
@@ -82,9 +61,11 @@ public class WalletService {
 
 
    public Wallet DeleteWalletById(String walletId) {
-        Wallet w= walletDao.findWalletById(walletId);
+         Wallet w= walletDao.findWalletById(walletId);
         User user= userService.findByMobileNumber(walletId);
         user.setWallet(null);
+        user.setIsActiveWallet(false);
+        userService.updateUser(user);
         walletDao.deleteWallet(w);
        logger.debug("delete wallet by walletId: " + walletId);
         return  w;
@@ -99,10 +80,8 @@ public class WalletService {
     public CustomReturnType AddMoney(String mobileNumber,Float amount) {
         try {
             User user = userService.findByMobileNumber(mobileNumber);
-            String requestTokenUserName = getUsernameByToken();
-           if(amount<=0 || user.getUsername().compareTo(requestTokenUserName) != 0 || !user.getIsActiveWallet())
-               return new CustomReturnType("Invalid amount/token or user haven't wallet ",HttpStatus.BAD_REQUEST);
-
+           if(amount<=0 || !user.getIsActiveWallet())
+               return new CustomReturnType("Invalid amount or user haven't wallet ",HttpStatus.BAD_REQUEST);
            Wallet wallet=walletDao.findWalletById(mobileNumber);
             wallet.setCurrBal(wallet.getCurrBal() + amount);
             logger.info("amount added in your wallet : "+wallet);
@@ -120,7 +99,7 @@ public class WalletService {
             return new CustomReturnType("money added successfully in your wallet ",HttpStatus.ACCEPTED);
         }
         catch (Exception e){
-          throw  new BadRequestException("can't be add money in your wallet");
+          throw  new BadRequestException("can't add money in wallet due to : \\n"+ e.getLocalizedMessage());
     }
 
     }

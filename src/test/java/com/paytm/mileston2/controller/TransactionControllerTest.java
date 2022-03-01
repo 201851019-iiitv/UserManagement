@@ -76,8 +76,7 @@ class TransactionControllerTest {
     @Test
     void transferMoney() throws Exception {
 
-        String requestJson =new String(Files.readAllBytes(Paths.get("src/test/java/DTO/TransferMoneyReq.json")));
-        String responseJson =new String(Files.readAllBytes(Paths.get("src/test/java/DTO/TransferMoneyRes.json")));
+        String requestJson =new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/TransferMoneyReq.json")));
         // First generateToken of payer by its walletId.
 
         Transaction txns=objectMapper.readValue(requestJson,Transaction.class);
@@ -101,9 +100,7 @@ class TransactionControllerTest {
 
         String resultContent=result.getResponse().getContentAsString();
         CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
-        CustomReturnType response1=objectMapper.readValue(responseJson, CustomReturnType.class);
-        Assert.assertEquals(response1.getMsg(),response.getMsg()) ;
-        Assert.assertEquals(response1.getStatus() ,response.getStatus());
+        Assert.assertEquals(response.getMsg(),"money transfer successfully") ;
 
        // return money back to  account only for testing only .
         //get json data for that string .
@@ -140,4 +137,7 @@ class TransactionControllerTest {
     }
 
 
+    @Test
+    void getAllTxnsByUserId() {
+    }
 }

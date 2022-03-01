@@ -3,6 +3,8 @@ package com.paytm.mileston2.model;
 
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 
@@ -14,12 +16,16 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long txnId;
 
+    @NotBlank(message = "Payer wallet Id can't be null")
+    @Size(message = "Payer wallet Id can be only 10 digit length",min=10,max=10)
     @Column(name = "payerWalletId", nullable = false)
     public String payerWalletId;
 
+    @NotBlank(message = "Payee wallet Id can't be null")
     @Column(name = "payeeWalletId", nullable = false)
     public String payeeWalletId;
 
+    @NotBlank(message = "amount can't be null")
     @Column(name = "amount", nullable = false)
     public float amount;
 

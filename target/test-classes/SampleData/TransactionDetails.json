@@ -1,9 +1,8 @@
 {
-  "txnId": 12,
-  "payerWalletId":"1234567890",
-  "payeeWalletId": "9123456780",
-  "amount":"10.50",
-  "status": "Success",
-  "timestamp": "2022-02-02T16:55:13.208+00:00"
-
+  "txnId": 4,
+  "payerWalletId": "1234567892",
+  "payeeWalletId": "1234567890",
+  "amount": 25.5,
+  "timestamp": "2022-02-27T04:36:49.445+00:00",
+  "status": "Success"
 }

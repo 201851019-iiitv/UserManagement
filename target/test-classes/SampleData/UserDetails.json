@@ -1,15 +1,9 @@
 {
-  "userId": 3,
-  "mobileno": "1234567890",
-  "username": "ab12",
-  "password": "kamlesh@22",
-  "email": "ab33@gmail.com",
-  "name": "abhinav",
-  "createDate": 1643277646635,
-  "status": "Active",
-  "address": "RJH",
-  "wallet": {
-    "walletId": "1234567890",
-    "curr_bal": 181.7
-  }
+  "userId": 1,
+  "mobileNumber": "1234567890",
+  "username": "ak",
+  "password": "ak",
+  "email": "ak@gmail.com",
+  "name": "ak",
+  "address": "ak"
 }

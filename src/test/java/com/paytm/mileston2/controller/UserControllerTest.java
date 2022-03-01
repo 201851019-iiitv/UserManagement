@@ -1,5 +1,6 @@
 package com.paytm.mileston2.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.DTO.JwtRequest;
 import com.paytm.mileston2.DTO.JwtResponse;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -70,8 +72,7 @@ class UserControllerTest {
     @Test
     void createSuccessfulUser() throws Exception {
 
-        String requestJson =new String(Files.readAllBytes(Paths.get("src/test/java/DTO/UserCreateReq.json")));
-        String ExpectedOutputJson = new String(Files.readAllBytes(Paths.get("src/test/java/DTO/UserCreateRes.json")));
+        String requestJson =new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/UserCreateReq.json")));
 
        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/user")
                        .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -80,14 +81,11 @@ class UserControllerTest {
                        .andReturn();
        String resultContent=result.getResponse().getContentAsString();
        CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
-       CustomReturnType expectedResponse = objectMapper.readValue(ExpectedOutputJson ,CustomReturnType.class);
-        Assert.assertEquals(expectedResponse.getMsg(),response.getMsg()) ;
-        Assert.assertEquals(expectedResponse.getStatus() ,response.getStatus());
-
+        Assert.assertEquals(response.getMsg(),"User created successfully.") ;
         //Delete user as well because it is only for testing purpose.
         //get json data for that string .
         JSONObject jsonObject = new JSONObject(requestJson);
-        String mobileNumber = jsonObject.getString("mobileno");
+        String mobileNumber = jsonObject.getString("mobileNumber");
         userService.deleteUserByMobileNumber(mobileNumber);
 
     }
@@ -96,8 +94,8 @@ class UserControllerTest {
     @Test
     void getUserById() throws Exception {
 
-        String userId="3";
-        String userRes=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/UserDetails.json")));
+        String userId="1";
+        String userRes=new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/UserDetails.json")));
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.get("/user")
                         .param("userId" ,userId))
                         .andExpect( MockMvcResultMatchers.status().isOk())
@@ -110,35 +108,56 @@ class UserControllerTest {
     @Test
     void deleteUser() throws Exception {
 
-       Long userId=16L;
-        //Store already user so we can back again data .
-        User user=userService.getUserById(userId);
-
-        //generate token
+       Long userId=7L;
+       User user =userService.getUserById(userId);
         String userToken = GenerateMockMvcToken(user);
+
 
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/user")
                         .param("userId" ,String.valueOf(userId))
                         .header(AUTHORIZATION,"Bearer "+userToken))
-                .andExpect( MockMvcResultMatchers.status().isOk())
-                .andReturn();
+                        .andExpect( MockMvcResultMatchers.status().isOk())
+                        .andReturn();
 
         String response =result.getResponse().getContentAsString();
         CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
 
-        // Response class .
-        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/DTO/UserDeleteRes.json")));
-        CustomReturnType resMsg =objectMapper.readValue(walletResJson, CustomReturnType.class);
-
-
-        Assert.assertEquals(resMsg.getMsg() ,msg.getMsg());
-        Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
+        Assert.assertEquals(msg.getMsg(),"User delete successfully");
 
         //revert back the data
+        //issue same id is not need set same id .
         userService.updateUser(user);
 
     }
 
 
+    @Test
+    void updateUser() throws Exception {
+
+
+        String userJson=new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/UserDetails.json")));
+        User user=objectMapper.readValue(userJson,User.class);
+        String userToken = GenerateMockMvcToken(user);
+
+
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.put("/user")
+                        .header(AUTHORIZATION,"Bearer "+userToken)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(userJson))
+                        .andExpect( MockMvcResultMatchers.status().isOk())
+                        .andReturn();
+
+        String response =result.getResponse().getContentAsString();
+        CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
+
+        Assert.assertEquals(msg.getMsg(),"User updated successfully.");
+
+        //revert back the data
+        //issue same id is not need set same id .
+        userService.updateUser(user);
+
+
+
+    }
 
 }

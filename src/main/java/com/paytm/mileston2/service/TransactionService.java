@@ -11,8 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
@@ -28,30 +26,21 @@ public class TransactionService {
     @Autowired
     TransactionDao transactionDao;
     @Autowired
-    UserService userService;
-    @Autowired
     WalletService walletService;
+    @Autowired
+    UserService userService;
 
-    public  String getUsernameByToken(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        return currentUserName;
-    }
 
     // This Function create new Transaction.
     public Transaction createTxn(Transaction txn) {
-
          logger.debug("created transaction & txnId: "+ txn.getTxnId());
           transactionDao.saveTxn(txn);
-
           return txn;
     }
 
 
     // This Function Returns All Transaction made by a user either it's as Payer or Payee.
     public Page<Transaction> getAllTxnsByWalletId(String walletId ,int pageNo) {
-
-
         Pageable pageable = PageRequest.of(pageNo,2);
         Page<Transaction> txns = transactionDao.findByPayerWalletIdOrPayeeWalletId(walletId,walletId,pageable);
         logger.debug("retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: "+walletId +"&pageNo: "+pageNo);
@@ -73,28 +62,13 @@ public class TransactionService {
     }
 
     public CustomReturnType TransferMoney(Transaction txns){
-
-
-        User user = userService.findByMobileNumber(txns.getPayerWalletId());
-        // First get username from token and validity of token
-        String requestTokenUserName=getUsernameByToken();
-
-        // check userToken and with his details.
-        if(user.getUsername().compareTo(requestTokenUserName)!=0) {
-            logger.error("user unauthorized token !" +"with token : "+requestTokenUserName);
-            return new CustomReturnType("User Unauthorized ,Pls use your Token !", HttpStatus.BAD_REQUEST);
-        }
-
       Wallet payerWallet = walletService.getWalletById(txns.getPayerWalletId());
       Wallet payeeWallet = walletService.getWalletById(txns.getPayeeWalletId());
-
         if(txns.getAmount()<=0 || payerWallet.getCurrBal()< txns.getAmount())
             return new CustomReturnType("Invalid amount", HttpStatus.BAD_REQUEST);
-
         // it create temp replication data when server failed in b\w execution.
         Wallet TempPayerWallet=payerWallet;
         Wallet TempPayeeWallet=payeeWallet;
-
         try{
             payerWallet.setCurrBal(payerWallet.getCurrBal()- txns.getAmount());
             payeeWallet.setCurrBal(payeeWallet.getCurrBal()+ txns.getAmount());
@@ -111,7 +85,7 @@ public class TransactionService {
             transactionDao.saveTxn(transaction);
             logger.info("new transaction happened : "+ transaction);
 
-            return new CustomReturnType("money transfer successfully with transtion \n"+transaction,HttpStatus.ACCEPTED);
+            return new CustomReturnType("money transfer successfully",HttpStatus.ACCEPTED);
 
         }
         catch (Exception e){
@@ -128,9 +102,6 @@ public class TransactionService {
             transactionDao.saveTxn(transaction);
             return new CustomReturnType("Transaction Failed ",HttpStatus.BAD_REQUEST);
         }
-
-
-
     }
 
 

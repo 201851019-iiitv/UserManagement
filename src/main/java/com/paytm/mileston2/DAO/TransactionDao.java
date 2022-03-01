@@ -16,8 +16,9 @@ public class TransactionDao implements ITransactionDao {
     private TransactionRepo transactionRepo;
 
     @Override
-    public void saveTxn(Transaction txn) {
+    public Transaction saveTxn(Transaction txn) {
         transactionRepo.save(txn);
+        return txn;
     }
 
     @Override

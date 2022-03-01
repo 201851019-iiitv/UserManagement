@@ -14,7 +14,6 @@ public class CustomReturnType {
     private HttpStatus status;
 
 
-
     public CustomReturnType(String msg, HttpStatus status){
           this.msg=msg;
           this.status=status;
