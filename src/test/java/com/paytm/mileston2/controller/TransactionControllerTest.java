@@ -1,14 +1,13 @@
 package com.paytm.mileston2.controller;
 
-import com.paytm.mileston2.DTO.JwtRequest;
-import com.paytm.mileston2.DTO.JwtResponse;
 import com.paytm.mileston2.model.Transaction;
-import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.model.Wallet;
 import com.paytm.mileston2.service.UserService;
 import com.paytm.mileston2.service.WalletService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.paytm.mileston2.utilities.TestUtility;
+import com.paytm.mileston2.utilities.Token;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -20,8 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 
@@ -42,55 +39,20 @@ class TransactionControllerTest {
     @Autowired
     private WalletService walletService;
 
-   // for generate token .
-    public  String  GenerateMockMvcToken(String userWalletId) throws Exception {
-        // From payerWalletId -->get user.
-        User user=userService.findByMobileNumber(userWalletId);
-
-        // user -->username and password .
-        String username=user.getUsername();
-        String password=user.getPassword();
-
-        JwtRequest jwtRequest=new JwtRequest(username,password);
-
-        String requestTokenJson =objectMapper.writeValueAsString(jwtRequest);
-
-        //GenerateToken for user.
-
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/GenerateTokens")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(requestTokenJson))
-                .andExpect( MockMvcResultMatchers.status().isOk())
-                .andReturn();
-        String resultContent=result.getResponse().getContentAsString();
-        JwtResponse token=objectMapper.readValue(resultContent,JwtResponse.class);
-
-        String userToken =token.getToken();
-
-        return userToken;
-    }
-
+     @Autowired
+     private Token token;
 
 
     //Done Work perfectly
     @Test
     void transferMoney() throws Exception {
-
-        String requestJson =new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/TransferMoneyReq.json")));
-        // First generateToken of payer by its walletId.
-
-        Transaction txns=objectMapper.readValue(requestJson,Transaction.class);
+        String requestJson =TestUtility.getJsonStringFromFile("TransferMoneyReq.json");
+        Transaction txns= (Transaction) TestUtility.getObjectFromFile("TransferMoneyReq.json",Transaction.class);
        //get PayerWalletId
        String userWalletId= txns.getPayerWalletId();
-
-
-       //call GenerateMockMvcToken
-        String userToken=GenerateMockMvcToken(userWalletId);
-
-
+       // GenerateMockMvcToken
+        String userToken=token.GenerateMockMvcToken(userWalletId);
         // TransferMoney Api
-
-
       MvcResult result=  mockMvc.perform(MockMvcRequestBuilders.post("/transaction")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(requestJson).header(AUTHORIZATION,"Bearer "+userToken))
@@ -99,7 +61,7 @@ class TransactionControllerTest {
 
 
         String resultContent=result.getResponse().getContentAsString();
-        CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
+        CustomReturnType response = (CustomReturnType) TestUtility.getObjectFromjsonString(resultContent,CustomReturnType.class);
         Assert.assertEquals(response.getMsg(),"money transfer successfully") ;
 
        // return money back to  account only for testing only .

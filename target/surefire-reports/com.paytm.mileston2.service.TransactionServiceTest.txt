@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.paytm.mileston2.service.TransactionServiceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.15 s <<< FAILURE! - in com.paytm.mileston2.service.TransactionServiceTest
+getAllTxnsByWalletIdTest  Time elapsed: 0.015 s  <<< FAILURE!
+java.lang.AssertionError: expected:<null> but was:<Transaction{txnId=4, payerWalletId='1234567892', payeeWalletId='1234567890', amount=25.5, timestamp=2022-02-27 10:06:49.445, status='Success'}>
+	at com.paytm.mileston2.service.TransactionServiceTest.getAllTxnsByWalletIdTest(TransactionServiceTest.java:70)
+

@@ -1,86 +1,52 @@
 package com.paytm.mileston2.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.paytm.mileston2.DTO.CustomReturnType;
-import com.paytm.mileston2.DTO.JwtRequest;
-import com.paytm.mileston2.DTO.JwtResponse;
-import com.paytm.mileston2.exception.BadRequestException;
 import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.paytm.mileston2.utilities.TestUtility;
+import com.paytm.mileston2.utilities.Token;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest {
 
-
+    @Autowired
+    private MockMvc mockMvc;
 
     @Autowired
-    MockMvc mockMvc;
-
-
-    @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
-    // for generate token .
-    public  String  GenerateMockMvcToken(User user) throws Exception {
-        // user -->username and password .
-        String username=user.getUsername();
-        String password=user.getPassword();
-
-        JwtRequest jwtRequest=new JwtRequest(username,password);
-
-        String requestTokenJson =objectMapper.writeValueAsString(jwtRequest);
-
-        //GenrateToken for user.
-
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/GenerateTokens")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(requestTokenJson))
-                .andExpect( MockMvcResultMatchers.status().isOk())
-                .andReturn();
-        String resultContent=result.getResponse().getContentAsString();
-        JwtResponse token=objectMapper.readValue(resultContent,JwtResponse.class);
-
-        String userToken =token.getToken();
-
-        return userToken;
-    }
-
+   @Autowired
+   private Token token;
 
 
     //Done work Perfectly
     @Test
     void createSuccessfulUser() throws Exception {
-
-        String requestJson =new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/UserCreateReq.json")));
-
+        String requestJson= TestUtility.getJsonStringFromFile("UserCreateReq.json");
        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/user")
                        .contentType(MediaType.APPLICATION_JSON_VALUE)
                        .content(requestJson))
                        .andExpect(MockMvcResultMatchers.status().isOk())
                        .andReturn();
-       String resultContent=result.getResponse().getContentAsString();
-       CustomReturnType response=objectMapper.readValue(resultContent, CustomReturnType.class);
+
+       CustomReturnType response= (CustomReturnType) TestUtility.getObjectFromFile(result.getResponse().getContentAsString(),CustomReturnType.class);
         Assert.assertEquals(response.getMsg(),"User created successfully.") ;
         //Delete user as well because it is only for testing purpose.
         //get json data for that string .
@@ -93,9 +59,9 @@ class UserControllerTest {
     //Work perfectly
     @Test
     void getUserById() throws Exception {
-
-        String userId="1";
-        String userRes=new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/UserDetails.json")));
+        String userRes= TestUtility.getJsonStringFromFile("UserDetails.json");
+        User user= (User) TestUtility.getObjectFromFile("UserDetails.json",User.class);
+        String userId= String.valueOf(user.getUserId());
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.get("/user")
                         .param("userId" ,userId))
                         .andExpect( MockMvcResultMatchers.status().isOk())
@@ -110,8 +76,7 @@ class UserControllerTest {
 
        Long userId=7L;
        User user =userService.getUserById(userId);
-        String userToken = GenerateMockMvcToken(user);
-
+        String userToken = token.GenerateMockMvcToken(user.getMobileNumber());
 
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/user")
                         .param("userId" ,String.valueOf(userId))
@@ -133,11 +98,9 @@ class UserControllerTest {
 
     @Test
     void updateUser() throws Exception {
-
-
-        String userJson=new String(Files.readAllBytes(Paths.get("src/test/resources/SampleData/UserDetails.json")));
-        User user=objectMapper.readValue(userJson,User.class);
-        String userToken = GenerateMockMvcToken(user);
+      String userJson=TestUtility.getJsonStringFromFile("UserDetails.json");
+        User user = (User) TestUtility.getObjectFromFile("UserDetails.json",User.class);
+        String userToken = token.GenerateMockMvcToken(user.getMobileNumber());
 
 
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.put("/user")

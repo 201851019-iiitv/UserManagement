@@ -1443,3 +1443,207 @@
 2022-03-01 13:34:58,199 DEBUG [main] WalletService:97 - update wallet by walletId : 1234567890
 2022-03-01 13:36:44,752 DEBUG [main] TransactionService:71 - retrieved all transaction by txn id and txnId : 16
 2022-03-01 13:36:44,975 DEBUG [main] TransactionController:96 - retrieve transaction status  by txn Id16
+2022-03-04 20:44:19,697  INFO [main] UserService:89 - retrieved user by mobileNumber: 1234567890
+2022-03-04 20:44:19,721 DEBUG [main] UserService:103 - retrieved user by username: ak
+2022-03-04 20:44:19,779  INFO [main] UserService:70 - updated user : User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=null, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-04 20:44:19,874 DEBUG [main] UserService:95 - retrieved user by email: ak@gmail.com
+2022-03-04 20:44:19,913 DEBUG [main] UserService:41 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Fri Mar 04 20:44:19 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-04 20:44:19,914  INFO [main] UserService:52 - created user  User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Fri Mar 04 20:44:19 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-03-04 20:44:19,937  INFO [main] UserService:82 - user delete with userId : 1
+2022-03-04 20:44:19,946  INFO [main] UserService:62 - retrieved user by userId :1
+2022-03-04 20:44:20,084 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 4
+2022-03-04 20:44:20,105 DEBUG [main] TransactionService:46 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 0
+2022-03-04 20:44:20,136 DEBUG [main] TransactionService:36 - created transaction & txnId: 4
+2022-03-04 20:44:20,194 DEBUG [main] WalletService:58 - retrieved wallet by walletId: 1234567890
+2022-03-04 20:44:20,211 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-04 20:44:20,218 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-04 20:44:20,224  INFO [main] WalletService:52 - wallet can't create 1234567890
+2022-03-04 20:45:23,160  INFO [main] UserService:89 - retrieved user by mobileNumber: 1234567890
+2022-03-04 20:45:23,188 DEBUG [main] UserService:103 - retrieved user by username: ak
+2022-03-04 20:45:23,234  INFO [main] UserService:70 - updated user : User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=null, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-04 20:45:23,256 DEBUG [main] UserService:95 - retrieved user by email: ak@gmail.com
+2022-03-04 20:45:23,273 DEBUG [main] UserService:41 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Fri Mar 04 20:45:23 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-04 20:45:23,274  INFO [main] UserService:52 - created user  User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Fri Mar 04 20:45:23 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-03-04 20:45:23,289  INFO [main] UserService:82 - user delete with userId : 1
+2022-03-04 20:45:23,300  INFO [main] UserService:62 - retrieved user by userId :1
+2022-03-04 20:45:23,389 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 4
+2022-03-04 20:45:23,411 DEBUG [main] TransactionService:46 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 0
+2022-03-04 20:45:23,455 DEBUG [main] TransactionService:36 - created transaction & txnId: 4
+2022-03-04 20:45:23,528 DEBUG [main] WalletService:58 - retrieved wallet by walletId: 1234567890
+2022-03-04 20:45:23,543 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-04 20:45:23,550 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-04 20:45:23,558  INFO [main] WalletService:52 - wallet can't create 1234567890
+2022-03-06 11:49:35,995 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 4
+2022-03-06 11:57:21,397  INFO [main] UserService:89 - retrieved user by mobileNumber: 1234567890
+2022-03-06 11:57:21,431 DEBUG [main] UserService:103 - retrieved user by username: ak
+2022-03-06 11:57:21,443  INFO [main] UserService:70 - updated user : User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=null, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-06 11:57:21,461 DEBUG [main] UserService:95 - retrieved user by email: ak@gmail.com
+2022-03-06 11:57:21,480 DEBUG [main] UserService:41 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Mar 06 11:57:21 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-06 11:57:21,482  INFO [main] UserService:52 - created user  User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Sun Mar 06 11:57:21 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-03-06 11:57:21,497  INFO [main] UserService:82 - user delete with userId : 1
+2022-03-06 11:57:21,505  INFO [main] UserService:62 - retrieved user by userId :1
+2022-03-06 11:57:21,628 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 4
+2022-03-06 11:57:21,647 DEBUG [main] TransactionService:46 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 0
+2022-03-06 11:57:21,661 DEBUG [main] TransactionService:36 - created transaction & txnId: 4
+2022-03-06 11:57:21,756 DEBUG [main] WalletService:58 - retrieved wallet by walletId: 1234567890
+2022-03-06 11:57:21,771 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-06 11:57:21,779 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-06 11:57:21,787  INFO [main] WalletService:52 - wallet can't create 1234567890
+2022-03-06 11:57:44,506 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 4
+2022-03-06 12:01:55,402 DEBUG [main] TransactionService:36 - created transaction & txnId: 4
+2022-03-06 12:02:51,570 DEBUG [main] TransactionService:36 - created transaction & txnId: 4
+2022-03-06 12:13:03,082 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 4
+2022-03-06 12:13:03,162 DEBUG [main] TransactionService:36 - created transaction & txnId: 4
+2022-03-06 12:42:29,146 DEBUG [main] UserService:41 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 12:42:29 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 12:42:29,320  INFO [main] UserService:52 - created user  User{userId=9, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 12:42:29 IST 2022, isActiveUser=true, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 12:42:29,427 DEBUG [main] UserService:112 - delete user by mobileNumber :9111111112 & userId : 9
+2022-03-06 13:15:09,388  INFO [main] UserService:89 - retrieved user by mobileNumber: 9292929292
+2022-03-06 13:15:09,665 DEBUG [main] UserService:103 - retrieved user by username: atal
+2022-03-06 13:15:09,694 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 13:15:09,695  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 13:15:09,703 DEBUG [main] UserService:103 - retrieved user by username: atal
+2022-03-06 13:15:09,713 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 13:15:09,713  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 13:15:09,821  INFO [main] JwtTokenController:49 -  username :atal password : Atal
+2022-03-06 13:15:09,823  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ2NTg4NzA5LCJpYXQiOjE2NDY1NTI3MDl9.wM0xrigZP-dLXf96m5XAbeHaakgTKmjC8kDjUWlCt0k
+2022-03-06 13:15:09,945 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 13:15:09,947  INFO [main] JwtAuthFilter:55 - username : atal
+2022-03-06 13:15:09,950 DEBUG [main] UserService:103 - retrieved user by username: atal
+2022-03-06 13:15:09,960 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 13:15:09,962  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 13:15:09,998 DEBUG [main] WalletController:49 - request for mobile number .9292929292
+2022-03-06 13:15:10,027  INFO [main] UserService:89 - retrieved user by mobileNumber: 9292929292
+2022-03-06 13:15:10,078  INFO [main] UserService:70 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=true, wallet=Wallet{walletId='9292929292', currBal=0.0}}
+2022-03-06 13:15:10,078 DEBUG [main] WalletDao:22 - save wallet
+2022-03-06 13:15:10,081  INFO [main] WalletService:44 - wallet created :Wallet{walletId='9292929292', currBal=0.0}
+2022-03-06 13:15:10,142  INFO [main] UserService:89 - retrieved user by mobileNumber: 9292929292
+2022-03-06 13:15:10,146  INFO [main] UserService:70 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=false, wallet=null}
+2022-03-06 13:15:10,157 DEBUG [main] WalletService:70 - delete wallet by walletId: 9292929292
+2022-03-06 15:51:07,565  INFO [main] UserService:89 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:09:36,692  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:32:42,115  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:33:01,787  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:35:52,413  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:37:34,235  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:38:34,428  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:38:34,681 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:38:34,695 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:38:34,696  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:38:34,698 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:38:34,702 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:38:34,702  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:38:34,763  INFO [main] JwtTokenController:49 -  username :atal password : Atal
+2022-03-06 16:38:34,764  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ2NjAwOTE0LCJpYXQiOjE2NDY1NjQ5MTR9.wQ98G7uMi0V8HvBzHvDvrkU39zmt4azWEWVrzSUg7YU
+2022-03-06 16:39:14,410 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 16:39:14,410  INFO [main] JwtAuthFilter:55 - username : atal
+2022-03-06 16:39:14,412 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:39:14,421 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:39:14,423  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:39:14,467 DEBUG [main] WalletController:49 - request for mobile number .9292929292
+2022-03-06 16:39:14,471  WARN [main] WalletController:53 - wallet can't created 
+2022-03-06 16:40:07,291  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:40:07,544 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:40:07,557 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:40:07,558  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:40:07,562 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:40:07,566 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:40:07,566  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:40:07,643  INFO [main] JwtTokenController:49 -  username :atal password : Atal
+2022-03-06 16:40:07,644  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ2NjAxMDA3LCJpYXQiOjE2NDY1NjUwMDd9.lFmwHF9SWuxL9EAFj2l6tknMRjc3hNB3CtNlr2zb_tc
+2022-03-06 16:40:07,698 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 16:40:07,698  INFO [main] JwtAuthFilter:55 - username : atal
+2022-03-06 16:40:07,700 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:40:07,704 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:40:07,705  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:40:07,727 DEBUG [main] WalletController:49 - request for mobile number .9292929292
+2022-03-06 16:40:07,763  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:40:07,823  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=true, wallet=Wallet{walletId='9292929292', currBal=0.0}}
+2022-03-06 16:40:07,823 DEBUG [main] WalletDao:22 - save wallet
+2022-03-06 16:40:07,828  INFO [main] WalletService:44 - wallet created :Wallet{walletId='9292929292', currBal=0.0}
+2022-03-06 16:40:07,969  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:40:07,979  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=false, wallet=null}
+2022-03-06 16:40:07,991 DEBUG [main] WalletService:70 - delete wallet by walletId: 9292929292
+2022-03-06 16:40:45,767  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:40:46,038 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:40:46,056 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:40:46,057  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:40:46,061 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:40:46,065 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:40:46,065  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:40:46,142  INFO [main] JwtTokenController:49 -  username :atal password : Atal
+2022-03-06 16:40:46,143  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ2NjAxMDQ2LCJpYXQiOjE2NDY1NjUwNDZ9.E7lm3sOT6o1iKETD1QbfxSd43nzHroifWZ9Nd1bpseM
+2022-03-06 16:40:46,203 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 16:40:46,203  INFO [main] JwtAuthFilter:55 - username : atal
+2022-03-06 16:40:46,205 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:40:46,211 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:40:46,211  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:40:46,242 DEBUG [main] WalletController:49 - request for mobile number .9292929292
+2022-03-06 16:40:46,294  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:40:46,348  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=true, wallet=Wallet{walletId='9292929292', currBal=0.0}}
+2022-03-06 16:40:46,349 DEBUG [main] WalletDao:22 - save wallet
+2022-03-06 16:40:46,354  INFO [main] WalletService:44 - wallet created :Wallet{walletId='9292929292', currBal=0.0}
+2022-03-06 16:40:46,430  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:40:46,434  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=false, wallet=null}
+2022-03-06 16:40:46,442 DEBUG [main] WalletService:70 - delete wallet by walletId: 9292929292
+2022-03-06 16:41:11,648  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:41:11,886 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:41:11,895 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:41:11,896  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:41:11,897 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:41:11,901 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:41:11,901  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:41:11,959  INFO [main] JwtTokenController:49 -  username :atal password : Atal
+2022-03-06 16:41:11,960  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ2NjAxMDcxLCJpYXQiOjE2NDY1NjUwNzF9.2jvdFk8LCvxLWZ2GfK7j3h3FCnqo2XS5GQU5KBb3rXw
+2022-03-06 16:41:41,011 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 16:41:41,011  INFO [main] JwtAuthFilter:55 - username : atal
+2022-03-06 16:41:41,013 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:41:41,018 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:41:41,018  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:41:41,052 DEBUG [main] WalletController:49 - request for mobile number .9292929292
+2022-03-06 16:41:41,083  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:41:41,134  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=true, wallet=Wallet{walletId='9292929292', currBal=0.0}}
+2022-03-06 16:41:41,135 DEBUG [main] WalletDao:22 - save wallet
+2022-03-06 16:41:41,141  INFO [main] WalletService:44 - wallet created :Wallet{walletId='9292929292', currBal=0.0}
+2022-03-06 16:41:57,680  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:41:57,688  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=false, wallet=null}
+2022-03-06 16:41:57,697 DEBUG [main] WalletService:70 - delete wallet by walletId: 9292929292
+2022-03-06 16:42:43,655  INFO [main] UserService:90 - retrieved user by mobileNumber: 1234567890
+2022-03-06 16:42:43,912 DEBUG [main] UserService:104 - retrieved user by username: ak
+2022-03-06 16:42:43,938 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:42:43,939  INFO [main] CustomUserDetailsJwtService:29 - username :ak
+2022-03-06 16:42:43,947 DEBUG [main] UserService:104 - retrieved user by username: ak
+2022-03-06 16:42:43,952 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:42:43,952  INFO [main] CustomUserDetailsJwtService:29 - username :ak
+2022-03-06 16:42:44,054  INFO [main] JwtTokenController:49 -  username :ak password : ak
+2022-03-06 16:42:44,057  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhayIsImV4cCI6MTY0NjYwMTE2MywiaWF0IjoxNjQ2NTY1MTYzfQ.3t5Y_nog2vgLMeUgAsF2iXcoE10e6yboUipS63eDj9I
+2022-03-06 16:42:44,161 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 16:42:44,162  INFO [main] JwtAuthFilter:55 - username : ak
+2022-03-06 16:42:44,167 DEBUG [main] UserService:104 - retrieved user by username: ak
+2022-03-06 16:42:44,182 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:42:44,183  INFO [main] CustomUserDetailsJwtService:29 - username :ak
+2022-03-06 16:42:44,250 DEBUG [main] WalletController:98 - retrieve wallet details by wallet Id1234567890
+2022-03-06 16:42:44,298 DEBUG [main] WalletService:58 - retrieved wallet by walletId: 1234567890
+2022-03-06 16:46:30,931  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:46:31,177 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:46:31,187 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:46:31,187  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:46:31,189 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:46:31,192 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:46:31,192  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:46:31,252  INFO [main] JwtTokenController:49 -  username :atal password : Atal
+2022-03-06 16:46:31,253  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ2NjAxMzkxLCJpYXQiOjE2NDY1NjUzOTF9.rT-KQjSvzmux1rEttFqP8UGNv6dKpMHt9mknVbxhZss
+2022-03-06 16:46:31,349 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 16:46:31,351  INFO [main] JwtAuthFilter:55 - username : atal
+2022-03-06 16:46:31,354 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 16:46:31,364 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 16:46:31,364  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 16:46:31,422 DEBUG [main] WalletController:49 - request for mobile number .9292929292
+2022-03-06 16:46:31,475  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:46:31,576  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=true, wallet=Wallet{walletId='9292929292', currBal=0.0}}
+2022-03-06 16:46:31,577 DEBUG [main] WalletDao:22 - save wallet
+2022-03-06 16:46:31,592  INFO [main] WalletService:44 - wallet created :Wallet{walletId='9292929292', currBal=0.0}
+2022-03-06 16:46:31,732  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 16:46:31,739  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=false, wallet=null}
+2022-03-06 16:46:31,749 DEBUG [main] WalletService:70 - delete wallet by walletId: 9292929292
+2022-03-06 16:50:47,886 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 16
+2022-03-06 16:50:48,014 DEBUG [main] TransactionController:91 - retrieve transaction status  by txn Id16
