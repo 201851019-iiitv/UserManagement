@@ -51,7 +51,7 @@ public class UserService {
             try {
                  userDao.saveUser(user1);
                 logger.info("created user  " + user1);
-                return new CustomReturnType("User created successfully.", HttpStatus.ACCEPTED);
+                return new CustomReturnType("User created successfully.", HttpStatus.CREATED);
 
             } catch (Exception e) {
                 throw new BadRequestException("User can't be created !. userDetails :"+ user1);

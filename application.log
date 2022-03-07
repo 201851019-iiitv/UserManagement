@@ -1647,3 +1647,76 @@
 2022-03-06 16:46:31,749 DEBUG [main] WalletService:70 - delete wallet by walletId: 9292929292
 2022-03-06 16:50:47,886 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 16
 2022-03-06 16:50:48,014 DEBUG [main] TransactionController:91 - retrieve transaction status  by txn Id16
+2022-03-06 17:07:09,503 DEBUG [main] UserService:42 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:07:09 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:07:09,737  INFO [main] UserService:53 - created user  User{userId=10, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:07:09 IST 2022, isActiveUser=true, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:09:09,907 DEBUG [main] UserService:42 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:09:09 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:09:10,100  WARN [main] UserService:48 - user already exist with this mobile number/email/username 9111111112 kambuj12@gmail.com
+2022-03-06 17:11:47,554 DEBUG [main] UserService:42 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:11:47 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:11:47,659  WARN [main] UserService:48 - user already exist with this mobile number/email/username 9111111112 kambuj12@gmail.com
+2022-03-06 17:12:28,353 DEBUG [main] UserService:42 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:12:28 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:12:28,627  INFO [main] UserService:53 - created user  User{userId=11, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:12:28 IST 2022, isActiveUser=true, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:12:28,725 DEBUG [main] UserService:113 - delete user by mobileNumber :9111111112 & userId : 11
+2022-03-06 17:12:59,638  INFO [main] UserService:63 - retrieved user by userId :1
+2022-03-06 17:12:59,682  INFO [main] UserController:44 - user retrieved by userId 1
+2022-03-06 17:20:21,018 DEBUG [main] UserService:42 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:20:21 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:20:21,215  INFO [main] UserService:53 - created user  User{userId=12, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:20:21 IST 2022, isActiveUser=true, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:23:48,084 DEBUG [main] UserService:42 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:23:48 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:23:48,243  INFO [main] UserService:53 - created user  User{userId=13, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Sun Mar 06 17:23:48 IST 2022, isActiveUser=true, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-06 17:23:48,344 DEBUG [main] UserService:113 - delete user by mobileNumber :9111111112 & userId : 13
+2022-03-06 17:25:23,279  INFO [main] UserService:63 - retrieved user by userId :1
+2022-03-06 17:25:23,328  INFO [main] UserController:44 - user retrieved by userId 1
+2022-03-06 17:38:55,708  INFO [main] UserService:63 - retrieved user by userId :null
+2022-03-06 17:39:47,359  INFO [main] UserService:63 - retrieved user by userId :null
+2022-03-06 17:40:21,030  INFO [main] UserService:63 - retrieved user by userId :null
+2022-03-06 17:45:30,836  INFO [main] UserService:63 - retrieved user by userId :null
+2022-03-06 17:50:39,464  INFO [main] UserService:63 - retrieved user by userId :null
+2022-03-06 17:52:44,681  INFO [main] UserService:63 - retrieved user by userId :2
+2022-03-06 17:52:44,746  INFO [main] UserService:90 - retrieved user by mobileNumber: 1234567892
+2022-03-06 17:52:45,002 DEBUG [main] UserService:104 - retrieved user by username: ak12
+2022-03-06 17:52:45,031 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 17:52:45,032  INFO [main] CustomUserDetailsJwtService:29 - username :ak12
+2022-03-06 17:52:45,038 DEBUG [main] UserService:104 - retrieved user by username: ak12
+2022-03-06 17:52:45,043 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 17:52:45,043  INFO [main] CustomUserDetailsJwtService:29 - username :ak12
+2022-03-06 17:52:45,166  INFO [main] JwtTokenController:49 -  username :ak12 password : ak11
+2022-03-06 17:52:45,168  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhazEyIiwiZXhwIjoxNjQ2NjA1MzY1LCJpYXQiOjE2NDY1NjkzNjV9.DA9L5o3Be0JsC4BI2f5WjyBRoW_T3EkywK-FGRr9Y3A
+2022-03-06 17:52:45,282 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 17:52:45,283  INFO [main] JwtAuthFilter:55 - username : ak12
+2022-03-06 17:52:45,287 DEBUG [main] UserService:104 - retrieved user by username: ak12
+2022-03-06 17:52:45,305 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 17:52:45,306  INFO [main] CustomUserDetailsJwtService:29 - username :ak12
+2022-03-06 17:52:45,404  INFO [main] UserService:83 - user delete with userId : 2
+2022-03-06 17:52:45,499  INFO [main] UserService:71 - updated user : User{userId=2, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=2022-02-27 09:48:43.828, isActiveUser=true, address='ask22', isActiveWallet=true, wallet=Wallet{walletId='1234567892', currBal=72.5}}
+2022-03-06 17:53:03,146  INFO [main] UserService:63 - retrieved user by userId :2
+2022-03-06 17:53:51,455  INFO [main] UserService:63 - retrieved user by userId :8
+2022-03-06 17:53:51,508  INFO [main] UserService:90 - retrieved user by mobileNumber: 9292929292
+2022-03-06 17:53:51,709 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 17:53:51,719 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 17:53:51,719  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 17:53:51,722 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 17:53:51,726 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 17:53:51,726  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 17:53:51,789  INFO [main] JwtTokenController:49 -  username :atal password : Atal
+2022-03-06 17:53:51,789  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhdGFsIiwiZXhwIjoxNjQ2NjA1NDMxLCJpYXQiOjE2NDY1Njk0MzF9.kvZvAEO-b3lXuPjlOA0GZ-e3W1uTvuiLaJy9BnLuymI
+2022-03-06 17:53:51,839 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-06 17:53:51,839  INFO [main] JwtAuthFilter:55 - username : atal
+2022-03-06 17:53:51,840 DEBUG [main] UserService:104 - retrieved user by username: atal
+2022-03-06 17:53:51,843 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-06 17:53:51,844  INFO [main] CustomUserDetailsJwtService:29 - username :atal
+2022-03-06 17:53:51,876  INFO [main] UserService:83 - user delete with userId : 8
+2022-03-06 17:53:51,953  INFO [main] UserService:71 - updated user : User{userId=8, mobile_number='9292929292', username='atal', password='Atal', email='ata1@gmail.com', name='atal', createDate=2022-03-01 12:09:20.201, isActiveUser=true, address='address', isActiveWallet=false, wallet=null}
+2022-03-07 10:41:31,633  INFO [main] UserService:63 - retrieved user by userId :8
+2022-03-07 10:42:21,181 DEBUG [http-nio-8080-exec-2] UserService:42 - create : User{userId=null, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Mon Mar 07 10:42:21 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:42:21,364  INFO [http-nio-8080-exec-2] UserService:53 - created user  User{userId=17, mobile_number='1234567892', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Mon Mar 07 10:42:21 IST 2022, isActiveUser=true, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:43:19,895 DEBUG [http-nio-8080-exec-3] UserService:42 - create : User{userId=null, mobile_number='1234567891', username='ak12', password='ak11', email='ak12@gmail.com', name='ak2', createDate=Mon Mar 07 10:43:19 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:43:19,911  WARN [http-nio-8080-exec-3] UserService:48 - user already exist with this mobile number/email/username 1234567891 ak12@gmail.com
+2022-03-07 10:43:38,879 DEBUG [http-nio-8080-exec-4] UserService:42 - create : User{userId=null, mobile_number='1234567891', username='ak122', password='ak121', email='ak12@gmail.com', name='ak2', createDate=Mon Mar 07 10:43:38 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:43:38,893  WARN [http-nio-8080-exec-4] UserService:48 - user already exist with this mobile number/email/username 1234567891 ak12@gmail.com
+2022-03-07 10:43:48,097 DEBUG [http-nio-8080-exec-5] UserService:42 - create : User{userId=null, mobile_number='1234567891', username='ak122', password='ak121', email='ak1211@gmail.com', name='ak', createDate=Mon Mar 07 10:43:48 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:43:48,121  INFO [http-nio-8080-exec-5] UserService:53 - created user  User{userId=18, mobile_number='1234567891', username='ak122', password='ak121', email='ak1211@gmail.com', name='ak', createDate=Mon Mar 07 10:43:48 IST 2022, isActiveUser=true, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:46:36,302 DEBUG [http-nio-8080-exec-1] UserService:42 - create : User{userId=null, mobile_number='1234567891', username='ak122', password='ak121', email='ak1211@gmail.com', name='ak', createDate=Mon Mar 07 10:46:36 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:46:36,457  INFO [http-nio-8080-exec-1] UserService:53 - created user  User{userId=19, mobile_number='1234567891', username='ak122', password='ak121', email='ak1211@gmail.com', name='ak', createDate=Mon Mar 07 10:46:36 IST 2022, isActiveUser=true, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:48:26,474 DEBUG [http-nio-8080-exec-2] UserService:42 - create : User{userId=null, mobile_number='1234567891', username='ak122', password='ak121', email='ak1211@gmail.com', name='ak', createDate=Mon Mar 07 10:48:26 IST 2022, isActiveUser=false, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:48:26,635  INFO [http-nio-8080-exec-2] UserService:53 - created user  User{userId=1, mobile_number='1234567891', username='ak122', password='ak121', email='ak1211@gmail.com', name='ak', createDate=Mon Mar 07 10:48:26 IST 2022, isActiveUser=true, address='ask22', isActiveWallet=false, wallet=null}
+2022-03-07 10:49:03,280 DEBUG [http-nio-8080-exec-3] UserService:42 - create : User{userId=null, mobile_number='1234567892', username='ak12', password='ak12', email='ak121@gmail.com', name='ak', createDate=Mon Mar 07 10:49:03 IST 2022, isActiveUser=false, address='ask2', isActiveWallet=false, wallet=null}
+2022-03-07 10:49:03,296  INFO [http-nio-8080-exec-3] UserService:53 - created user  User{userId=2, mobile_number='1234567892', username='ak12', password='ak12', email='ak121@gmail.com', name='ak', createDate=Mon Mar 07 10:49:03 IST 2022, isActiveUser=true, address='ask2', isActiveWallet=false, wallet=null}

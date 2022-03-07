@@ -4,7 +4,7 @@ import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paytm.mileston2.utilities.TestUtility;
+import com.paytm.mileston2.utilities.FileUtilities;
 import com.paytm.mileston2.utilities.Token;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -38,20 +38,22 @@ class UserControllerTest {
 
     //Done work Perfectly
     @Test
-    void createSuccessfulUser() throws Exception {
-        String requestJson= TestUtility.getJsonStringFromFile("UserCreateReq.json");
+    void createUser() throws Exception {
+        String requestJson= FileUtilities.getJsonStringFromFile("userCreateReq.json");
        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/user")
                        .contentType(MediaType.APPLICATION_JSON_VALUE)
                        .content(requestJson))
                        .andExpect(MockMvcResultMatchers.status().isOk())
                        .andReturn();
 
-       CustomReturnType response= (CustomReturnType) TestUtility.getObjectFromFile(result.getResponse().getContentAsString(),CustomReturnType.class);
-        Assert.assertEquals(response.getMsg(),"User created successfully.") ;
+       CustomReturnType actualResponse= (CustomReturnType) FileUtilities.getObjectFromjsonString(result.getResponse().getContentAsString(),CustomReturnType.class);
+       CustomReturnType expectedResponse =(CustomReturnType) FileUtilities.getObjectFromFile("userCreateRes.json",CustomReturnType.class);
+
+        Assert.assertEquals(expectedResponse.getMsg(),actualResponse.getMsg()) ;
+        Assert.assertEquals(expectedResponse.getStatus(),actualResponse.getStatus());
         //Delete user as well because it is only for testing purpose.
         //get json data for that string .
-        JSONObject jsonObject = new JSONObject(requestJson);
-        String mobileNumber = jsonObject.getString("mobileNumber");
+        String mobileNumber = FileUtilities.getAttributeFromjsonString(requestJson,"mobileNumber");
         userService.deleteUserByMobileNumber(mobileNumber);
 
     }
@@ -59,8 +61,8 @@ class UserControllerTest {
     //Work perfectly
     @Test
     void getUserById() throws Exception {
-        String userRes= TestUtility.getJsonStringFromFile("UserDetails.json");
-        User user= (User) TestUtility.getObjectFromFile("UserDetails.json",User.class);
+        String userRes= FileUtilities.getJsonStringFromFile("userDetails.json");
+        User user= (User) FileUtilities.getObjectFromFile("userDetails.json",User.class);
         String userId= String.valueOf(user.getUserId());
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.get("/user")
                         .param("userId" ,userId))
@@ -74,8 +76,8 @@ class UserControllerTest {
     @Test
     void deleteUser() throws Exception {
 
-       Long userId=7L;
-       User user =userService.getUserById(userId);
+        Long userId=Long.parseLong(FileUtilities.getAttributeFromFile("userId.json","userId"));
+        User user =userService.getUserById(userId);
         String userToken = token.GenerateMockMvcToken(user.getMobileNumber());
 
         MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/user")
@@ -84,11 +86,11 @@ class UserControllerTest {
                         .andExpect( MockMvcResultMatchers.status().isOk())
                         .andReturn();
 
-        String response =result.getResponse().getContentAsString();
-        CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
+        CustomReturnType actualResponse= (CustomReturnType) FileUtilities.getObjectFromjsonString(result.getResponse().getContentAsString(),CustomReturnType.class);
+        CustomReturnType expectedResponse =(CustomReturnType) FileUtilities.getObjectFromFile("userDeleteRes.json",CustomReturnType.class);
 
-        Assert.assertEquals(msg.getMsg(),"User delete successfully");
-
+        Assert.assertEquals(expectedResponse.getMsg(),actualResponse.getMsg());
+        Assert.assertEquals(expectedResponse.getStatus(),actualResponse.getStatus());
         //revert back the data
         //issue same id is not need set same id .
         userService.updateUser(user);
@@ -98,8 +100,8 @@ class UserControllerTest {
 
     @Test
     void updateUser() throws Exception {
-      String userJson=TestUtility.getJsonStringFromFile("UserDetails.json");
-        User user = (User) TestUtility.getObjectFromFile("UserDetails.json",User.class);
+      String userJson= FileUtilities.getJsonStringFromFile("userDetails.json");
+        User user = (User) FileUtilities.getObjectFromFile("userDetails.json",User.class);
         String userToken = token.GenerateMockMvcToken(user.getMobileNumber());
 
 

@@ -6,7 +6,7 @@ import com.paytm.mileston2.model.Wallet;
 import com.paytm.mileston2.service.UserService;
 import com.paytm.mileston2.service.WalletService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paytm.mileston2.utilities.TestUtility;
+import com.paytm.mileston2.utilities.FileUtilities;
 import com.paytm.mileston2.utilities.Token;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -46,8 +46,8 @@ class TransactionControllerTest {
     //Done Work perfectly
     @Test
     void transferMoney() throws Exception {
-        String requestJson =TestUtility.getJsonStringFromFile("TransferMoneyReq.json");
-        Transaction txns= (Transaction) TestUtility.getObjectFromFile("TransferMoneyReq.json",Transaction.class);
+        String requestJson = FileUtilities.getJsonStringFromFile("transferMoneyReq.json");
+        Transaction txns= (Transaction) FileUtilities.getObjectFromFile("transferMoneyReq.json",Transaction.class);
        //get PayerWalletId
        String userWalletId= txns.getPayerWalletId();
        // GenerateMockMvcToken
@@ -61,7 +61,7 @@ class TransactionControllerTest {
 
 
         String resultContent=result.getResponse().getContentAsString();
-        CustomReturnType response = (CustomReturnType) TestUtility.getObjectFromjsonString(resultContent,CustomReturnType.class);
+        CustomReturnType response = (CustomReturnType) FileUtilities.getObjectFromjsonString(resultContent,CustomReturnType.class);
         Assert.assertEquals(response.getMsg(),"money transfer successfully") ;
 
        // return money back to  account only for testing only .

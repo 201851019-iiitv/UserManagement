@@ -5,7 +5,7 @@ import com.paytm.mileston2.model.Wallet;
 import com.paytm.mileston2.service.UserService;
 import com.paytm.mileston2.service.WalletService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paytm.mileston2.utilities.TestUtility;
+import com.paytm.mileston2.utilities.FileUtilities;
 import com.paytm.mileston2.utilities.Token;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -37,7 +37,7 @@ class WalletControllerTest {
 
     @Test
     void createWallet() throws Exception {
-       String jsonMobileNumber=TestUtility.getJsonStringFromFile("mobileNumber.json");
+       String jsonMobileNumber= FileUtilities.getJsonStringFromFile("mobileNumber.json");
        JSONObject jsonObject=new JSONObject(jsonMobileNumber);
         String mobileNumber=jsonObject.getString("mobileNumber");
         //generate token
@@ -65,7 +65,7 @@ class WalletControllerTest {
     @Test
     void addMoney() throws Exception {
 
-        String jsonMobileNumber=TestUtility.getJsonStringFromFile("mobileNumber.json");
+        String jsonMobileNumber= FileUtilities.getJsonStringFromFile("mobileNumber.json");
         JSONObject jsonObject=new JSONObject(jsonMobileNumber);
         String mobileNumber=jsonObject.getString("mobileNumber");
         Long amount=3L;
@@ -100,8 +100,8 @@ class WalletControllerTest {
 
     @Test
     void getWalletDetailsById() throws Exception {
-        String walletResJson= TestUtility.getJsonStringFromFile( "WalletDetails.json");
-        Wallet wallet= (Wallet) TestUtility.getObjectFromFile("WalletDetails.json",Wallet.class);
+        String walletResJson= FileUtilities.getJsonStringFromFile( "walletDetails.json");
+        Wallet wallet= (Wallet) FileUtilities.getObjectFromFile("walletDetails.json",Wallet.class);
         String mobileNumber=wallet.getWalletId();
         String userToken = token.GenerateMockMvcToken(mobileNumber);
 
