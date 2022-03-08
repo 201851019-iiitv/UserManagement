@@ -1,7 +1,7 @@
 package com.paytm.mileston2.config;
 
 import com.paytm.mileston2.exception.GlobalException;
-import com.paytm.mileston2.utilities.Jwt.JwtUtil;
+import com.paytm.mileston2.utilities.JwtUtil;
 import com.paytm.mileston2.service.CustomUserDetailsJwtService;
 import com.paytm.mileston2.exception.BadRequestException;
 import org.apache.log4j.Logger;

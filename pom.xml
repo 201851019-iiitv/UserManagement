@@ -40,7 +40,6 @@
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
-
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -108,10 +107,17 @@
 			<version>2.9.0</version>
 		</dependency>
 		<!-- flink kafka connector -->
+		<!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka -->
 		<dependency>
 			<groupId>org.apache.flink</groupId>
-			<artifactId>flink-connector-kafka-0.9_2.10</artifactId>
-			<version>1.0.2</version>
+			<artifactId>flink-connector-kafka_2.12</artifactId>
+			<version>1.14.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-elasticsearch -->
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-connector-elasticsearch_2.12</artifactId>
+			<version>1.8.3</version>
 		</dependency>
 	</dependencies>
 	<build>

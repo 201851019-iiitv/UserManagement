@@ -3,12 +3,8 @@ package com.paytm.mileston2.utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paytm.mileston2.DTO.JwtRequest;
 import com.paytm.mileston2.DTO.JwtResponse;
-import com.paytm.mileston2.config.ApplicationContextHolder;
 import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.service.UserService;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -29,11 +25,7 @@ public class Token {
 
 
     public String GenerateMockMvcToken(String mobileNumber) throws Exception {
-
-        // From payerWalletId -->get user.
-       //UserService userService = ApplicationContextHolder.getContext().getBean(UserService.class);
         User user=userService.findByMobileNumber(mobileNumber);
-
         // user -->username and password .
         String username=user.getUsername();
         String password=user.getPassword();

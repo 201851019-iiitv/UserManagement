@@ -1,28 +1,36 @@
 -------------------------------------------------------------------------------
 Test set: com.paytm.mileston2.controller.UserControllerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 7.494 s <<< FAILURE! - in com.paytm.mileston2.controller.UserControllerTest
-updateUser  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
+Tests run: 5, Failures: 2, Errors: 2, Skipped: 0, Time elapsed: 7.609 s <<< FAILURE! - in com.paytm.mileston2.controller.UserControllerTest
+createUserWithInvalidConstraint  Time elapsed: 0.631 s  <<< FAILURE!
+java.lang.AssertionError: User can't created user 
+	at com.paytm.mileston2.controller.UserControllerTest.createUserWithInvalidConstraint(UserControllerTest.java:63)
 
-createSuccessfulUser  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
+updateUser  Time elapsed: 0.011 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.paytm.mileston2.model.User.getUsername()" because "user" is null
+	at com.paytm.mileston2.controller.UserControllerTest.updateUser(UserControllerTest.java:107)
 
-deleteUser  Time elapsed: 0 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
+deleteUser  Time elapsed: 0.203 s  <<< ERROR!
+java.lang.RuntimeException: User can't be update !. because user doesn't exist with : User{userId=8, mobile_number='12345789', username='ak5555', password='ak44', email='ak22231@gmail.com', name='ak223', createDate=2022-03-07 11:58:58.192, isActiveUser=true, address='ask2', isActiveWallet=false, wallet=null}
+	at com.paytm.mileston2.controller.UserControllerTest.deleteUser(UserControllerTest.java:98)
 
-getUserById  Time elapsed: 0.003 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
+getUserById  Time elapsed: 0.039 s  <<< FAILURE!
+java.lang.AssertionError: 
+address
+Expected: ak
+     got: ask22
+ ; email
+Expected: ak@gmail.com
+     got: ak1211@gmail.com
+ ; mobileNumber
+Expected: 1234567890
+     got: 1234567891
+ ; password
+Expected: ak
+     got: ak121
+ ; username
+Expected: ak
+     got: ak122
+
+	at com.paytm.mileston2.controller.UserControllerTest.getUserById(UserControllerTest.java:75)
 

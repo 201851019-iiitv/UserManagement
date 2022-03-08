@@ -1757,3 +1757,46 @@
 2022-03-07 14:03:31,493 DEBUG [main] UserService:44 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Mon Mar 07 14:03:31 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
 2022-03-07 14:03:31,723  INFO [main] UserService:55 - created user  User{userId=10, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Mon Mar 07 14:03:31 IST 2022, isActiveUser=true, address='BSE', isActiveWallet=false, wallet=null}
 2022-03-07 14:03:31,914 DEBUG [main] UserService:115 - delete user by mobileNumber :9111111112 & userId : 10
+2022-03-08 10:48:58,398 DEBUG [main] UserService:44 - create : User{userId=null, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Tue Mar 08 10:48:58 IST 2022, isActiveUser=false, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-08 10:48:58,565  INFO [main] UserService:55 - created user  User{userId=11, mobile_number='9111111112', username='ambuj12', password='ambuj@97', email='kambuj12@gmail.com', name='ambuj1', createDate=Tue Mar 08 10:48:58 IST 2022, isActiveUser=true, address='BSE', isActiveWallet=false, wallet=null}
+2022-03-08 10:48:58,644 DEBUG [main] UserService:115 - delete user by mobileNumber :9111111112 & userId : 11
+2022-03-08 10:48:58,665  INFO [main] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-03-08 10:48:58,676  INFO [main] UserService:65 - retrieved user by userId :8
+2022-03-08 10:48:58,681  INFO [main] UserService:92 - retrieved user by mobileNumber: 12345789
+2022-03-08 10:48:58,696 DEBUG [main] UserService:106 - retrieved user by username: ak5555
+2022-03-08 10:48:58,700 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-08 10:48:58,701  INFO [main] CustomUserDetailsJwtService:29 - username :ak5555
+2022-03-08 10:48:58,705 DEBUG [main] UserService:106 - retrieved user by username: ak5555
+2022-03-08 10:48:58,709 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-08 10:48:58,709  INFO [main] CustomUserDetailsJwtService:29 - username :ak5555
+2022-03-08 10:48:58,780  INFO [main] JwtTokenController:49 -  username :ak5555 password : ak44
+2022-03-08 10:48:58,781  INFO [main] JwtTokenController:50 - Token generated :eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhazU1NTUiLCJleHAiOjE2NDY3NTI3MzgsImlhdCI6MTY0NjcxNjczOH0.DOMZlN0p_fIHfTKrldhuk-PbA2DWnUuZNmn0l_wKNs8
+2022-03-08 10:48:58,811 DEBUG [main] JwtAuthFilter:54 - user login successfully from do filterInternal ! 
+2022-03-08 10:48:58,811  INFO [main] JwtAuthFilter:55 - username : ak5555
+2022-03-08 10:48:58,814 DEBUG [main] UserService:106 - retrieved user by username: ak5555
+2022-03-08 10:48:58,819 DEBUG [main] CustomUserDetailsJwtService:28 - load by username !
+2022-03-08 10:48:58,819  INFO [main] CustomUserDetailsJwtService:29 - username :ak5555
+2022-03-08 10:48:58,840  INFO [main] UserService:85 - user delete with userId : 8
+2022-03-08 10:48:58,890  INFO [main] UserService:65 - retrieved user by userId :1
+2022-03-08 10:48:58,895  INFO [main] UserController:44 - user retrieved by userId 1
+2022-03-08 10:48:58,974  INFO [main] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-03-08 10:48:59,029 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 1
+2022-03-08 10:48:59,045 DEBUG [main] TransactionController:91 - retrieve transaction status  by txn Id1
+2022-03-08 10:48:59,099  INFO [main] UserService:92 - retrieved user by mobileNumber: 9292929292
+2022-03-08 10:48:59,119  INFO [main] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-03-08 10:48:59,132  INFO [main] UserService:92 - retrieved user by mobileNumber: 9292929292
+2022-03-08 10:48:59,392  INFO [main] UserService:92 - retrieved user by mobileNumber: 1234567890
+2022-03-08 10:48:59,415 DEBUG [main] UserService:106 - retrieved user by username: ak
+2022-03-08 10:48:59,426  INFO [main] UserService:73 - updated user : User{userId=1, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=null, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-08 10:48:59,441 DEBUG [main] UserService:98 - retrieved user by email: ak@gmail.com
+2022-03-08 10:48:59,449 DEBUG [main] UserService:44 - create : User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Tue Mar 08 10:48:59 IST 2022, isActiveUser=false, address='ak', isActiveWallet=false, wallet=null}
+2022-03-08 10:48:59,449  INFO [main] UserService:55 - created user  User{userId=null, mobile_number='1234567890', username='ak', password='ak', email='ak@gmail.com', name='ak', createDate=Tue Mar 08 10:48:59 IST 2022, isActiveUser=true, address='ak', isActiveWallet=false, wallet=null}
+2022-03-08 10:48:59,458  INFO [main] UserService:85 - user delete with userId : 1
+2022-03-08 10:48:59,466  INFO [main] UserService:65 - retrieved user by userId :1
+2022-03-08 10:48:59,560 DEBUG [main] TransactionService:60 - retrieved all transaction by txn id and txnId : 4
+2022-03-08 10:48:59,573 DEBUG [main] TransactionService:46 - retrieved all transaction by wallet id by per 2 transaction at each page ! & walletId: 1234567890&pageNo: 0
+2022-03-08 10:48:59,581 DEBUG [main] TransactionService:36 - created transaction & txnId: 4
+2022-03-08 10:48:59,650 DEBUG [main] WalletService:58 - retrieved wallet by walletId: 1234567890
+2022-03-08 10:48:59,662 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-08 10:48:59,669 DEBUG [main] WalletService:76 - update wallet by walletId : 1234567890
+2022-03-08 10:48:59,676  INFO [main] WalletService:52 - wallet can't create 1234567890

@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.paytm.mileston2.service.UserServiceTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.871 s <<< FAILURE! - in com.paytm.mileston2.service.UserServiceTest
-deleteUserByMobileNumber  Time elapsed: 0.011 s  <<< ERROR!
+Tests run: 9, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.325 s <<< FAILURE! - in com.paytm.mileston2.service.UserServiceTest
+deleteUserByMobileNumber  Time elapsed: 0.005 s  <<< ERROR!
 java.lang.NullPointerException: Cannot invoke "com.paytm.mileston2.model.User.getUserId()" because "user" is null
-	at com.paytm.mileston2.service.UserServiceTest.deleteUserByMobileNumber(UserServiceTest.java:112)
+	at com.paytm.mileston2.service.UserServiceTest.deleteUserByMobileNumber(UserServiceTest.java:96)
 

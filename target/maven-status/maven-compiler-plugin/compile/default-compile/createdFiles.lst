@@ -16,9 +16,9 @@ com/paytm/mileston2/service/TransactionService.class
 com/paytm/mileston2/DTO/JwtResponse.class
 com/paytm/mileston2/controller/UserController.class
 com/paytm/mileston2/WalletManagementApplication.class
-com/paytm/mileston2/utilities/Jwt/JwtUtil.class
+com/paytm/mileston2/utilities/verifyRequestAndToken.class
+com/paytm/mileston2/utilities/JwtUtil.class
 com/paytm/mileston2/model/User$UserBuilder.class
-com/paytm/mileston2/controller/VerifyRequestAndToken/verifyRequestAndToken.class
 com/paytm/mileston2/model/Transaction$TransactionBuilder.class
 com/paytm/mileston2/service/WalletService.class
 com/paytm/mileston2/exception/BadRequestException.class
@@ -32,5 +32,4 @@ com/paytm/mileston2/exception/ResourceNotFoundException.class
 com/paytm/mileston2/DTO/JwtRequest.class
 com/paytm/mileston2/model/Transaction.class
 com/paytm/mileston2/model/Wallet.class
-com/paytm/mileston2/utilities/validation/Validation.class
 com/paytm/mileston2/DAO/Impl/IWalletDao.class

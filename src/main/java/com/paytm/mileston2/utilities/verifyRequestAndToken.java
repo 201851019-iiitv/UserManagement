@@ -1,4 +1,4 @@
-package com.paytm.mileston2.controller.VerifyRequestAndToken;
+package com.paytm.mileston2.utilities;
 
 import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.service.UserService;
@@ -35,7 +35,5 @@ public class verifyRequestAndToken {
         return RequestTokenUsername.compareTo(RequestUrlUsername)==0? true:false;
 
     }
-
-
 
 }

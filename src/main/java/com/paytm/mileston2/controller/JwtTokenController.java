@@ -2,7 +2,7 @@ package com.paytm.mileston2.controller;
 
 
 import com.paytm.mileston2.DTO.JwtResponse;
-import com.paytm.mileston2.utilities.Jwt.JwtUtil;
+import com.paytm.mileston2.utilities.JwtUtil;
 import com.paytm.mileston2.DTO.JwtRequest;
 import com.paytm.mileston2.service.CustomUserDetailsJwtService;
 import com.paytm.mileston2.exception.BadRequestException;

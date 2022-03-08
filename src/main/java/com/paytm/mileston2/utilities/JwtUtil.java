@@ -1,4 +1,4 @@
-package com.paytm.mileston2.utilities.Jwt;
+package com.paytm.mileston2.utilities;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.paytm.mileston2.service.WalletServiceTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.097 s <<< FAILURE! - in com.paytm.mileston2.service.WalletServiceTest
-addMoney  Time elapsed: 0.006 s  <<< ERROR!
+Tests run: 5, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.085 s <<< FAILURE! - in com.paytm.mileston2.service.WalletServiceTest
+addMoney  Time elapsed: 0.004 s  <<< ERROR!
 com.paytm.mileston2.exception.BadRequestException: can't add money in wallet due to : \nCannot invoke "com.paytm.mileston2.service.UserService.findByMobileNumber(String)" because "this.userService" is null
-	at com.paytm.mileston2.service.WalletServiceTest.addMoney(WalletServiceTest.java:81)
+	at com.paytm.mileston2.service.WalletServiceTest.addMoney(WalletServiceTest.java:63)
 
-createWallet  Time elapsed: 0.004 s  <<< ERROR!
+createWallet  Time elapsed: 0.006 s  <<< ERROR!
 com.paytm.mileston2.exception.BadRequestException: can't create wallet.
-	at com.paytm.mileston2.service.WalletServiceTest.createWallet(WalletServiceTest.java:40)
+	at com.paytm.mileston2.service.WalletServiceTest.createWallet(WalletServiceTest.java:33)
 
