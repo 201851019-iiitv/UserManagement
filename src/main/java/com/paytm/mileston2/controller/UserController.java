@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-//ToDo: verify the requested usertoken and request token.
+
 @RestController
 public class UserController{
 

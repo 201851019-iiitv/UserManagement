@@ -1,12 +1,10 @@
 package com.paytm.mileston2.controller;
 
-import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.model.User;
 import com.paytm.mileston2.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paytm.mileston2.utilities.FileUtilities;
+import com.paytm.mileston2.utilities.ResultMatcher;
 import com.paytm.mileston2.utilities.Token;
-import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,48 +25,55 @@ class UserControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
     private UserService userService;
 
-   @Autowired
-   private Token token;
+    @Autowired
+    private Token token;
 
 
     //Done work Perfectly
     @Test
-    void createUser() throws Exception {
-        String requestJson= FileUtilities.getJsonStringFromFile("userCreateReq.json");
-       MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/user")
-                       .contentType(MediaType.APPLICATION_JSON_VALUE)
-                       .content(requestJson))
+    void createSuccessfullyUser() throws Exception {
+        String requestJson = FileUtilities.getJsonStringFromFile("userSuccessCreateReq.json");
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/user")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(requestJson))
                        .andExpect(MockMvcResultMatchers.status().isOk())
-                       .andReturn();
+                .andReturn();
 
-       CustomReturnType actualResponse= (CustomReturnType) FileUtilities.getObjectFromjsonString(result.getResponse().getContentAsString(),CustomReturnType.class);
-       CustomReturnType expectedResponse =(CustomReturnType) FileUtilities.getObjectFromFile("userCreateRes.json",CustomReturnType.class);
+        boolean output= ResultMatcher.isMatched(result.getResponse().getContentAsString(),"userCreateRes.json");
+        Assert.assertTrue("User can't created user ",output); // if output is false then print message .
 
-        Assert.assertEquals(expectedResponse.getMsg(),actualResponse.getMsg()) ;
-        Assert.assertEquals(expectedResponse.getStatus(),actualResponse.getStatus());
-        //Delete user as well because it is only for testing purpose.
-        //get json data for that string .
-        String mobileNumber = FileUtilities.getAttributeFromjsonString(requestJson,"mobileNumber");
+        String mobileNumber = FileUtilities.getAttributeFromjsonString(requestJson, "mobileNumber");
         userService.deleteUserByMobileNumber(mobileNumber);
 
+    }
+
+    //Done work Perfectly
+    @Test
+    void createUserWithInvalidConstraint() throws Exception {
+        String requestJson = FileUtilities.getJsonStringFromFile("creatUnsuccessful.json");
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/user")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(requestJson))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        boolean output= ResultMatcher.Matched(result.getResponse().getContentAsString(),"createInvalidUser.json");
+        Assert.assertTrue("User can't created user ",output); // if output is false then print message .
     }
 
     //Work perfectly
     @Test
     void getUserById() throws Exception {
-        String userRes= FileUtilities.getJsonStringFromFile("userDetails.json");
-        User user= (User) FileUtilities.getObjectFromFile("userDetails.json",User.class);
-        String userId= String.valueOf(user.getUserId());
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.get("/user")
-                        .param("userId" ,userId))
-                        .andExpect( MockMvcResultMatchers.status().isOk())
-                        .andExpect(MockMvcResultMatchers.content().json(userRes))
-                        .andReturn();
+        String userRes = FileUtilities.getJsonStringFromFile("userDetails.json");
+        User user = (User) FileUtilities.getObjectFromFile("userDetails.json", User.class);
+        String userId = String.valueOf(user.getUserId());
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/user")
+                        .param("userId", userId))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(userRes))
+                .andReturn();
 
     }
 
@@ -76,21 +81,18 @@ class UserControllerTest {
     @Test
     void deleteUser() throws Exception {
 
-        Long userId=Long.parseLong(FileUtilities.getAttributeFromFile("userId.json","userId"));
-        User user =userService.getUserById(userId);
+        Long userId = Long.parseLong(FileUtilities.getAttributeFromFile("userId.json", "userId"));
+        User user = userService.getUserById(userId);
         String userToken = token.GenerateMockMvcToken(user.getMobileNumber());
 
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/user")
-                        .param("userId" ,String.valueOf(userId))
-                        .header(AUTHORIZATION,"Bearer "+userToken))
-                        .andExpect( MockMvcResultMatchers.status().isOk())
-                        .andReturn();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.delete("/user")
+                        .param("userId", String.valueOf(userId))
+                        .header(AUTHORIZATION, "Bearer " + userToken))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
 
-        CustomReturnType actualResponse= (CustomReturnType) FileUtilities.getObjectFromjsonString(result.getResponse().getContentAsString(),CustomReturnType.class);
-        CustomReturnType expectedResponse =(CustomReturnType) FileUtilities.getObjectFromFile("userDeleteRes.json",CustomReturnType.class);
-
-        Assert.assertEquals(expectedResponse.getMsg(),actualResponse.getMsg());
-        Assert.assertEquals(expectedResponse.getStatus(),actualResponse.getStatus());
+        boolean output= ResultMatcher.isMatched(result.getResponse().getContentAsString(),"userDeleteRes.json");
+        Assert.assertTrue("User can't deleted",output);
         //revert back the data
         //issue same id is not need set same id .
         userService.updateUser(user);
@@ -100,28 +102,23 @@ class UserControllerTest {
 
     @Test
     void updateUser() throws Exception {
-      String userJson= FileUtilities.getJsonStringFromFile("userDetails.json");
-        User user = (User) FileUtilities.getObjectFromFile("userDetails.json",User.class);
+        String userJson = FileUtilities.getJsonStringFromFile("userDetails.json");
+        User user = (User) FileUtilities.getObjectFromFile("userDetails.json", User.class);
         String userToken = token.GenerateMockMvcToken(user.getMobileNumber());
 
 
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.put("/user")
-                        .header(AUTHORIZATION,"Bearer "+userToken)
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.put("/user")
+                        .header(AUTHORIZATION, "Bearer " + userToken)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(userJson))
-                        .andExpect( MockMvcResultMatchers.status().isOk())
-                        .andReturn();
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
 
-        String response =result.getResponse().getContentAsString();
-        CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
-
-        Assert.assertEquals(msg.getMsg(),"User updated successfully.");
-
+        boolean output= ResultMatcher.isMatched(result.getResponse().getContentAsString(),"userUpdateRes.json");
+        Assert.assertTrue("User can't update",output);
         //revert back the data
         //issue same id is not need set same id .
         userService.updateUser(user);
-
-
 
     }
 

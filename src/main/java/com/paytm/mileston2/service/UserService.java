@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class UserService {
         return userDao.findAllUsers();
     }
     @Transactional
-    public CustomReturnType createUser(@NotNull User user){
+    public CustomReturnType createUser(User user){
         // build the user first and validate.
         User user1 = new User.UserBuilder()
                 .setName(user.getName())

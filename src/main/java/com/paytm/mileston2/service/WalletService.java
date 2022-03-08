@@ -42,7 +42,7 @@ public class WalletService {
                 userService.updateUser(user);
                 walletDao.saveWallet(wallet);
                 logger.info("wallet created :" + wallet);
-                return new CustomReturnType("wallet created successfully", HttpStatus.ACCEPTED);
+                return new CustomReturnType("wallet created successfully", HttpStatus.CREATED);
             }
             else {
                 return new CustomReturnType("User has already wallet .", HttpStatus.BAD_REQUEST);

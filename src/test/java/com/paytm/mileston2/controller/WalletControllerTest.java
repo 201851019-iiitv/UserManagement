@@ -2,12 +2,10 @@ package com.paytm.mileston2.controller;
 
 import com.paytm.mileston2.DTO.CustomReturnType;
 import com.paytm.mileston2.model.Wallet;
-import com.paytm.mileston2.service.UserService;
 import com.paytm.mileston2.service.WalletService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paytm.mileston2.utilities.FileUtilities;
+import com.paytm.mileston2.utilities.ResultMatcher;
 import com.paytm.mileston2.utilities.Token;
-import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 
@@ -24,10 +23,6 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @AutoConfigureMockMvc
 class WalletControllerTest {
 
-    @Autowired
-    private ObjectMapper objectMapper;
-    @Autowired
-    private UserService userService;
     @Autowired
     private WalletService walletService;
     @Autowired
@@ -37,57 +32,43 @@ class WalletControllerTest {
 
     @Test
     void createWallet() throws Exception {
-       String jsonMobileNumber= FileUtilities.getJsonStringFromFile("mobileNumber.json");
-       JSONObject jsonObject=new JSONObject(jsonMobileNumber);
-        String mobileNumber=jsonObject.getString("mobileNumber");
+        String mobileNumber = FileUtilities.getAttributeFromFile("mobileNumber.json", "mobileNumber");
         //generate token
         String userToken = token.GenerateMockMvcToken(mobileNumber);
 
-     MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/wallet/{mobileNumber}",mobileNumber)
-             .header(AUTHORIZATION,"Bearer "+userToken))
-             .andExpect(MockMvcResultMatchers.status().isOk())
-             .andReturn();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/wallet/{mobileNumber}", mobileNumber)
+                        .header(AUTHORIZATION, "Bearer " + userToken))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
 
-     String response =result.getResponse().getContentAsString();
-        CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
-
-
-        Assert.assertEquals(msg.getMsg(),"wallet created successfully");
-
+        boolean output= ResultMatcher.isMatched(result.getResponse().getContentAsString(),"createWalletRes.json");
+        Assert.assertTrue("User can't create wallet",output);
 
         //Delete wallet as well because it is only for testing purpose.
         walletService.DeleteWalletById(mobileNumber);
-
 
     }
 
     // Done Work Perfectly .
     @Test
     void addMoney() throws Exception {
-
-        String jsonMobileNumber= FileUtilities.getJsonStringFromFile("mobileNumber.json");
-        JSONObject jsonObject=new JSONObject(jsonMobileNumber);
-        String mobileNumber=jsonObject.getString("mobileNumber");
-        Long amount=3L;
+        String mobileNumber = FileUtilities.getAttributeFromFile("addMoneyReq.json", "mobileNumber");
+        String amount = FileUtilities.getAttributeFromFile("addMoneyReq.json", "amount");
         //generate token
         String userToken = token.GenerateMockMvcToken(mobileNumber);
 
-        final String requestUrl ="/wallet/"+mobileNumber+"/"+String.valueOf(amount);
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post(requestUrl)
-                        .header(AUTHORIZATION,"Bearer "+userToken))
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/wallet/" + mobileNumber + "/" + amount)
+                        .header(AUTHORIZATION, "Bearer " + userToken))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-        String response =result.getResponse().getContentAsString();
-        CustomReturnType msg =objectMapper.readValue(response, CustomReturnType.class);
-
-        Assert.assertEquals(msg.getMsg(),"money added successfully in your wallet ");
-
-      //Substract add money from the wallet.
-       // first find the wallet .
-       Wallet w =walletService.getWalletById(mobileNumber);
-       w.setCurrBal(w.getCurrBal()-amount);
-       walletService.updateWallet(w);
+        boolean output= ResultMatcher.isMatched(result.getResponse().getContentAsString(),"addMoneyRes.json");
+        Assert.assertTrue("User can't add money in  wallet",output);
+        //Substract add money from the wallet.
+        // first find the wallet .
+        Wallet w = walletService.getWalletById(mobileNumber);
+        w.setCurrBal(w.getCurrBal() - Long.parseLong(amount));
+        walletService.updateWallet(w);
 
     }
 
@@ -100,17 +81,16 @@ class WalletControllerTest {
 
     @Test
     void getWalletDetailsById() throws Exception {
-        String walletResJson= FileUtilities.getJsonStringFromFile( "walletDetails.json");
-        Wallet wallet= (Wallet) FileUtilities.getObjectFromFile("walletDetails.json",Wallet.class);
-        String mobileNumber=wallet.getWalletId();
+        String walletResJson = FileUtilities.getJsonStringFromFile("walletDetails.json");
+        Wallet wallet = (Wallet) FileUtilities.getObjectFromFile("walletDetails.json", Wallet.class);
+        String mobileNumber = wallet.getWalletId();
         String userToken = token.GenerateMockMvcToken(mobileNumber);
 
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.get("/wallet/{mobileNumber}",mobileNumber)
-                        .header(AUTHORIZATION,"Bearer "+userToken))
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/wallet/{mobileNumber}", mobileNumber)
+                        .header(AUTHORIZATION, "Bearer " + userToken))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(walletResJson))
                 .andReturn();
-
 
     }
 }
